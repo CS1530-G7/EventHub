@@ -1,3 +1,4 @@
 ---------------------Ideas---------------------
 Carpooling - Get rides or offer seats
 Concert  / Live music - Bands add concert information, fans see who's attending what concerts
+Events - Public, Private, Searchable by area
