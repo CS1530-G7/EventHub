@@ -1,0 +1,26 @@
+Function paragraphs - 
+
+Account creation and deletion.
+
+Users can create a new account. To create a new account, users input data about themselves. User data is error checked to ensure consistency. A user account consists of a user's data. 
+
+Users can also delete an existing account. A user may only delete his account. A safety check ensuring the user's intentions to actually delete his account is provided. Once an account is deleted, it is lost forever.
+
+
+Following other users' event activity
+
+Users may follow their friends event activity. You may only follow your friend's events. If a user is not your friend, then you may not follow their events. To follow your friend's events, simply navigate to their profile and click follow. Look with envy as all of your friends attend exclusive events. As they pop up on your event feed. In real time.
+
+Event creation and deletion.
+
+Users can create an event. All users may create events. When a user creates an event, the user must give specific information about the event. Things like location, type of event, and event privacy are all required features for creating an event. Once an event is created, other users may follow it. Users can also delete events.
+
+Users can also delete events. Only event creators can delete their own events. Once an event is deleted, it is irrevocably lost, along with the hopes and dreams of all attendees. Please delete events with utmost care.
+
+Event search.
+
+Users can search events via provided filters. Only events that match specific criteria are shown. Our state of the art search function provide the best results to your event needs. Watch the universe align when that very special event appears out of nowhere on your browser.
+
+Ability to RSVP.
+
+Users can RSVP to events. This is essentially following your very own events. And lots of them. Good job on finally finding an event. Now just click it. You just followed an event. User's followed events show up in their profile. We will also give you notifications of your events. Don't forget about your events.
