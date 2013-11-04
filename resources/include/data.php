@@ -42,6 +42,8 @@ function createUser($username, $password, $email)
 function getUserID($username)
 {
 
+	$sql = getSQL(FALSE);
+	
 	$query = "SELECT u_id FROM e_users WHERE u_name = '$user'";
 	
 	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
