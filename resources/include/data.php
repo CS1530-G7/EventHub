@@ -35,7 +35,10 @@ function createUser($username, $password, $email)
 	
 	mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
 	
-	return getUserID($user);
+	
+	$id = mysqli_insert_id($sql);
+	
+	return $id;
 
 }
 
