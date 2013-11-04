@@ -3,10 +3,11 @@ require_once("pw.php");
 
 function sanitize($input)
 {
+	$sql = getSQL(FALSE);
 	//Remove semicolons
 	$input = str_replace(";","",$input);
 	//Escapes harmful characters
-	$input = mysqli_real_escape_string($input);
+	$input = mysqli_real_escape_string($sql, $input);
 	//Escapes % and _
 	$input = addcslashes($input, '%_');
 	
