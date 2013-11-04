@@ -16,7 +16,7 @@ print "Username = " .  $un . "\n";
 $uid2 = getUserID($un);
 print "UserID = " . $uid2 . "\n";
 print "Testing addEvent\n";
-$eid = addEvent($uid, "Some Event", "Pittsburgh, PA","November 7, 2013 7:15pm","Some event",FALSE);
+$eid = addEvent($uid, "Some Event", "Pittsburgh, PA",strtotime("November 7, 2013 7:15pm"),"Some event",FALSE);
 print "Result: $eid\n";
 print "</pre>";
 
