@@ -13,6 +13,8 @@ print "Result: " . $uid . "\n";
 $un = getUsername($uid);
 print "Username = " .  $un . "\n";
 
+$uid2 = getUserID($un);
+print "UserID = " . $uid2 . "\n";
 print "</pre>";
 
 
