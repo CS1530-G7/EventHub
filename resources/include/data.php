@@ -42,6 +42,24 @@ function createUser($username, $password, $email)
 
 }
 
+function getUsername($UID)
+{
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT u_name FROM e_users WHERE u_id = '$UID'";
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row["u_name"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
 function getUserID($username)
 {
 
