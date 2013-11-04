@@ -48,7 +48,7 @@ function getUsername($UID)
 	
 	$query = "SELECT u_name FROM e_users WHERE u_id = '$UID'";
 	
-	mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
 	
 	$row = $res->fetch_assoc();
 	
