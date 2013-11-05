@@ -42,6 +42,30 @@ function createUser($username, $password, $email)
 
 }
 
+
+
+function getUserID($username)
+{
+
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT u_id FROM e_users WHERE u_name LIKE '%$username%'";
+	
+	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+	
+			
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row["u_id"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
 function getUsername($UID)
 {
 	$sql = getSQL(FALSE);
@@ -62,21 +86,79 @@ function getUsername($UID)
 	}
 }
 
-function getUserID($username)
+function getUserStatus($UID)
 {
-
 	$sql = getSQL(FALSE);
 	
-	$query = "SELECT u_id FROM e_users WHERE u_name LIKE '%$username%'";
+	$query = "SELECT u_status FROM e_users WHERE u_id = '$UID'";
 	
 	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
 	
-			
 	$row = $res->fetch_assoc();
 	
 	if($row)
 	{
-		return $row["u_id"];
+		return $row["u_status"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+function getActivationCode($UID)
+{
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT u_activecode FROM e_users WHERE u_id = '$UID'";
+	
+	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row["u_activecode"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+function getLocationName($UID)
+{
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT u_loc_name FROM e_users WHERE u_id = '$UID'";
+	
+	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row["u_loc_name"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+function getLocationLatlong($UID)
+{
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT u_loc_latlon FROM e_users WHERE u_id = '$UID'";
+	
+	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row["u_loc_latlon"];
 	}
 	else
 	{
