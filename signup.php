@@ -4,7 +4,7 @@
  
  <html>
 	<body>
-		<h1>Coming Soon!</h1>
+		<h1>Sign up!</h1>
 		
 		<!-- <img src="./resources/img/Homepage.jpg" /> -->
 		<form name="signup" action="" method="POST">
