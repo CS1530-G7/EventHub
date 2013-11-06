@@ -24,9 +24,9 @@ if(isset($_POST['submit'])) {
  }
 
  // check username length
- if(strlen($username) > 20) {
+ if(strlen($username) < 6 || strlen($username) > 20) {
 
- 	echo "username must be less than 20 characters";
+ 	echo "username must be between 6 and 20 characters";
  	$error = TRUE;
 
  }
