@@ -32,7 +32,7 @@ if(isset($_POST['submit'])) {
  }
 
  // check password length
- if(6 > strlen($password) > 20) {
+ if(strlen($password) < 6 || strlen($password) > 20 ) {
 
  	echo "password must be between 6 and 20 characters";
  	$error = TRUE;
