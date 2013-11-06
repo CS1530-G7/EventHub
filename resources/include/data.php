@@ -128,6 +128,13 @@ function login($username, $password)
 	
 }
 
+function deleteUser($uid)
+{
+	$sql = getSQL(TRUE);
+	$query = "DELETE FROM e_users WHERE u_id='$uid'";
+	mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+}
+
 //User SQL wrappers
 
 function getUserID($username)
