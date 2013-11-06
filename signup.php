@@ -23,7 +23,7 @@ if(isset($_POST['submit'])) {
 		<!-- <img src="./resources/img/Homepage.jpg" /> -->
 		<div id="signup-form">
 
-			<form name="signup" id="user-signup" action="" method="POST">
+			<form name="signup" id="user-signup" action="signup.php" method="POST">
 				<label for="username"/>Username:</label>
 				<input type="text" name="user">
 				<label for="email"/>Email:</label>
