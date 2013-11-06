@@ -1,5 +1,5 @@
 <?php
-
+startSession();
 require_once("pw.php");
 
 //Generic functions
