@@ -3,6 +3,16 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
 
+if(isset($_POST['submit'])) {
+
+ if(empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['password_confirm'])) {
+ 	echo "empty form fields";
+ } else {
+
+
+ }
+}
+
 
 ?>
  
