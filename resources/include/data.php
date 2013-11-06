@@ -6,7 +6,7 @@ require_once("pw.php");
 
 function startSession()
 {
-	if (session_status() !== PHP_SESSION_ACTIVE) 
+	if (session_id() === "") 
 	{
 		session_start();
 	}
@@ -14,7 +14,7 @@ function startSession()
 
 function endSession()
 {
-	if (session_status() === PHP_SESSION_ACTIVE) 
+	if (session_id() !== "") 
 	{
 		 session_write_close ();
 	}
