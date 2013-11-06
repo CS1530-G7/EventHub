@@ -1,5 +1,26 @@
 <?php
+
 require_once("pw.php");
+
+//Generic functions
+
+function startSession()
+{
+	if (session_status() !== PHP_SESSION_ACTIVE) 
+	{
+		session_start();
+	}
+}
+
+function endSession()
+{
+	if (session_status() === PHP_SESSION_ACTIVE) 
+	{
+		 session_write_close ();
+	}
+
+}
+
 
 function sanitize($input)
 {
@@ -22,6 +43,9 @@ function salthash($text)
 	
 }
 
+//User functions
+
+
 function createUser($username, $password, $email)
 {
 	$sql = getSQL(TRUE);
@@ -42,7 +66,67 @@ function createUser($username, $password, $email)
 
 }
 
+function getActiveUser()
+{
+	//There should already be a session but check first
+	sessionStart();
+	
+	if(isset($_SESSION["auth_userid"]))
+	{
+		return $_SESSION["auth_userid"];
+	}
+	else
+	{
+		return -1;
+	}
+	
+}
 
+function getLoginTime()
+{
+	//There should already be a session but check first
+	sessionStart();
+	
+	if(isset($_SESSION["auth_userid"]))
+	{
+		return $_SESSION["auth_time"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+function login($username, $password)
+{
+	sessionStart();
+	
+	$sql = getSQL(FALSE);
+	
+	$user = sanitize($username);
+	$pass = salthash($password);
+	
+	$query = "SELECT u_id FROM e_users WHERE u_name LIKE '%$user%' AND u_pass = '$pass'";
+	
+	mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+	
+	if($row)
+	{
+		$uid =  $row["u_id"];
+	}
+	else
+	{
+		return -1;
+	}
+	
+	$_SESSION["auth_userid"] = $uid;
+	$_SESSION['auth_time'] = date("Y-m-d H:i:s");
+	
+	return $uid;
+	
+}
+
+//User SQL wrappers
 
 function getUserID($username)
 {
@@ -165,6 +249,8 @@ function getLocationLatlong($UID)
 		return -1;
 	}
 }
+
+//Event functions
 
 function addEvent($UID, $evName, $evLocation, $evDateTime, $evDescrip, $evPrivate)
 {
