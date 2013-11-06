@@ -69,7 +69,7 @@ function createUser($username, $password, $email)
 function getActiveUser()
 {
 	//There should already be a session but check first
-	sessionStart();
+	startSession();
 	
 	if(isset($_SESSION["auth_userid"]))
 	{
@@ -85,7 +85,7 @@ function getActiveUser()
 function getLoginTime()
 {
 	//There should already be a session but check first
-	sessionStart();
+	startSession();
 	
 	if(isset($_SESSION["auth_userid"]))
 	{
@@ -99,7 +99,7 @@ function getLoginTime()
 
 function login($username, $password)
 {
-	sessionStart();
+	startSession();
 	
 	$sql = getSQL(FALSE);
 	
