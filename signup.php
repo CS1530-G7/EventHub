@@ -10,6 +10,8 @@ $password_confirm = $_POST['password_confirm'];
 
 echo "{$username}, {$email}, {$password}, {$password_confirm}\n";
 
+$error = FALSE;
+
 // submit button pressed
 if(isset($_POST['submit'])) {
 
@@ -17,22 +19,51 @@ if(isset($_POST['submit'])) {
  if(empty($username) || empty($email) || empty($password) || empty($password_confirm)) {
 
  	echo "empty form field(s)\n";
+ 	$error = TRUE;
 
- } 
+ }
+
+ // check username length
+ if(strlen($username) > 20) {
+
+ 	echo "username must be less than 20 characters";
+ 	$error = TRUE;
+
+ }
+
+ // check password length
+ if(6 > strlen($password) > 20) {
+
+ 	echo "password must be between 6 and 20 characters";
+ 	$error = TRUE;
+
+ }
 
  //checks for incorrect confirm password
- else if ($password != $password_confirm) {
+ if ($password != $password_confirm) {
 
  	echo "confirm password does not match\n";
+ 	$error = TRUE;
 
  }
 
  // checks email format
  if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-    echo "invalid email\n";
-}
 
- //
+    echo "invalid email\n";
+    $error = TRUE;
+
+	}
+
+	//submit to DB if no error
+	if (!$error) {
+
+		echo "submit user to DB\n";
+
+
+	}
+
+
 }
 
 
