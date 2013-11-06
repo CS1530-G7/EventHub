@@ -8,7 +8,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $password_confirm = $_POST['password_confirm'];
 
-echo $username . ", " . $email . ", " $password . ", " $password_confirm . "\n";
+echo $username . ", " . $email . ", " $password . ", " . $password_confirm . "\n";
 
 // submit button pressed
 if(isset($_POST['submit'])) {
