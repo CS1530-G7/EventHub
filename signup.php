@@ -2,15 +2,37 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
+// get variables
+$username = $_POST['username'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+$password_confirm = $_POST['password_confirm'];
 
+echo $username . ", " . $email . ", " $password . ", " $password_confirm . "\n";
+
+// submit button pressed
 if(isset($_POST['submit'])) {
 
- if(empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['password_confirm'])) {
- 	echo "empty form fields";
- } else {
+	// checks for empty form fields
+ if(empty($username) || empty($email) || empty($password) || empty($password_confirm)) {
 
+ 	echo "empty form field(s)\n";
+
+ } 
+
+ //checks for incorrect confirm password
+ else if ($password != $password_confirm) {
+
+ 	echo "confirm password does not match\n";
 
  }
+
+ // checks email format
+ if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+    echo "invalid email\n";
+}
+
+ //
 }
 
 
