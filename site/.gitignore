@@ -1,0 +1,4 @@
+*.doc#
+deploy.php
+phpexec.pl
+pw.php
