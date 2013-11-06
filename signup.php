@@ -25,7 +25,7 @@ if(isset($_POST['submit'])) {
 
 			<form name="signup" id="user-signup" action="signup.php" method="POST">
 				<label for="username"/>Username:</label>
-				<input type="text" name="user">
+				<input type="text" name="username">
 				<label for="email"/>Email:</label>
 				<input type="text" name="email">
 				<label for="password"/>Password:</label>
