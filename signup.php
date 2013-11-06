@@ -8,7 +8,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $password_confirm = $_POST['password_confirm'];
 
-echo "{$username}, {$email}, {$password}, {$password_confirm}\n";
+echo "{$username}, {$email}, {$password}, {$password_confirm}</br>";
 
 $error = FALSE;
 
@@ -18,7 +18,7 @@ if(isset($_POST['submit'])) {
 	// checks for empty form fields
  if(empty($username) || empty($email) || empty($password) || empty($password_confirm)) {
 
- 	echo "empty form field(s)\n";
+ 	echo "empty form field(s)</br>";
  	$error = TRUE;
 
  }
@@ -26,7 +26,7 @@ if(isset($_POST['submit'])) {
  // check username length
  if(strlen($username) < 6 || strlen($username) > 20) {
 
- 	echo "username must be between 6 and 20 characters";
+ 	echo "username must be between 6 and 20 character</br>s";
  	$error = TRUE;
 
  }
@@ -34,7 +34,7 @@ if(isset($_POST['submit'])) {
  // check password length
  if(strlen($password) < 6 || strlen($password) > 20 ) {
 
- 	echo "password must be between 6 and 20 characters";
+ 	echo "password must be between 6 and 20 characters</br>";
  	$error = TRUE;
 
  }
@@ -42,7 +42,7 @@ if(isset($_POST['submit'])) {
  //checks for incorrect confirm password
  if ($password != $password_confirm) {
 
- 	echo "confirm password does not match\n";
+ 	echo "confirm password does not match</br>";
  	$error = TRUE;
 
  }
@@ -50,7 +50,7 @@ if(isset($_POST['submit'])) {
  // checks email format
  if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 
-    echo "invalid email\n";
+    echo "invalid email</br>";
     $error = TRUE;
 
 	}
@@ -58,7 +58,7 @@ if(isset($_POST['submit'])) {
 	//submit to DB if no error
 	if (!$error) {
 
-		echo "submit user to DB\n";
+		echo "submit user to DB</br>";
 
 
 	}
