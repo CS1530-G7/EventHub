@@ -8,7 +8,8 @@
 		
 		<!-- <img src="./resources/img/Homepage.jpg" /> -->
 		<a href="signup.php">SIGN UP!</a>
-		<a href="createEvent.php">SIGN UP!</a>
+	</br>
+		<a href="createEvent.php">CREATE EVENT!</a>
 	
 		
 	</body>
