@@ -59,6 +59,7 @@ if(isset($_POST['submit'])) {
 	if (!$error) {
 
 		echo "submit user to DB</br>";
+		createUser($username, $password, $email);
 
 
 	}
