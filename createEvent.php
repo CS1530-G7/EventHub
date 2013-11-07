@@ -9,7 +9,34 @@ $event_date = $_POST['event_date'];
 $event_description = $_POST['event_description'];
 $event_private = $_POST['private_event'];
 
+$error = FALSE;
+
+// make radio button boolean
+if($event_private == "True") {
+	$event_private = TRUE;
+} else {
+	$event_prviate = FALSE;
+}
+
 echo "{$event_name}, {$event_location}, {$event_date}, {$event_description}, {$event_private}";
+
+//submit button clicked
+if(isset($_POST['submit'])) {
+
+	// check for active user
+	if($userID = getActiveUser()){
+
+		echo "active user out and about<br>";
+
+
+	} else {
+
+		echo "no active user out and about<br>";
+
+	}
+
+
+}
 
 ?>
  
