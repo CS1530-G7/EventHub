@@ -24,7 +24,8 @@ echo "{$event_name}, {$event_location}, {$event_date}, {$event_description}, {$e
 if(isset($_POST['submit'])) {
 
 	// check for active user
-	if($userID = getActiveUser()){
+	$userID = getActiveUser()
+	if($userID != -1){
 
 		echo "active user out and about<br>";
 
