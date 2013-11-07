@@ -1,5 +1,15 @@
 <?php
 
+/*
+	TODO: 
+
+		- Fix date input
+		- Prevent multiple submits to DB
+
+
+
+*/
+
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
 //get variables
@@ -24,10 +34,56 @@ echo "{$event_name}, {$event_location}, {$event_date}, {$event_description}, {$e
 if(isset($_POST['submit'])) {
 
 	// check for active user
+	// only logged in users can create events
+	// change this for form testing
 	$userID = getActiveUser();
+
+	//$userID = 123456789;
 	if($userID != -1){
 
 		echo "active user out and about<br>";
+
+		// checks for empty form fields
+ 		if(empty($event_name) || empty($event_location) || empty($event_date) || empty($event_description)) {
+
+ 			echo "empty form field(s)</br>";
+ 			$error = TRUE;
+
+ 		}
+
+ 		// check event name length
+ 		if(strlen($event_name) < 6 || strlen($event_name) > 50 ) {
+
+ 			echo "event name must be between 6 and 50 characters</br>";
+ 			$error = TRUE;
+
+ 		}
+
+ 		// check event location length
+ 		// TODO: figure out how to do locations
+ 		if(strlen($event_location) < 6 || strlen($event_location) > 50 ) {
+
+ 			echo "event location must be between 6 and 50 characters</br>";
+ 			$error = TRUE;
+
+ 		}
+
+ 		// check event description length
+ 		if(strlen($event_description) < 10 || strlen($event_description) > 1000 ) {
+
+ 			echo "event description must be between 10 and 1000 characters</br>";
+ 			$error = TRUE;
+
+ 		}
+
+ 		// no errors, submit to DB
+ 		// date needs corrected
+ 		if(!$error) {
+
+ 			echo "event created!<br>";
+ 			addEvent($userID, $event_name, $event_location, $event_date, $event_description, $event_private);
+
+ 		}
 
 
 	} else {
