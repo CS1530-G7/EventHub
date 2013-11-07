@@ -18,13 +18,13 @@ if($event_private == "True") {
 	$event_prviate = FALSE;
 }
 
-echo "{$event_name}, {$event_location}, {$event_date}, {$event_description}, {$event_private}";
+echo "{$event_name}, {$event_location}, {$event_date}, {$event_description}, {$event_private} <br><br>";
 
 //submit button clicked
 if(isset($_POST['submit'])) {
 
 	// check for active user
-	$userID = getActiveUser()
+	$userID = getActiveUser();
 	if($userID != -1){
 
 		echo "active user out and about<br>";
