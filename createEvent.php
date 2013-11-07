@@ -30,7 +30,7 @@ echo "{$event_name}, {$event_location}, {$event_date}, {$event_description}, {$e
 				<label for="description"/>Event Description:</label>
 			 	<textarea name="event_description" form="event_create"></textarea>
 			 	<label for="private_event"/>Private:</label>
-			 	<input type="checkbox" name="private_event">
+			 	<input type="checkbox" name="private_event" value="TRUE">
 				<input type="submit" name="submit" value="Submit">
 			</form>
 
