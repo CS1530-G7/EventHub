@@ -1,5 +1,26 @@
 <?php
+startSession();
 require_once("pw.php");
+
+//Generic functions
+
+function startSession()
+{
+	if (session_id() === "") 
+	{
+		session_start();
+	}
+}
+
+function endSession()
+{
+	if (session_id() !== "") 
+	{
+		 session_write_close ();
+	}
+
+}
+
 
 function sanitize($input)
 {
@@ -22,6 +43,9 @@ function salthash($text)
 	
 }
 
+//User functions
+
+
 function createUser($username, $password, $email)
 {
 	$sql = getSQL(TRUE);
@@ -42,11 +66,47 @@ function createUser($username, $password, $email)
 
 }
 
-function getUsername($UID)
+function getActiveUser()
 {
+	//There should already be a session but check first
+	startSession();
+	
+	if(isset($_SESSION["auth_userid"]))
+	{
+		return $_SESSION["auth_userid"];
+	}
+	else
+	{
+		return -1;
+	}
+	
+}
+
+function getLoginTime()
+{
+	//There should already be a session but check first
+	startSession();
+	
+	if(isset($_SESSION["auth_userid"]))
+	{
+		return $_SESSION["auth_time"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+function login($username, $password)
+{
+	startSession();
+	
 	$sql = getSQL(FALSE);
 	
-	$query = "SELECT u_name FROM e_users WHERE u_id = '$UID'";
+	$user = sanitize($username);
+	$pass = salthash($password);
+	
+	$query = "SELECT u_id FROM e_users WHERE u_name='$user' AND u_pass='$pass'";
 	
 	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
 	
@@ -54,13 +114,28 @@ function getUsername($UID)
 	
 	if($row)
 	{
-		return $row["u_name"];
+		$uid =  $row["u_id"];
 	}
 	else
 	{
 		return -1;
 	}
+	
+	$_SESSION["auth_userid"] = $uid;
+	$_SESSION['auth_time'] = date("Y-m-d H:i:s");
+	
+	return $uid;
+	
 }
+
+function deleteUser($uid)
+{
+	$sql = getSQL(TRUE);
+	$query = "DELETE FROM e_users WHERE u_id='$uid'";
+	mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+}
+
+//User SQL wrappers
 
 function getUserID($username)
 {
@@ -83,6 +158,108 @@ function getUserID($username)
 		return -1;
 	}
 }
+
+function getUsername($UID)
+{
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT u_name FROM e_users WHERE u_id = '$UID'";
+	
+	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row["u_name"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+function getUserStatus($UID)
+{
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT u_status FROM e_users WHERE u_id = '$UID'";
+	
+	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row["u_status"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+function getActivationCode($UID)
+{
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT u_activecode FROM e_users WHERE u_id = '$UID'";
+	
+	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row["u_activecode"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+function getLocationName($UID)
+{
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT u_loc_name FROM e_users WHERE u_id = '$UID'";
+	
+	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row["u_loc_name"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+function getLocationLatlong($UID)
+{
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT u_loc_latlon FROM e_users WHERE u_id = '$UID'";
+	
+	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row["u_loc_latlon"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+//Event functions
 
 function addEvent($UID, $evName, $evLocation, $evDateTime, $evDescrip, $evPrivate)
 {

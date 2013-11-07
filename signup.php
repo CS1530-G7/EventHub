@@ -1,5 +1,4 @@
 <?php
-
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
 // get variables
@@ -94,3 +93,4 @@ if(isset($_POST['submit'])) {
 		
 	</body>
 </html>
+

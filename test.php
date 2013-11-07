@@ -9,15 +9,24 @@ $pass = "Test123";
 $email = "Test@test.com";
 $uid = createUser($uname,$pass,$email);
 print "Result: " . $uid . "\n";
-
-$un = getUsername($uid);
+print "Login\n";
+$uidLogin = login($uname, $pass);
+print "Result: " . $uidLogin . "\n";
+$un = getUsername($uidLogin);
 print "Username = " .  $un . "\n";
-
+$active = getActiveUser();
+print "Auth=$active\n";
+$time = getLoginTime();
+ print "AuthTime=$time\n";
 $uid2 = getUserID($un);
 print "UserID = " . $uid2 . "\n";
 print "Testing addEvent\n";
 $eid = addEvent($uid, "Some Event", "Pittsburgh, PA",strtotime("November 7, 2013 7:15pm"),"Some event",FALSE);
 print "Result: $eid\n";
+print "Delete User";
+deleteUser($uid2);
+$uidDel = getUserID($uname);
+Print "Result (Should be -1) = $uidDel\n";
 print "</pre>";
 
 
