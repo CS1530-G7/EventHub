@@ -41,7 +41,10 @@ if(isset($_POST['submit'])) {
 	//$userID = 123456789;
 	if($userID != -1){
 
-		echo "active user out and about<br>";
+
+		$user = getUsername($userID);
+		echo "user <b>{$user}</b> is logged in and ready to create an EVENT!<br><br>";
+
 
 		// checks for empty form fields
  		if(empty($event_name) || empty($event_location) || empty($event_date) || empty($event_description)) {

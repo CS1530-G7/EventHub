@@ -1,6 +1,8 @@
-<?php 
+<?php
 
- ?>
+require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
+
+?>
  
  <html>
 	<body>
@@ -10,6 +12,8 @@
 		<a href="signup.php">SIGN UP!</a>
 		</br>
 		<a href="createEvent.php">CREATE EVENT!</a>
+		</br>
+		<a href="login.php">LOG IN!</a>
 	
 		
 	</body>
