@@ -192,6 +192,8 @@ function getUserField($uid, $field)
 	
 	$query = "SELECT $field FROM e_users WHERE u_id = '$UID'";
 	
+	print $query;
+	
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
 	
