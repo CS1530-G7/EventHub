@@ -159,11 +159,11 @@ function getUserID($username)
 	}
 }
 
-function getUsername($UID)
+function getUserField($uid, $field)
 {
 	$sql = getSQL(FALSE);
 	
-	$query = "SELECT u_name FROM e_users WHERE u_id = '$UID'";
+	$query = "SELECT '$field' FROM e_users WHERE u_id = '$UID'";
 	
 	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
 	
@@ -171,53 +171,71 @@ function getUsername($UID)
 	
 	if($row)
 	{
-		return $row["u_name"];
+		return $row[$field];
 	}
 	else
 	{
 		return -1;
 	}
+
+}
+function setUserField($uid, $field, $data)
+{
+	$sql = getSQL(TRUE);
+	$data = sanitize($data);
+	$query = "UPDATE e_users SET '$field'='$data' WHERE u_id = '$UID'";
+	
+	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+}
+//Getters
+function getUsername($UID)
+{
+	return getUserField($UID, "u_name");
 }
 
 function getUserStatus($UID)
 {
-	$sql = getSQL(FALSE);
-	
-	$query = "SELECT u_status FROM e_users WHERE u_id = '$UID'";
-	
-	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
-	
-	$row = $res->fetch_assoc();
-	
-	if($row)
-	{
-		return $row["u_status"];
-	}
-	else
-	{
-		return -1;
-	}
+	return getUserField($UID, "u_status");
 }
 
 function getActivationCode($UID)
 {
-	$sql = getSQL(FALSE);
-	
-	$query = "SELECT u_activecode FROM e_users WHERE u_id = '$UID'";
-	
-	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
-	
-	$row = $res->fetch_assoc();
-	
-	if($row)
-	{
-		return $row["u_activecode"];
-	}
-	else
-	{
-		return -1;
-	}
+	return getUserField($UID, "u_activecode");
 }
+
+function getEmail($UID)
+{
+	return getUserField($UID, "u_email");
+}
+function getLocID($UID)
+{
+	return getUserField($UID, "l_id");
+}
+//Setters
+function setUsername($UID, $data)
+{
+	setUserField($UID, "u_name", $data);
+}
+
+function setUserStatus($UID, $data)
+{
+	setUserField($UID, "u_status", $data);
+}
+
+function setActivationCode($UID, $data)
+{
+	setUserField($UID, "u_activecode", $data);
+}
+
+function setEmail($UID, $data)
+{
+	setUserField($UID, "u_email", $data);
+}
+function setLocID($UID, $data)
+{
+	setUserField($UID, "l_id", $data);
+}
+
 
 
 //Event functions
