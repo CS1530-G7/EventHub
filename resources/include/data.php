@@ -260,6 +260,8 @@ function newLocation($loc_name, $loc_address)
 	
 	$geocode_url = "https://maps.googleapis.com/maps/api/geocode/" . "json" . "?" . "?address=" . $addr_url . "&sensor=" . "false";
 	
+	print $geocode_url;
+	
 	$ch = curl_init();
    curl_setopt($ch, CURLOPT_URL, $geocode_url);
    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -268,9 +270,9 @@ function newLocation($loc_name, $loc_address)
    // If Status Code is ZERO_RESULTS, OVER_QUERY_LIMIT, REQUEST_DENIED or INVALID_REQUEST
    if ($response['status'] != 'OK') 
    {
-		//Default to 0, 0 for testing.  Change to error.
-		$lat = 0;
-		$lng = 0;
+		//Default for testing.  Change to error.
+		$lat = 123.4;
+		$lng = 567.8;
    }
    else
    {

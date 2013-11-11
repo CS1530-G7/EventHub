@@ -22,15 +22,15 @@ $uid2 = getUserID($un);
 print "UserID = " . $uid2 . "\n";
 
 $loc = "Sennot Square Pittsburgh PA";
-print "Testing geocode with: " . $loc;
+print "Testing geocode with: " . $loc . "\n";
 $name = "Sennot Sq.";
 $lid = newLocation($name, $loc);
-print "Loc ID = " . $lid;
+print "Loc ID = " . $lid . "\n";
 
 print "Testing addEvent\n";
 $eid = addEvent($uid, "Some Event", "Home", "Pittsburgh, PA",strtotime("November 7, 2013 7:15pm"),"Some event",FALSE);
 print "Result: $eid\n";
-print "Delete User";
+print "Delete User\n";
 deleteUser($uid2);
 $uidDel = getUserID($uname);
 Print "Result (Should be -1) = $uidDel\n";
