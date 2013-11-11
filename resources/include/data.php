@@ -83,7 +83,7 @@ function createUser($username, $password, $email)
 	$query = "INSERT INTO e_users (u_activecode, u_name, u_email, u_pass) VALUES ('$act_code','$user','$email','$pass')";
 	
 	$res = sqlQuery($sql,$query);
-	if($res ==== -2) return -2;
+	if($res === -2) return -2;
 	
 	
 	$id = mysqli_insert_id($sql);
