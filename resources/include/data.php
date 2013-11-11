@@ -84,7 +84,7 @@ function createUser($username, $password, $email)
 	
 	$query = "INSERT INTO e_users (u_activecode, u_name, u_email, u_pass) VALUES ('$act_code','$user','$email','$pass')";
 	
-	sqlQuery($sql,$query) or return -1;
+	if(!sqlQuery($sql,$query)) return -1;
 	
 	
 	$id = mysqli_insert_id($sql);
@@ -133,7 +133,7 @@ function login($username, $password)
 	
 	$query = "SELECT u_id FROM e_users WHERE u_name='$user' AND u_pass='$pass'";
 	
-	$res = sqlQuery($sql,$query) or return -1;
+	$res = if(!sqlQuery($sql,$query)) return -1;
 	
 	$row = $res->fetch_assoc();
 	
@@ -157,7 +157,7 @@ function deleteUser($uid)
 {
 	$sql = getSQL(TRUE);
 	$query = "DELETE FROM e_users WHERE u_id='$uid'";
-	sqlQuery($sql,$query) or return -1;
+	if(!sqlQuery($sql,$query)) return -1;
 }
 
 //User SQL wrappers
@@ -169,7 +169,7 @@ function getUserID($username)
 	
 	$query = "SELECT u_id FROM e_users WHERE u_name LIKE '%$username%'";
 	
-	$res = sqlQuery($sql,$query) or return -1;
+	$res = if(!sqlQuery($sql,$query)) return -1;
 	
 			
 	$row = $res->fetch_assoc();
@@ -190,7 +190,7 @@ function getUserField($uid, $field)
 	
 	$query = "SELECT '$field' FROM e_users WHERE u_id = '$UID'";
 	
-	$res = sqlQuery($sql,$query) or return -1;
+	$res = if(!sqlQuery($sql,$query)) return -1;
 	
 	$row = $res->fetch_assoc();
 	
@@ -210,7 +210,7 @@ function setUserField($uid, $field, $data)
 	$data = sanitize($data);
 	$query = "UPDATE e_users SET '$field'='$data' WHERE u_id = '$UID'";
 	
-	$res = sqlQuery($sql,$query) or return -1;
+	$res = if(!sqlQuery($sql,$query)) return -1;
 }
 //Getters
 function getUsername($UID)
@@ -284,7 +284,7 @@ function addEvent($UID, $evName, $evLocName, $evLocAddr, $evDateTime, $evDescrip
 	
 	$query = "INSERT INTO e_events (e_name, e_date, e_descrip, e_private, u_id, l_id) VALUES ('$evName','$sqldate','$evDescrip',$pf,$UID,$lid)";
 	
-	$res = sqlQuery($sql,$query) or return -1;
+	$res = if(!sqlQuery($sql,$query)) return -1;
 	
 	$id = mysqli_insert_id($sql);
 	
@@ -328,7 +328,7 @@ function newLocation($loc_name, $loc_address)
    
    $query = "INSERT INTO e_location (l_name, l_address, l_lat, l_lng) VALUES ('$lname','$laddr','$lat','$lng')";
    
-   $res = sqlQuery($sql,$query) or return -1;
+   $res = if(!sqlQuery($sql,$query)) return -1;
 	
 	$id = mysqli_insert_id($sql);
 	
