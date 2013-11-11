@@ -46,15 +46,13 @@ function salthash($text)
 function sqlQuery($sql, $query)
 {
 	$r = mysqli_query($sql,$query);
-	if($r)
-	{
-		return $r;
-	}
-	else
+	if(!$r)
 	{
 		$_SESSION["sql_error"] = mysqli_error($sql);
 		return FALSE;
 	}
+
+	return $r;
 }
 
 function sqlError()

@@ -12,7 +12,7 @@ print "Result: " . $uid . "\n";
 print "Testing add same user (should not work)\n";
 $uid = createUser($uname,$pass,$email);
 print "Result: " . $uid . "\n";
-print "Error: " . sqlError();
+print "Error: " . sqlError() . "\n";
 print "Login\n";
 $uidLogin = login($uname, $pass);
 print "Result: " . $uidLogin . "\n";
