@@ -219,45 +219,6 @@ function getActivationCode($UID)
 	}
 }
 
-function getLocationName($UID)
-{
-	$sql = getSQL(FALSE);
-	
-	$query = "SELECT u_loc_name FROM e_users WHERE u_id = '$UID'";
-	
-	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
-	
-	$row = $res->fetch_assoc();
-	
-	if($row)
-	{
-		return $row["u_loc_name"];
-	}
-	else
-	{
-		return -1;
-	}
-}
-
-function getLocationLatlong($UID)
-{
-	$sql = getSQL(FALSE);
-	
-	$query = "SELECT u_loc_latlon FROM e_users WHERE u_id = '$UID'";
-	
-	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
-	
-	$row = $res->fetch_assoc();
-	
-	if($row)
-	{
-		return $row["u_loc_latlon"];
-	}
-	else
-	{
-		return -1;
-	}
-}
 
 //Event functions
 
@@ -286,5 +247,46 @@ function addEvent($UID, $evName, $evLocation, $evDateTime, $evDescrip, $evPrivat
 	return $id;
 	
 	
+}
+
+//Location function
+function newLocation($loc_name, $loc_address)
+{
+
+	$lname = sanitize($loc_name);
+	$laddr = sanitize($loc_address);
+	$addr_url = urlencode($laddr);
+	
+	$geocode_url = "https://maps.googleapis.com/maps/api/geocode/" . "json" . "?" . "?address=" . $addr_url . "&sensor=" . "false";
+	
+	$ch = curl_init();
+   curl_setopt($ch, CURLOPT_URL, $geocode_url);
+   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+   $response = json_decode(curl_exec($ch), true);
+ 
+   // If Status Code is ZERO_RESULTS, OVER_QUERY_LIMIT, REQUEST_DENIED or INVALID_REQUEST
+   if ($response['status'] != 'OK') 
+   {
+		//Default to 0, 0 for testing.  Change to error.
+		$lat = 0;
+		$lng = 0;
+   }
+   else
+   {
+		$location = $response['results'][0]['geometry']['location'];
+		$lat = $location['lat'];
+		$lng = $location['lng'];
+   }
+   
+   $sql = getSQL(TRUE);
+   
+   $query = "INSERT INTO e_location (l_name, l_address, l_lat, l_lng) VALUES ('$lname','$laddr','$lat','$lng')";
+   
+   $res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
+	
+	$id = mysqli_insert_id($sql);
+	
+	return $id;
+   
 }
 ?>

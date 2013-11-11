@@ -27,6 +27,11 @@ print "Delete User";
 deleteUser($uid2);
 $uidDel = getUserID($uname);
 Print "Result (Should be -1) = $uidDel\n";
+$loc = "Sennot Square Pittsburgh PA";
+print "Testing geocode with: " . $loc;
+$name = "Sennot Sq.";
+$lid = newLocation($name, $loc);
+print "Loc ID = " . $lid;
 print "</pre>";
 
 
