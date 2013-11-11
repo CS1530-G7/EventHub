@@ -45,7 +45,7 @@ function salthash($text)
 
 function sqlQuery($sql, $query)
 {
-	$res = mysqli_query($sql,$query) or die($query);
+	$res = mysqli_query($sql,$query);
 	if($res === FALSE)
 	{
 		$_SESSION["sql_error"] = mysqli_error($sql);
