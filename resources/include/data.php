@@ -190,7 +190,7 @@ function getUserField($uid, $field)
 {
 	$sql = getSQL(FALSE);
 	
-	$query = "SELECT '$field' FROM e_users WHERE u_id = '$UID'";
+	$query = "SELECT $field FROM e_users WHERE u_id = '$UID'";
 	
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
@@ -211,7 +211,7 @@ function setUserField($uid, $field, $data)
 {
 	$sql = getSQL(TRUE);
 	$data = sanitize($data);
-	$query = "UPDATE e_users SET '$field'='$data' WHERE u_id = '$UID'";
+	$query = "UPDATE e_users SET $field='$data' WHERE u_id = '$UID'";
 	
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
