@@ -258,7 +258,7 @@ function newLocation($loc_name, $loc_address)
 	$laddr = sanitize($loc_address);
 	$addr_url = urlencode($laddr);
 	
-	$geocode_url = "https://maps.googleapis.com/maps/api/geocode/" . "json" . "?" . "?address=" . $addr_url . "&sensor=" . "false";
+	$geocode_url = "https://maps.googleapis.com/maps/api/geocode/" . "json" . "?" . "address=" . $addr_url . "&sensor=" . "false";
 	
 	print $geocode_url;
 	
