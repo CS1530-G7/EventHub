@@ -222,7 +222,7 @@ function getActivationCode($UID)
 
 //Event functions
 
-function addEvent($UID, $evName, $evLocation, $evDateTime, $evDescrip, $evPrivate)
+function addEvent($UID, $evName, $evLocName, $evLocAddr, $evDateTime, $evDescrip, $evPrivate)
 {
 	$pf = 0;  //Privacy flag
 	if($evPrivate)
@@ -233,12 +233,13 @@ function addEvent($UID, $evName, $evLocation, $evDateTime, $evDescrip, $evPrivat
 	
 	$sqldate = date( 'Y-m-d H:i:s', $evDateTime );
 	$evName = sanitize($evName);
-	$evLocation = sanitize($evLocation);
+	$evLocation = sanitize($evLocName);
+	$evAddr = sanitize($evLocArrd);
 	$evDescrip = sanitize($evDescrip);
 	
-	//TODO: Get location co-ords via google maps API
+	$lid = newLocation($evLocation, $evLocAddr);
 	
-	$query = "INSERT INTO e_events (e_name, e_date, e_loc_name, e_descrip, e_private, u_id) VALUES ('$evName','$sqldate','$evLocation','$evDescrip',$pf,$UID)";
+	$query = "INSERT INTO e_events (e_name, e_date, e_descrip, e_private, u_id, l_id) VALUES ('$evName','$sqldate','$evDescrip',$pf,$UID,$lid)";
 	
 	$res = mysqli_query($sql,$query) or die(mysqli_error($sql) . ": " .  $query);
 	
