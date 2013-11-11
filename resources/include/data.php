@@ -186,13 +186,13 @@ function getUserID($username)
 	}
 }
 
-function getUserField($uid, $field)
+function getUserField($UID, $field)
 {
 	$sql = getSQL(FALSE);
 	
 	$query = "SELECT $field FROM e_users WHERE u_id = '$UID'";
 	
-	print $query;
+	//print $query;
 	
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
@@ -209,7 +209,7 @@ function getUserField($uid, $field)
 	}
 
 }
-function setUserField($uid, $field, $data)
+function setUserField($UID, $field, $data)
 {
 	$sql = getSQL(TRUE);
 	$data = sanitize($data);
