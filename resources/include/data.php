@@ -260,7 +260,7 @@ function newLocation($loc_name, $loc_address)
 	
 	$geocode_url = "https://maps.googleapis.com/maps/api/geocode/" . "json" . "?" . "address=" . $addr_url . "&sensor=" . "false";
 	
-	print $geocode_url;
+	//print $geocode_url;
 	
 	$ch = curl_init();
    curl_setopt($ch, CURLOPT_URL, $geocode_url);
