@@ -49,7 +49,7 @@ function sqlQuery($sql, $query)
 	if(!$r)
 	{
 		$_SESSION["sql_error"] = mysqli_error($sql);
-		return FALSE;
+		return -1;
 	}
 
 	return $r;
