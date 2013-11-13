@@ -14,25 +14,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
  	</header>
 	<body>
-
-		<div id="login-form">
-
-			<form name="login" id="login" action="login.php" method="POST">
-				<label for="username"/>Username:</label>
-				<input type="text" name="username">
-				<label for="password"/>Password:</label>
-				<input type="password" name="password">
-				<input class= "btn" name="submit" type="submit" value="Submit">
-			</form>
-
-		</div>
-
-		<div id="sign-up">
-			<a href="signup.php">Sign up</a>
-		</div>
 	
-		
-		<h1>Welcome to EventHub!</h1>
+		<h1>Welcome [Name Here]</h1>
 		
 		<!--<img src="./resources/img/Homepage.jpg" />-->
 		<div id="search-area">

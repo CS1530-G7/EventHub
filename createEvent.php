@@ -102,7 +102,7 @@ if(isset($_POST['submit'])) {
  
  <html>
 	<body>
-		<h1>Create Event!!</h1>
+		<h1>Create a new event</h1>
 		
 		<!-- <img src="./resources/img/Homepage.jpg" /> -->
 		<div id="event_create_form">

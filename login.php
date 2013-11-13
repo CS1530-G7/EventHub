@@ -52,20 +52,7 @@ if(isset($_POST['submit']) ) {
  
  <html>
 	<body>
-		<h1>Log in!</h1>
 
-		<div id="login-form">
-
-			<form name="login" id="login" action="login.php" method="POST">
-				<label for="username"/>Username:</label>
-				<input type="text" name="username">
-				<label for="password"/>Password:</label>
-				<input type="password" name="password">
-				<input class= "btn" name="submit" type="submit" value="Submit">
-			</form>
-
-		</div>
-	
 		
 	</body>
 </html>
