@@ -68,98 +68,6 @@ function sqlError()
 
 }
 
-//User functions
-
-
-function createUser($username, $password, $email)
-{
-	$sql = getSQL(TRUE);
-	
-	$user = sanitize($username);
-	$pass = salthash($password);
-	$email = sanitize($email);
-	$act_code = salthash($email);
-	
-	$query = "INSERT INTO e_users (u_activecode, u_name, u_email, u_pass) VALUES ('$act_code','$user','$email','$pass')";
-	
-	$res = sqlQuery($sql,$query);
-	if($res === -2) return -2;
-	
-	
-	$id = mysqli_insert_id($sql);
-	
-	return $id;
-
-}
-
-function getActiveUser()
-{
-
-	
-	if(isset($_SESSION["auth_userid"]))
-	{
-		return $_SESSION["auth_userid"];
-	}
-	else
-	{
-		return -1;
-	}
-	
-}
-
-function getLoginTime()
-{
-
-	
-	if(isset($_SESSION["auth_userid"]))
-	{
-		return $_SESSION["auth_time"];
-	}
-	else
-	{
-		return -1;
-	}
-}
-
-function login($username, $password)
-{
-
-	
-	$sql = getSQL(FALSE);
-	
-	$user = sanitize($username);
-	$pass = salthash($password);
-	
-	$query = "SELECT u_id FROM e_users WHERE u_name='$user' AND u_pass='$pass'";
-	
-	$res = sqlQuery($sql,$query);
-	if($res === -2) return -2;
-	
-	$row = $res->fetch_assoc();
-	
-	if($row)
-	{
-		$uid =  $row["u_id"];
-	}
-	else
-	{
-		return -1;
-	}
-	
-	$_SESSION["auth_userid"] = $uid;
-	$_SESSION['auth_time'] = date("Y-m-d H:i:s");
-	
-	return $uid;
-	
-}
-
-function deleteUser($uid)
-{
-	$sql = getSQL(TRUE);
-	$query = "DELETE FROM e_users WHERE u_id='$uid'";
-	$res = sqlQuery($sql,$query);
-	if($res === -2) return -2;
-}
 
 //User SQL wrappers
 
@@ -266,7 +174,135 @@ function setLocID($UID, $data)
 {
 	setUserField($UID, "l_id", $data);
 }
+//Event SQL wrappers
+function getEventField($EID, $field)
+{
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT $field FROM e_events WHERE e_id = '$EID'";
+	
+	//print $query;
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row[$field];
+	}
+	else
+	{
+		return -1;
+	}
 
+}
+
+function setEventField($EID, $field, $data)
+{
+	$sql = getSQL(TRUE);
+	$data = sanitize($data);
+	$query = "UPDATE e_events SET $field='$data' WHERE u_id = '$EID'";
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+}
+
+
+
+
+//User functions
+
+
+function createUser($username, $password, $email)
+{
+	$sql = getSQL(TRUE);
+	
+	$user = sanitize($username);
+	$pass = salthash($password);
+	$email = sanitize($email);
+	$act_code = salthash($email);
+	
+	$query = "INSERT INTO e_users (u_activecode, u_name, u_email, u_pass) VALUES ('$act_code','$user','$email','$pass')";
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	
+	$id = mysqli_insert_id($sql);
+	
+	return $id;
+
+}
+
+function getActiveUser()
+{
+
+	
+	if(isset($_SESSION["auth_userid"]))
+	{
+		return $_SESSION["auth_userid"];
+	}
+	else
+	{
+		return -1;
+	}
+	
+}
+
+function getLoginTime()
+{
+
+	
+	if(isset($_SESSION["auth_userid"]))
+	{
+		return $_SESSION["auth_time"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+function login($username, $password)
+{
+
+	
+	$sql = getSQL(FALSE);
+	
+	$user = sanitize($username);
+	$pass = salthash($password);
+	
+	$query = "SELECT u_id FROM e_users WHERE u_name='$user' AND u_pass='$pass'";
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		$uid =  $row["u_id"];
+	}
+	else
+	{
+		return -1;
+	}
+	
+	$_SESSION["auth_userid"] = $uid;
+	$_SESSION['auth_time'] = date("Y-m-d H:i:s");
+	
+	return $uid;
+	
+}
+
+function deleteUser($uid)
+{
+	$sql = getSQL(TRUE);
+	$query = "DELETE FROM e_users WHERE u_id='$uid'";
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+}
 
 
 //Event functions
@@ -298,6 +334,23 @@ function addEvent($UID, $evName, $evLocName, $evLocAddr, $evDateTime, $evDescrip
 	return $id;
 	
 	
+}
+
+function getEventsByUser($UID)
+{
+	$sql = getSQL(FALSE);
+	$UID = sanitize($UID);
+	$query = "SELECT e_id FROM events WHERE u_id='$UID'";
+	$res = sqlQuery($sql, $query);
+	if($res === -2) return -2;
+	
+	$events = array();
+	while($row = mysql_fetch_assoc($res))
+	{
+		$events[] = $row["e_id"];
+	}
+	
+	return $events;
 }
 
 //Location function
