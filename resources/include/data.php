@@ -345,7 +345,7 @@ function getEventsByUser($UID)
 	if($res === -2) return -2;
 	
 	$events = array();
-	while($row = mysql_fetch_assoc($res))
+	while($row = mysqli_fetch_assoc($res))
 	{
 		$events[] = $row["e_id"];
 	}
