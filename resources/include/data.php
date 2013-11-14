@@ -340,7 +340,7 @@ function getEventsByUser($UID)
 {
 	$sql = getSQL(FALSE);
 	$UID = sanitize($UID);
-	$query = "SELECT e_id FROM events WHERE u_id='$UID'";
+	$query = "SELECT e_id FROM e_events WHERE u_id='$UID'";
 	$res = sqlQuery($sql, $query);
 	if($res === -2) return -2;
 	

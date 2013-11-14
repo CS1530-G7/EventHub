@@ -30,7 +30,6 @@ print "Testing addEvent\n";
 $eid = addEvent($uid, "Some Event", "Home", "Pittsburgh, PA",strtotime("November 7, 2013 7:15pm"),"Some event",FALSE);
 print "Result: $eid\n";
 addEvent($uid, "Some Other Event", "CS Building", "Sennot Square Pittsburgh, PA",strtotime("November 15, 2013 7:15pm"),"Some event 2: the redux",FALSE);
-
 $evs = getEventsByUser($uid);
 print "Listing events by user $uid \n";
 var_dump($evs);
