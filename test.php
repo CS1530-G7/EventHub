@@ -39,7 +39,7 @@ $uidDel = getUserID($uname);
 Print "Result (Should be -1) = $uidDel\n";
 
 print "Testing search\n";
-eventSearch("Sennot",25,40,-80);
+var_dump(eventSearch("",35,40,-80));
 
 print "</pre>";
 

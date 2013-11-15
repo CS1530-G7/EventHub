@@ -405,7 +405,7 @@ function newLocation($loc_name, $loc_address)
 //SELECT id, ( 3959 * acos( cos( radians(37) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(-122) ) + sin( radians(37) ) * sin( radians( lat ) ) ) ) AS distance FROM markers HAVING distance < 25 ORDER BY distance
 //From Me;
 //SELECT e.e_id, CONCAT( e.e_name, ' ', e.e_descrip, ' ', l.l_name ) AS s FROM (e_events AS e) LEFT JOIN (e_location AS l) ON ( e.l_id = l.l_id ) HAVING s RLIKE '$regex_search'
-function eventSearch($regex_search = "", $dist = -1, $user_lat = 0, $user_lon = 0)
+function eventSearch($regex_search = "", $dist = -1, $user_lat = 0, $user_lon = 0, $dateorder = TRUE)
 {
 
 	$sql = getSQL(FALSE);
@@ -429,9 +429,29 @@ function eventSearch($regex_search = "", $dist = -1, $user_lat = 0, $user_lon = 
 		}
 		$query .= " (distance < $dist)";
 	}
-	$query .= " ORDER BY e.e_date";
+	if($dateorder)
+	{
+		$query .= " ORDER BY e.e_date";
+	}
+	else
+	{
+		$query .= " ORDER BY distance";
+	}
+	
 	
 	print $query;
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$results = array();
+	while($row = mysqli_fetch_assoc($res))
+	{
+		$results[]["id"] = $row["e_id"];
+		$results[]["distance"] = $row["distance"];
+	}
+	
+	return $results;
 
 }
 
