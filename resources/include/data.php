@@ -449,8 +449,8 @@ function eventSearch($regex_search = "", $dist = -1, $user_lat = 0, $user_lon = 
 	$results = array();
 	while($row = mysqli_fetch_assoc($res))
 	{
-		$results[]["id"] = $row["e_id"];
-		$results[]["distance"] = $row["distance"];
+		$r = array('id' => $row["e_id"], 'distance' => $row["distance"]);
+		$results[] = $r;
 	}
 	
 	return $results;
