@@ -27,9 +27,11 @@ print "UserID = " . $uid2 . "\n";
 
 
 print "Testing addEvent\n";
-$eid = addEvent($uid, "Some Event", "Home", "Pittsburgh, PA",strtotime("November 7, 2013 7:15pm"),"Some event",FALSE);
+$eid = addEvent($uid, "Some Event", "Home", "Pittsburgh, PA",strtotime("November 17, 2013 7:15pm"),"Some event",FALSE);
 print "Result: $eid\n";
 addEvent($uid, "Some Other Event", "CS Building", "Sennot Square Pittsburgh, PA",strtotime("November 15, 2013 7:15pm"),"Some event 2: the redux",FALSE);
+addEvent($uid, "Some Other Event", "CS Building", "Sennot Square Pittsburgh, PA",strtotime("November 16, 2013 7:15pm"),"Some event 3: the private redux",TRUE);
+addEvent($uid, "Some Other Event", "CS Building", "Washington, PA",strtotime("November 19, 2013 7:15pm"),"Some event 4",FALSE);
 $evs = getEventsByUser($uid);
 print "Listing events by user $uid \n";
 var_dump($evs);

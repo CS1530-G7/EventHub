@@ -411,7 +411,8 @@ function eventSearch($regex_search = "", $dist = -1, $user_lat = 0, $user_lon = 
 	$sql = getSQL(FALSE);
 	$query = "SELECT e.e_id, CONCAT( e.e_name, ' ', e.e_descrip, ' ', l.l_name, ' ', l.l_address) AS search, 
 	( 3959 * acos( cos( radians($user_lat) ) * cos( radians( l.l_lat ) ) * cos( radians( l.l_lng ) - radians($user_lon) ) + sin( radians($user_lat) ) * sin( radians( l.l_lat ) ) ) ) AS distance
-	FROM (e_events AS e) LEFT JOIN (e_location AS l) ON ( e.l_id = l.l_id )";
+	FROM (e_events AS e) LEFT JOIN (e_location AS l) ON ( e.l_id = l.l_id )
+	WHERE (e_private=0) AND (e.e_date >= CURDATE())";
 	if(!empty($regex_search))
 	{
 		$query .= " HAVING (search RLIKE '$regex_search')";
@@ -429,6 +430,7 @@ function eventSearch($regex_search = "", $dist = -1, $user_lat = 0, $user_lon = 
 		}
 		$query .= " (distance < $dist)";
 	}
+	
 	if($dateorder)
 	{
 		$query .= " ORDER BY e.e_date";
@@ -439,7 +441,7 @@ function eventSearch($regex_search = "", $dist = -1, $user_lat = 0, $user_lon = 
 	}
 	
 	
-	print $query;
+	print $query . "\n";
 	
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
