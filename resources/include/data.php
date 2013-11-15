@@ -414,7 +414,7 @@ function eventSearch($regex_search = "", $dist = -1, $user_lat = 0, $user_lon = 
 	FROM (e_events AS e) LEFT JOIN (e_location AS l) ON ( e.l_id = l.l_id )";
 	if(!empty($regex_search))
 	{
-		$query .= " HAVING (search RLIKE '$regex_search')"
+		$query .= " HAVING (search RLIKE '$regex_search')";
 	}
 	
 	if($dist >= 0)
