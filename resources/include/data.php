@@ -333,7 +333,6 @@ function addEvent($UID, $evName, $evLocName, $evLocAddr, $evDateTime, $evDescrip
 	
 	addRSVP($UID, $id, 2);  //Add the host to the "going" list
 	
-	print sqlError();
 	
 	return $id;
 	
