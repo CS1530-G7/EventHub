@@ -326,13 +326,14 @@ function addEvent($UID, $evName, $evLocName, $evLocAddr, $evDateTime, $evDescrip
 	
 	$query = "INSERT INTO e_events (e_name, e_date, e_descrip, e_private, u_id, l_id) VALUES ('$evName','$sqldate','$evDescrip',$pf,$UID,$lid)";
 	
-		$res = sqlQuery($sql,$query);
+	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
 	
 	$id = mysqli_insert_id($sql);
 	
-	return $id;
+	addRSVP($UID, $id, 2);  //Add the host to the "going" list
 	
+	return $id;
 	
 }
 
@@ -396,4 +397,35 @@ function newLocation($loc_name, $loc_address)
 	return $id;
    
 }
+
+//Search Functions
+
+
+//RSVP functions
+
+/*
+RSVP:
+0 = Not Going
+1 = Maybe
+2 = Going
+
+*/
+function addRSVP($UID, $EID, $rsvp)
+{
+$UID = sanitize($UID);
+$EID = sanitize($EID);
+$rsvp = sanitize($rsvp);
+
+$sql = getSQL(TRUE);
+$query = "INSERT INTO e_rsvp (u_id, e_id, rsvp) VALUES ('$UID','$EDI','$rsvp')"
+
+$res = sqlQuery($sql,$query);
+if($res === -2) return -2;
+
+$id = mysqli_insert_id($sql);
+
+return $id;
+
+}
+
 ?>
