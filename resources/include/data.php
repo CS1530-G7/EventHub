@@ -419,7 +419,7 @@ function eventSearch($regex_search = "", $dist = -1, $user_lat = 0, $user_lon = 
 	
 	if($dist >= 0)
 	{
-		if(!empty($regex_search))
+		if(empty($regex_search))
 		{
 			$query .= " HAVING";
 		}
