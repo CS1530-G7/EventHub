@@ -417,7 +417,7 @@ $EID = sanitize($EID);
 $rsvp = sanitize($rsvp);
 
 $sql = getSQL(TRUE);
-$query = "INSERT INTO e_rsvp (u_id, e_id, rsvp) VALUES ('$UID','$EDI','$rsvp')"
+$query = "INSERT INTO e_rsvp (u_id, e_id, rsvp) VALUES ('$UID','$EDI','$rsvp')";
 
 $res = sqlQuery($sql,$query);
 if($res === -2) return -2;
