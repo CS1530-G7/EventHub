@@ -37,6 +37,10 @@ print "Delete User\n";
 deleteUser($uid2);
 $uidDel = getUserID($uname);
 Print "Result (Should be -1) = $uidDel\n";
+
+print "Testing search";
+eventSearch("Sennot",25,40,-80);
+
 print "</pre>";
 
 

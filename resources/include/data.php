@@ -401,6 +401,40 @@ function newLocation($loc_name, $loc_address)
 
 //Search Functions
 
+//From Google:
+//SELECT id, ( 3959 * acos( cos( radians(37) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(-122) ) + sin( radians(37) ) * sin( radians( lat ) ) ) ) AS distance FROM markers HAVING distance < 25 ORDER BY distance
+//From Me;
+//SELECT e.e_id, CONCAT( e.e_name, ' ', e.e_descrip, ' ', l.l_name ) AS s FROM (e_events AS e) LEFT JOIN (e_location AS l) ON ( e.l_id = l.l_id ) HAVING s RLIKE '$regex_search'
+function eventSearch($regex_search = "", $dist = -1, $user_lat = 0, $user_lon = 0)
+{
+
+	$sql = getSQL(FALSE);
+	$query = "SELECT e.e_id, CONCAT( e.e_name, ' ', e.e_descrip, ' ', l.l_name, ' ', l.l_address) AS search, 
+	( 3959 * acos( cos( radians($user_lat) ) * cos( radians( l.l_lat ) ) * cos( radians( l.l_lng ) - radians($user_lon) ) + sin( radians($user_lat) ) * sin( radians( l.l_lat ) ) ) ) AS distance
+	FROM (e_events AS e) LEFT JOIN (e_location AS l) ON ( e.l_id = l.l_id )"
+	if(!empty($regex_search))
+	{
+		$query .= " HAVING (search RLIKE '$regex_search')"
+	}
+	
+	if($dist >= 0)
+	{
+		if(!empty($regex_search))
+		{
+			$query .= " HAVING";
+		}
+		else
+		{
+			$query .= " AND";
+		}
+		$query .= " (distance < $dist)";
+	}
+	$query .= " ORDER BY e.e_date";
+	
+	print $query;
+
+}
+
 
 //RSVP functions
 
@@ -409,24 +443,55 @@ RSVP:
 0 = Not Going
 1 = Maybe
 2 = Going
-
 */
 function addRSVP($UID, $EID, $rsvp)
 {
-$UID = sanitize($UID);
-$EID = sanitize($EID);
-$rsvp = sanitize($rsvp);
+	$UID = sanitize($UID);
+	$EID = sanitize($EID);
+	$rsvp = sanitize($rsvp);
 
-$sql = getSQL(TRUE);
-$query = "INSERT INTO e_rsvp (u_id, e_id, rsvp) VALUES ('$UID','$EID','$rsvp')";
+	$sql = getSQL(TRUE);
+	$query = "INSERT INTO e_rsvp (u_id, e_id, rsvp) VALUES ('$UID','$EID','$rsvp')";
 
-$res = sqlQuery($sql,$query);
-if($res === -2) return -2;
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
 
-$id = mysqli_insert_id($sql);
+	$id = mysqli_insert_id($sql);
 
-return $id;
+	return $id;
+}
 
+function changeRSVP($UID, $EID, $rsvp)
+{
+	$UID = sanitize($UID);
+	$EID = sanitize($EID);
+	$rsvp = sanitize($rsvp);
+
+	$sql = getSQL(TRUE);
+	$query = "UPDATE e_rsvp SET rsvp='$rsvp' WHERE (u_id='$UID' AND e_id='$EID')";
+
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+}
+
+function getUsersByRSVP($EID, $rsvp)
+{
+	$EID = sanitize($EID);
+	$rsvp = sanitize($rsvp);
+
+	$sql = getSQL(FALSE);
+	$query = "SELECT u_id FROM e_rsvp WHERE (e_id='$EID' AND rsvp='$rsvp')";
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$users = array();
+	while($row = mysqli_fetch_assoc($res))
+	{
+		$users[] = $row["u_id"];
+	}
+	
+	return $users;
 }
 
 ?>
