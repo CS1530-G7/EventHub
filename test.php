@@ -44,7 +44,7 @@ Print "Result (Should be -1) = $uidDel\n";
 print "Testing search\n";
 var_dump(eventSearch("",35,40,-80));
 
-print"\nTesting RSVPs\n"
+print"\nTesting RSVPs\n";
 var_dump(getUserRSVPs($uid));
 
 print "</pre>";
