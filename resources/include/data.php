@@ -441,7 +441,7 @@ function eventSearch($regex_search = "", $dist = -1, $user_lat = 0, $user_lon = 
 	}
 	
 	
-	print $query . "\n";
+	//print $query . "\n";
 	
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
@@ -534,7 +534,7 @@ function getUserRSVPs($UID, $ignoreNotGoing=TRUE)
 	while($row = mysqli_fetch_assoc($res))
 	{
 		$new = array();
-		$new["id"] = $row["u_id"];
+		$new["id"] = $row["e_id"];
 		$new["rsvp"] = $row["rsvp"];
 		/*
 		if($row["rsvp"] == 0)
