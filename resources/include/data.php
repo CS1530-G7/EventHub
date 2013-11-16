@@ -207,7 +207,40 @@ function setEventField($EID, $field, $data)
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
 }
+//Event SQL Wrappers
+function getEventName($EID)
+{
+	return getEventField($EID,"e_name");
+}
+function getEventDate($EID)
+{
+return getEventField($EID,"e_date");
+}
+function getEventDescription($EID)
+{
+return getEventField($EID,"e_descrip");
+}
+function isEventPrivate($EID)
+{
+	$p = return getEventField($EID,"e_private");
+	if($p == 0)
+	{
+		return FALSE;
+	}
+	else if($p == 1)
+	{
+		return TRUE;
+	}
+	else
+	{
+		return $p;
+	}
 
+}
+function getEventHost($EID)
+{
+	return getEventField($EID,"u_id");
+}
 
 
 
