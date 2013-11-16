@@ -516,4 +516,45 @@ function getUsersByRSVP($EID, $rsvp)
 	return $users;
 }
 
+function getUserRSVPs($UID, $ignoreNotGoing=TRUE)
+{
+	$UID = sanitize($UID);
+	
+	$sql = getSQL(FALSE);
+	$query = "SELECT e_id, rsvp FROM e_rsvp WHERE u_id='$UID'";
+	if($ignoreNotGoing)
+	{
+		$query .= " AND rsvp>0";
+	}
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$rsvps = array();
+	while($row = mysqli_fetch_assoc($res))
+	{
+		$new = array();
+		$new["id"] = $row["u_id"];
+		$new["rsvp"] = $row["rsvp"];
+		/*
+		if($row["rsvp"] == 0)
+		{
+			$new["rsvp"]
+		}
+		else if($row["rsvp"] == 1)
+		{
+		
+		}
+		else
+		{
+		
+		}
+		*/
+		$rsvps[] = $new; 
+	}
+	
+	return $rsvps;
+	
+}
+
 ?>

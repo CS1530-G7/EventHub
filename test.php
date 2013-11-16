@@ -32,6 +32,7 @@ print "Result: $eid\n";
 addEvent($uid, "Some Other Event", "CS Building", "Sennot Square Pittsburgh, PA",strtotime("November 15, 2013 7:15pm"),"Some event 2: the redux",FALSE);
 addEvent($uid, "Some Other Event", "CS Building", "Sennot Square Pittsburgh, PA",strtotime("November 16, 2013 7:15pm"),"Some event 3: the private redux",TRUE);
 addEvent($uid, "Some Other Event", "CS Building", "Washington, PA",strtotime("November 19, 2013 7:15pm"),"Some event 4",FALSE);
+addEvent($uid, "Some Other Event", "CS Building", "Washington, PA",strtotime("November 1, 2013 7:15pm"),"Some event -1",FALSE);
 $evs = getEventsByUser($uid);
 print "Listing events by user $uid \n";
 var_dump($evs);
@@ -42,6 +43,9 @@ Print "Result (Should be -1) = $uidDel\n";
 
 print "Testing search\n";
 var_dump(eventSearch("",35,40,-80));
+
+print"\nTesting RSVPs\n"
+var_dump(getUserRSVPs($uid));
 
 print "</pre>";
 
