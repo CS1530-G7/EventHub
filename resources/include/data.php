@@ -242,6 +242,28 @@ function getEventHost($EID)
 	return getEventField($EID,"u_id");
 }
 
+function setEventName($EID, $data)
+{
+	return setEventField($EID,"e_name", $data);
+}
+function setEventDate($EID, $data)
+{
+	return setEventField($EID,"e_date", $data);
+}
+function setEventDescription($EID, $data)
+{
+	return setEventField($EID,"e_descrip", $data);
+}
+function makeEventPrivate($EID)
+{
+	return setEventField($EID,e_private,1);
+}
+function makeEventPublic($EID)
+{
+	return setEventField($EID,e_private,0);
+}
+
+
 
 
 //User functions
