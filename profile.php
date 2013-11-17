@@ -1,6 +1,8 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/profile.php");
+
 
 ?>
  
@@ -15,7 +17,11 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
  	</header>
 	<body>
 	
-		<h1>Welcome [Name Here]</h1>
+		<?php
+
+		echo '<h1>Welcome ' . $username .'!</h1>';
+
+		?>
 		
 		<!--<img src="./resources/img/Homepage.jpg" />-->
 		<div id="search-area">
@@ -28,3 +34,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 		
 	</body>
 </html>
+
+
+<?php
+
+
+?>
