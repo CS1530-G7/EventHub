@@ -77,12 +77,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
 
 <?php
 
-// submit button pressed and no errors
-// log in
-if(isset($_POST['submit']) && $error_message == '') {
-
-
-}
 
 
 ?>

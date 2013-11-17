@@ -9,6 +9,7 @@ if(isset($_POST['submit'])) {
 	//get variables
 	$event_name = $_POST['event_name'];
 	$event_location = $_POST['event_location'];
+	$event_addr = $_POST['event_addr'];
 	$event_date = $_POST['event_date'];
 	$event_time = $_POST['event_time'];
 	$event_description = $_POST['event_description'];
@@ -20,8 +21,6 @@ if(isset($_POST['submit'])) {
 	// get the date for error checking purposes
 	$current_date = date("m-d-y");
 
-	// what's going on with event address?
-	$event_addr = '';
 
 	// make radio button boolean
 	if($event_private == "True") {
@@ -41,7 +40,8 @@ if(isset($_POST['submit'])) {
 	}
 
 	// checks for empty form fields
- 	if(empty($event_name) || empty($event_location) || empty($event_date) || empty($event_time) || empty($event_description)) {
+ 	if(empty($event_name) || empty($event_location) || empty($event_date) || empty($event_time) 
+ 			|| empty($event_description)) || empty($event_addr) ){
 
  		$error_message .= "<p>There are empty form fields.</p>";
 
