@@ -1,6 +1,6 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/signupValidate.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "resources/include/data.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "resources/include/signupValidate.php");
 
 ?>
 

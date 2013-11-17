@@ -76,7 +76,9 @@ function getUserID($username)
 
 	$sql = getSQL(FALSE);
 	
-	$query = "SELECT u_id FROM e_users WHERE u_name LIKE '%$username%'";
+	$user = sanitize($usermname);
+	
+	$query = "SELECT u_id FROM e_users WHERE u_name = '$user'";
 	
 		$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
@@ -102,7 +104,7 @@ function getUserID_exact($username)
 	
 	$query = "SELECT u_id FROM e_users WHERE u_name = '$username'";
 	
-		$res = sqlQuery($sql,$query);
+	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
 	
 			
@@ -508,14 +510,18 @@ function newLocation($loc_name, $loc_address)
 //SELECT id, ( 3959 * acos( cos( radians(37) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(-122) ) + sin( radians(37) ) * sin( radians( lat ) ) ) ) AS distance FROM markers HAVING distance < 25 ORDER BY distance
 //From Me;
 //SELECT e.e_id, CONCAT( e.e_name, ' ', e.e_descrip, ' ', l.l_name ) AS s FROM (e_events AS e) LEFT JOIN (e_location AS l) ON ( e.l_id = l.l_id ) HAVING s RLIKE '$regex_search'
-function eventSearch($regex_search = "", $dist = -1, $user_lat = 0, $user_lon = 0, $dateorder = TRUE)
+function eventSearch($regex_search = "", $dist = -1, $user_lat = 0, $user_lon = 0, $dateorder = TRUE, $futureEventsOnly = TRUE)
 {
 
 	$sql = getSQL(FALSE);
 	$query = "SELECT e.e_id, CONCAT( e.e_name, ' ', e.e_descrip, ' ', l.l_name, ' ', l.l_address) AS search, 
 	( 3959 * acos( cos( radians($user_lat) ) * cos( radians( l.l_lat ) ) * cos( radians( l.l_lng ) - radians($user_lon) ) + sin( radians($user_lat) ) * sin( radians( l.l_lat ) ) ) ) AS distance
 	FROM (e_events AS e) LEFT JOIN (e_location AS l) ON ( e.l_id = l.l_id )
-	WHERE (e_private=0) AND (e.e_date >= CURDATE())";
+	WHERE (e_private=0)";
+	if($futureEventsOnly)
+	{
+		$query .= " AND (e.e_date >= CURDATE())";
+	}
 	if(!empty($regex_search))
 	{
 		$query .= " HAVING (search RLIKE '$regex_search')";
