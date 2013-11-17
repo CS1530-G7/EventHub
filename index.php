@@ -1,6 +1,7 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
 
 ?>
  
@@ -15,22 +16,49 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
  	</header>
 	<body>
 
-		<div id="login-form">
 
-			<form name="login" id="login" action="login.php" method="POST">
-				<label for="username"/>Username:</label>
-				<input type="text" name="username">
-				<label for="password"/>Password:</label>
-				<input type="password" name="password">
-				<input class= "btn" name="submit" type="submit" value="Submit">
-			</form>
+		<!-- Simple login logic here:
+					If not logged in, show the login form
+					If logged in, then welcome user and show profile link
+		-->
+		<div id="login">
+			<?php
+				$UID = getActiveUser();
+					if($UID != -1) {
+						$user = getUsername($UID);
+						echo "<p>Welcome {$user}!</p>";
+						echo '<p><a href="profile.php">Click here</a> to view your profile.</p>';
+					} else {
+						echo '
+						
+						<div id="login-form">
+						'; ?>
 
+							<div id="login-errors">
+								<?php echo $error_message; ?>
+							</div>
+
+							<?php
+							echo'
+							<form name="login" id="login" action="index.php" method="POST">
+								<label for="username"/>Username:</label>
+								<input type="text" name="username">
+								<label for="password"/>Password:</label>
+								<input type="password" name="password">
+								<input class= "btn" name="submit" type="submit" value="Submit">
+							</form>
+
+						</div>
+
+						<div id="sign-up">
+							<a href="signup.php">Sign up</a>
+						</div>';
+						
+
+					}
+
+				?>			
 		</div>
-
-		<div id="sign-up">
-			<a href="signup.php">Sign up</a>
-		</div>
-	
 		
 		<h1>Welcome to EventHub!</h1>
 		
@@ -45,3 +73,15 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 		
 	</body>
 </html>
+
+<?php
+
+// submit button pressed and no errors
+// log in
+if(isset($_POST['submit']) && $error_message == '') {
+
+
+}
+
+
+?>
