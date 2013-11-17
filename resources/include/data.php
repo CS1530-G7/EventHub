@@ -94,6 +94,53 @@ function getUserID($username)
 	}
 }
 
+
+function getUserID_exact($username)
+{
+
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT u_id FROM e_users WHERE u_name = '$username'";
+	
+		$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+			
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row["u_id"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+function checkEmail($email)
+{
+
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT u_id FROM e_users WHERE u_email = '$email'";
+	
+		$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+			
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row["u_id"];
+	}
+	else
+	{
+		return -1;
+	}
+}
+
 function getUserField($UID, $field)
 {
 	$sql = getSQL(FALSE);
@@ -222,7 +269,7 @@ return getEventField($EID,"e_descrip");
 }
 function isEventPrivate($EID)
 {
-	$p = return getEventField($EID,"e_private");
+	$p = getEventField($EID,"e_private");
 	if($p == 0)
 	{
 		return FALSE;
@@ -371,13 +418,14 @@ function addEvent($UID, $evName, $evLocName, $evLocAddr, $evDateTime, $evDescrip
 	}
 	$sql = getSQL(TRUE);
 	
-	$sqldate = date( 'Y-m-d H:i:s', $evDateTime );
+	//$sqldate = date( 'Y-m-d H:i:s', $evDateTime );
+	$sqldate = $evDateTime;
 	$evName = sanitize($evName);
 	$evLocation = sanitize($evLocName);
-	$evAddr = sanitize($evLocArrd);
+	$evAddr = sanitize($evLocAddr);
 	$evDescrip = sanitize($evDescrip);
 	
-	$lid = newLocation($evLocation, $evLocAddr);
+	$lid = newLocation($evLocation, $evAddr);
 	
 	$query = "INSERT INTO e_events (e_name, e_date, e_descrip, e_private, u_id, l_id) VALUES ('$evName','$sqldate','$evDescrip',$pf,$UID,$lid)";
 	

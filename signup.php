@@ -1,73 +1,10 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
-
-// get variables
-$username = $_POST['username'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-$password_confirm = $_POST['password_confirm'];
-
-echo "{$username}, {$email}, {$password}, {$password_confirm}</br>";
-
-$error = FALSE;
-
-// submit button pressed
-if(isset($_POST['submit'])) {
-
-	// checks for empty form fields
- if(empty($username) || empty($email) || empty($password) || empty($password_confirm)) {
-
- 	echo "empty form field(s)</br>";
- 	$error = TRUE;
-
- }
-
- // check username length
- if(strlen($username) < 6 || strlen($username) > 20) {
-
- 	echo "username must be between 6 and 20 characters</br>";
- 	$error = TRUE;
-
- }
-
- // check password length
- if(strlen($password) < 6 || strlen($password) > 20 ) {
-
- 	echo "password must be between 6 and 20 characters</br>";
- 	$error = TRUE;
-
- }
-
- //checks for incorrect confirm password
- if ($password != $password_confirm) {
-
- 	echo "confirm password does not match</br>";
- 	$error = TRUE;
-
- }
-
- // checks email format
- if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-
-    echo "invalid email</br>";
-    $error = TRUE;
-
-	}
-
-	//submit to DB if no error
-	if (!$error) {
-
-		echo "submit user to DB</br>";
-		createUser($username, $password, $email);
-
-
-	}
-
-
-}
-
+require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/signupValidate.php");
 
 ?>
+
+
  
  <html>
 	<body>
@@ -75,6 +12,19 @@ if(isset($_POST['submit'])) {
 		
 		<!-- <img src="./resources/img/Homepage.jpg" /> -->
 		<div id="signup-form">
+
+			<!--form validation error messages displayed in this div-->
+			<div id="error-message">
+				<?php echo $error_message; ?>
+			</div>
+
+			<div id="success">
+				<?php 
+				if(isset($_POST['submit']) && $error_message == '') {
+					echo "<p>Success! Thanks for signing up <b>{$username}</b>! <a href=\"index.php\">Click here </a>to log in.</p>"; 
+				}
+				?>
+			</div>
 
 			<form name="signup" id="user-signup" action="signup.php" method="POST">
 				<label for="username"/>Username:</label>
@@ -94,3 +44,16 @@ if(isset($_POST['submit'])) {
 	</body>
 </html>
 
+<?php
+
+// submit button pressed and no errors
+// create the user
+if(isset($_POST['submit']) && $error_message == '') {
+
+	createUser($username, $password, $email);
+
+
+}
+
+
+?>
