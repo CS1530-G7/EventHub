@@ -64,10 +64,10 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
 		
 		<!--<img src="./resources/img/Homepage.jpg" />-->
 		<div id="search-area">
-			<form name="login" id="login" action="login.php" method="POST">
+			<form name="login" id="login" action="index.php" method="POST">
 				<label for="username"/></label>
 				<input type="text" name="search_query" value="Type your location" onclick="RemoveText(this);">
-				<input class= "btn" name="submit" type="submit" value="Search Events">
+				<input class= "btn" name="search_submit" type="submit" value="Search Events">
 			</form>
 		</div>
 		
