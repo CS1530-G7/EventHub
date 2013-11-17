@@ -32,6 +32,12 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/profile.php");
 			</form>
 		</div>
 		
+
+		<div id="event-create">
+			<p><a href="createEvent.php">Click here</a> to create an event</p>
+		</div>
+
+
 	</body>
 </html>
 
