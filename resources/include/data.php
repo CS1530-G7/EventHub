@@ -219,8 +219,9 @@ function setEmail($UID, $data)
 {
 	setUserField($UID, "u_email", $data);
 }
-function setLocID($UID, $data)
+function setUserLocation($UID, $loc_name, $loc_address))
 {
+	$data = newLocation($loc_name, $loc_address);
 	setUserField($UID, "l_id", $data);
 }
 //Event SQL wrappers
@@ -290,6 +291,10 @@ function getEventHost($EID)
 {
 	return getEventField($EID,"u_id");
 }
+function getEventLocation($EID)
+{
+	return getEventField($EID,"l_id");
+}
 
 function setEventName($EID, $data)
 {
@@ -310,6 +315,11 @@ function makeEventPrivate($EID)
 function makeEventPublic($EID)
 {
 	return setEventField($EID,e_private,0);
+}
+function setEventLocation($EID, $loc_name, $loc_address)
+{
+	$data = newLocation($loc_name, $loc_address);
+	setEventField($EID, "l_id", $data);
 }
 
 
@@ -460,7 +470,7 @@ function getEventsByUser($UID)
 	return $events;
 }
 
-//Location function
+//Location functions
 function newLocation($loc_name, $loc_address)
 {
 
@@ -503,6 +513,29 @@ function newLocation($loc_name, $loc_address)
 	return $id;
    
 }
+
+function getLocationLatLon($LID)
+{
+$sql = getSQL(FALSE);
+	$LID = sanitize($LID);
+	$query = "SELECT l_lat AS lat, l_lng AS lon FROM e_location WHERE l_id='$LID'";
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row;
+	}
+	else
+	{
+		return -2;
+	}
+}
+
+
 
 //Search Functions
 
