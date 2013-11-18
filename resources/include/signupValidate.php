@@ -55,13 +55,13 @@ if(isset($_POST['submit'])) {
 	}
 
 	//checks for duplciate usernames
-	if(getUserID($username) != -1) {
+	if(getUserID($username) >= 0) {
 		$error_message .= "<p>A user with that username already exists.</p>";
 	}
 
 
 	//checks for duplciate emails
-	if(checkEmail($email) != -1) {
+	if(checkEmail($email) >= 0) {
 		$error_message .= "<p>Someone already signed up with that email.</p>";
 	}
 
