@@ -219,7 +219,7 @@ function setEmail($UID, $data)
 {
 	setUserField($UID, "u_email", $data);
 }
-function setUserLocation($UID, $loc_name, $loc_address))
+function setUserLocation($UID, $loc_name, $loc_address)
 {
 	$data = newLocation($loc_name, $loc_address);
 	setUserField($UID, "l_id", $data);
