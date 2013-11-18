@@ -707,4 +707,95 @@ function getUserRSVPs($UID, $ignoreNotGoing=TRUE)
 	
 }
 
+//Invite
+function sendInvite($UIDSender, $UIDRecieve, $EID, $msg="")
+{
+	$m = sanitize($msg);
+	$UIDs = sanitize($UIDSender);
+	$UIDr = sanitize($UIDRecieve);
+	$EID = sanitize($EID);
+	
+	$sql = getSQL(TRUE);
+	
+	$query = "INSERT INTO e_inv (e_id, u_inv_id, u_gu_id, i_cmt) VALUES ('$EID', '$UIDs', '$UIDr', '$m')";
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+}
+
+function getInvites($UID)
+{
+	$sql = getSQL(FALSE);
+	$UID = sanitize($UID);
+	
+	$query = "SELECT i.i_id AS ID, u.u_name AS Inviter, e.e_name AS Event, i.i_cmt AS Message 
+			FROM e_inv AS i
+			LEFT JOIN e_users AS u ON (i.u_inv_id = u.u_id)
+			LEFT JOIN e_events AS e ON (i.e_id = e.e_id)
+			WHERE i.u_gu_id = '$UID'";
+			
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$invs = array();
+	while($row = mysqli_fetch_assoc($res))
+	{
+		$invs[] = $row;
+	}
+	return $invs;
+	
+} 
+
+function acceptInvite($IID)
+{
+
+	return 	processInvite($IID,TRUE);
+}
+
+function rejectInvite($IID)
+{
+	return 	processInvite($IID,FALSE);	
+}
+
+function processInvite($IID, $accept)
+{
+	$sql = getSQL(TRUE);
+	$IID = sanitize($IID);
+	//Get info from invite
+	$query = "SELECT u_gu_id AS uid, e_id AS eid FROM e_inv WHERE i_id = '$IID'";
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		$EID = $row["eid"];
+		$UID = $row["uid"];
+	}
+	else
+	{
+		return -1;
+	}
+	//Add info to RSVP
+	$query = "INSERT INTO e_rsvp (e_id, u_id, rsvp) VALUES ('$EID', '$UID',";
+	if($accept)
+	{
+		$query .= "2)";
+	}
+	else
+	{
+		$query .= "0)";
+	}
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	//Delete that invite
+	$query = "DELETE FROM e_inv WHERE i_id='$IID'";
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+}
+
 ?>
