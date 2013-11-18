@@ -24,6 +24,11 @@ if(isset($_POST['submit'])) {
  	$error_message .= "<p>Username and/or password incorrect.</p>";
 
  }
+ 
+ if(getActiveUser == -3)
+ {
+	$error_message .= "<p>Your session has expired, please login again.</p>";
+ }
 
 }
 
