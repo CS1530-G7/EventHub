@@ -349,13 +349,25 @@ function createUser($username, $password, $email)
 
 }
 
-function getActiveUser()
+function getActiveUser($timeout = 30)
 {
 
-	
+	$tos = $timeout*60;
 	if(isset($_SESSION["auth_userid"]))
 	{
-		return $_SESSION["auth_userid"];
+		$lt = getLoginTime();
+		$now = time();
+		if($now - $lt >= $tos)
+		{
+			//Login Expired
+			logout();
+			return -1;
+		
+		}
+		else
+		{
+			return $_SESSION["auth_userid"];
+		}
 	}
 	else
 	{
@@ -408,6 +420,10 @@ function login($username, $password)
 	
 	return $uid;
 	
+}
+function logout()
+{
+	 unset ($_SESSION["auth_userid"]);
 }
 
 function deleteUser($uid)
