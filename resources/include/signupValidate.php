@@ -64,6 +64,11 @@ if(isset($_POST['submit'])) {
 	if(checkEmail($email) >= 0) {
 		$error_message .= "<p>Someone already signed up with that email.</p>";
 	}
+	
+	if(sqlError)
+	{
+		$error_message .= "<p>An error has occurred with the database, please try again later.</p>";
+	}
 
 }
 

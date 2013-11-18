@@ -49,7 +49,12 @@ function sqlQuery($sql, $query)
 	if($res === FALSE)
 	{
 		$_SESSION["sql_error"] = mysqli_error($sql);
+		addLog("SQLError",$query . ": " . mysqli_error($sql));
 		return -2;
+	}
+	else
+	{
+		unset($_SESSION["sql_error"]);
 	}
 
 	return $res;
@@ -63,9 +68,19 @@ function sqlError()
 	}
 	else
 	{
-		return 0;
+		return FALSE;
 	}
 
+}
+
+function addLog($type, $msg)
+{
+	
+	$sql = getSQL(TRUE);
+	$type = sanitize($type);
+	$msg = sanitize($msg);
+	$query = "INSERT INTO log (type, details) VALUES ('$type','$msg')";
+	mysqli_query($sql,$query); //Don't call sqlQuery for fear of infinite logging loop
 }
 
 
