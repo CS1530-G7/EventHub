@@ -352,8 +352,9 @@ function getActiveUser($timeout = 30)
 		if($now - $lt >= $tos)
 		{
 			//Login Expired
+			print 
 			logout();
-			return -2;
+			return -3;
 		
 		}
 		else
@@ -408,7 +409,7 @@ function login($username, $password)
 	}
 	
 	$_SESSION["auth_userid"] = $uid;
-	$_SESSION['auth_time'] = date("Y-m-d H:i:s");
+	$_SESSION['auth_time'] = time();
 	
 	return $uid;
 	
