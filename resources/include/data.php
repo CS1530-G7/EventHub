@@ -97,28 +97,6 @@ function getUserID($username)
 }
 
 
-function getUserID_exact($username)
-{
-
-	$sql = getSQL(FALSE);
-	
-	$query = "SELECT u_id FROM e_users WHERE u_name = '$username'";
-	
-	$res = sqlQuery($sql,$query);
-	if($res === -2) return -2;
-	
-			
-	$row = $res->fetch_assoc();
-	
-	if($row)
-	{
-		return $row["u_id"];
-	}
-	else
-	{
-		return -1;
-	}
-}
 
 function checkEmail($email)
 {
@@ -361,7 +339,7 @@ function getActiveUser($timeout = 30)
 		{
 			//Login Expired
 			logout();
-			return -1;
+			return -2;
 		
 		}
 		else

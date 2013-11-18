@@ -55,7 +55,7 @@ if(isset($_POST['submit'])) {
 	}
 
 	//checks for duplciate usernames
-	if(getUserID_exact($username) != -1) {
+	if(getUserID($username) != -1) {
 		$error_message .= "<p>A user with that username already exists.</p>";
 	}
 
