@@ -76,11 +76,11 @@ function getUserID($username)
 
 	$sql = getSQL(FALSE);
 	
-	$user = sanitize($usermname);
+	$user = sanitize($username);
 	
 	$query = "SELECT u_id FROM e_users WHERE u_name = '$user'";
 	
-		$res = sqlQuery($sql,$query);
+	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
 	
 			
