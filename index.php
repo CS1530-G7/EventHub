@@ -24,7 +24,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
 		<div id="login">
 			<?php
 				$UID = getActiveUser();
-					if($UID != -1) {
+					if($UID >= 0) {
 						$user = getUsername($UID);
 						$link = "profile.php?u={$UID}";
 						echo "<p>Welcome {$user}!</p>";
