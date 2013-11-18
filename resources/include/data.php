@@ -29,8 +29,8 @@ function sanitize($input)
 	$input = str_replace(";","",$input);
 	//Escapes harmful characters
 	$input = mysqli_real_escape_string($sql, $input);
-	//Escapes % and _
-	$input = addcslashes($input, '%_');
+	//Escapes %
+	$input = addcslashes($input, '%');
 	
 	return $input;
 }
