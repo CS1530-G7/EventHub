@@ -67,7 +67,7 @@ if(isset($_POST['submit'])) {
 	
 	if(sqlError)
 	{
-		$error_message .= "<p>An error has occurred with the database, please try again later.</p>";
+		$error_message .= "<p>An error has occurred with the database, please try again later." . sqlError() . "</p>";
 	}
 
 }
