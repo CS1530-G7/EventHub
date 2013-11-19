@@ -439,8 +439,8 @@ function addEvent($UID, $evName, $evLocName, $evLocAddr, $evDateTime, $evDescrip
 	}
 	$sql = getSQL(TRUE);
 	
-	//$sqldate = date( 'Y-m-d H:i:s', $evDateTime );
-	$sqldate = $evDateTime;
+	$sqldate = date( 'Y-m-d H:i:s', $evDateTime );
+	//$sqldate = $evDateTime;
 	$evName = sanitize($evName);
 	$evLocation = sanitize($evLocName);
 	$evAddr = sanitize($evLocAddr);
