@@ -24,7 +24,7 @@ $time = getLoginTime();
  print "AuthTime=$time\n";
 $uid2 = getUserID($un);
 print "UserID = " . $uid2 . "\n";
-
+logout();
 
 print "Testing addEvent\n";
 $eid = addEvent($uid, "Some Event", "Home", "Pittsburgh, PA",strtotime("November 17, 2013 7:15pm"),"Some event",FALSE);
