@@ -42,7 +42,7 @@ $uidDel = getUserID($uname);
 Print "Result (Should be -1) = $uidDel\n";
 
 print "Testing search\n";
-var_dump(eventSearch("",35,40,-80));
+var_dump(eventSearch("Pittsburgh"));
 
 print"\nTesting RSVPs\n";
 var_dump(getUserRSVPs($uid));
