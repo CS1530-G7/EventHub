@@ -61,7 +61,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
 				?>			
 		</div>
 		
-		<h1>Welcome to EventHub!</h1>
+		<h1>Welcome to EventHub!!</h1>
 		
 		<!--<img src="./resources/img/Homepage.jpg" />-->
 		<div id="search-area">
