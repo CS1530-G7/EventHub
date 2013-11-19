@@ -592,7 +592,7 @@ function eventSearch($regex_search = "", $dist = -1, $user_lat = 0, $user_lon = 
 	}
 	
 	
-	print $query . "\n";
+	#print $query . "\n";
 	
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;

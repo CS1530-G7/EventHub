@@ -1,7 +1,7 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'] . "resources/include/data.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "resources/include/createEventValidation.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/createEventValidation.php");
 
 
 ?>
@@ -19,9 +19,11 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "resources/include/createEventValidatio
 
 			<div id="create_event_sucess">
 				<?php
+				if(isset($_POST['submit']) && $error_message == '') {
 					echo "<p>Good news! You successfully created <b>{$event_name}</b>!</p>";
 					echo "<p><a href=\"#\">Click here</a> to view your new event's page.</p>";
 					echo "<p>Now start inviting people and spreading the word!</p>";
+				}
 				?>
 			</div>
 
