@@ -15,15 +15,20 @@ $e_private = getEventField($EID, 'e_private');
 
 $LID = getEventLocation($EID);
 
+$e_location = getEventLocationAddress($EID);
+$e_address = getEventLocationName($EID);
 
 
 $HTML = <<<END
  
  <h1>$e_name</h1>
 
- <h2>$e_date</h2>
-
+ <p>$e_date</p>
+ <p>$e_location</p>
+ <p>$e_address</p>
  <p>$e_descrip</p>
+
+
 
 
 END;
