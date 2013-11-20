@@ -9,8 +9,10 @@
     margin-right: auto;
     margin-top: 0px;
     margin-bottom: 0px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 #header
 {
@@ -24,11 +26,15 @@
 #content
 {
     text-align: center;
+    color: black;
+    font-size: 15px;
     background-color: #669999;
     min-height: 400px;
 }
 #footer
 {
+    color: black;
+    font-size: 15px;
     text-align: center;
     background-color: #181818;
     height: 50px;
