@@ -3,6 +3,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
 $msg=doLogin();
 $user = getActiveUser();
+$showerror = false;
 
 	if($user < 0)
 	{
@@ -66,8 +67,41 @@ if(isset($_POST['edit-profile']))
 	}
 	
 	//Password
-	
-	
+	$password = $_POST["pass1"];
+	$password_confirm = $_POST["pass2"];
+	$passerror = "";
+	if(empty($password)
+	{
+		// No change
+	}
+		 // check password length
+	else if(strlen($password) < 6 || strlen($password) > 20 ) {
+
+		//echo "password must be between 6 and 20 characters</br>";
+		$passerror = "<p>Password must be between 6 and 20 characters.</p>";
+
+	 }
+
+	 //checks for incorrect confirm password
+	 else if ($password != $password_confirm) {
+
+		//echo "confirm password does not match</br>";
+		$passerror = "<p>Your passwords do not match.</p>";
+
+	 }
+	 else
+	 {
+		changePassword($user,$password);
+	 }
+
+	if(empty($emailerror . $passerror . $locerror)
+	{
+		header( "Location: profile.php?u=$user");
+	}
+	else
+	{
+		$showerror = true;
+	}
 	
 	
 }
@@ -92,7 +126,14 @@ else
 
  <html>
 	<body>
-	<?php login_div($msg) ?>
+	<?php login_div($msg) 
+	if($showerror)
+	{
+		print "<div class='error'>$emailerror\n$locerror\n$passerror</div>";
+	}
+	
+	
+	?>
 		<form id='edit-profile' action='editProfile.php' method='post'>
 			<div id='public'>
 				<p>Public Profile</p>
