@@ -12,7 +12,7 @@ $user = $_GET["u"];
 $loggedin = getActiveUser();
 
 
-if(isset($_POST["follow-submit"])
+if(isset($_POST["follow-submit"]))
 {
 	if($loggedin >= 0)
 	{
