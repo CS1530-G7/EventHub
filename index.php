@@ -30,7 +30,6 @@ $msg = doLogin();
 			</div>
 			
 			<div id="footer">
-				<hr>
                 <a href='./index.php'>Home</a>&nbsp&nbsp
                 <a href='./profile.php'>Profile</a>&nbsp&nbsp
                 <a href='./logout.php'>Logout</a>
