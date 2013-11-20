@@ -31,6 +31,7 @@ $loggedin = getActiveUser();
 	
 		<?php
 		login_div($msg);
+		searchBar();
 		//echo '<h1>Welcome ' . $username .'!</h1>';
 		$username = getUsername($user);
 				
@@ -113,17 +114,10 @@ $loggedin = getActiveUser();
 
 		
 		<!--<img src="./resources/img/Homepage.jpg" />-->
-		<div id="search-area">
-			<form name="login" id="login" action="profile.php" method="POST">
-				<label for="username"/></label>
-				<input type="text" name="search_query" value="" onclick="RemoveText(this);">
-				<input class= "btn" name="search_submit" type="submit" value="Search Events">
-			</form>
+		
 
 
-			<div id="search_results">
-				<?php doEventSearch(); ?>
-			</div>
+
 
 		</div>
 		
