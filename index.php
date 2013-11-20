@@ -4,7 +4,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/search.php");
 
-$msg = doLogin();
 ?>
  
 <html>
@@ -20,7 +19,10 @@ $msg = doLogin();
 	<body>
 	 	<div id="main-center">
 			<div id="header">
-				<?php login_div($msg); ?>
+				<?php
+					$login_input = doLogin();
+					login_div($login_input);
+				?>
 			</div>
 			
 			<div id="content">

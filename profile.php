@@ -48,7 +48,10 @@ if(isset($_POST["follow-submit"]))
 	<body>
 		<div id="main-center">
 			<div id="header">
-				<?php login_div($msg); ?>
+				<?php
+					$login_input = doLogin();
+					login_div($login_input);
+				?>
 			</div>
 			
 			<div id="content">
