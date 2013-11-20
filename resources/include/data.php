@@ -923,7 +923,7 @@ function followUser($UID, $UIDtoFollow)
 function unfollowUser($UID, $UIDtoUnfollow)
 {
 	$UID = sanitize($UID);
-	$UID2 = sanitize($UIDtoFollow);
+	$UID2 = sanitize($UIDtoUnfollow);
 	$sql = getSQL(TRUE);
 	$query = "DELETE FROM e_follow WHERE u_head_id = '$UID' AND u_tail_id = '$UID2'";
 	

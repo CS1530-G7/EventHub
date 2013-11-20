@@ -98,6 +98,19 @@ if(isset($_POST["follow-submit"]))
 						displayEventCard($s["id"],$s["distance"]);
 					}
 				}
+				print "<div id='followedUsers'><p>Following</p>";
+				$users = getFollows($user);
+				
+				foreach($users as $u)
+				{
+					$name = getUsername($u);
+					if($name >= 0)
+					{
+						print "<a href='profile.php?u=$u'>$name</a>";
+					}
+				
+				}
+				print "</div>";
 				
 			}
 			else if($username < 0)
