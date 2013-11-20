@@ -2,6 +2,10 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
+
+
+function eventHTML() {
+
 $EID = $_GET['u'];
 
 $e_name = getEventField($EID, 'e_name');
@@ -11,12 +15,6 @@ $e_private = getEventField($EID, 'e_private');
 
 $LID = getEventLocation($EID);
 
-
-
-//echo $e_name . $e_date . $e_descrip . $e_private;
-
-
-function eventHTML() {
 
 
 $HTML = <<<END
