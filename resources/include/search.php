@@ -8,6 +8,8 @@ function fixSearchQuery ($query){
 
 	$num_words = count($words);
 
+	echo $num_words;
+
 	if($num_words == 0) {
 		$fixed_query = '';
 	} else if ($num_words == 1){
