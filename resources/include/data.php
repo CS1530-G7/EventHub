@@ -463,6 +463,7 @@ function deleteUser($uid)
 
 function getUserLocation($UID)
 {
+	$sql = getSQL(FALSE);
 	$query = "SELECT l.l_lat As Lat, l.l_lon AS Lon FROM e_users AS u LEFT JOIN e_location AS l ON (u.l_id = l.l_id) WHERE u.u_id = '$UID'";
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
