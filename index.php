@@ -26,8 +26,7 @@ $msg = doLogin();
 		
 
 
-		<h1>Welcome to EventHub!!!!</h1>
-
+		<h1>Welcome to EventHub!</h1>
 
 
 		
