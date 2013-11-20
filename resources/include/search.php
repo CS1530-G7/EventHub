@@ -2,6 +2,35 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
+function fixSearchQuery ($query){
+
+	$words = explode(" ", $query);
+
+	$num_words = count($words);
+
+	if($num_words == 0) {
+		$fixed_query = '';
+	} else if ($num_words == 1){
+		$fixed_query = $query;
+	} else {
+		$i = 0;
+		for (; $i < $num_words; $i++){
+			if($i == 0){
+				$fixed_query .= "(";
+			} else if ($i == $num_words) {
+				$fixed_query .= ")";
+			} else {
+				$fixed_query .= $words[$i];
+				$fixed_query .= "|";
+			}
+
+		}
+	}
+
+
+	return $fixed_query;
+}
+
 
 //event search functions here
 function doEventSearch () {
@@ -9,6 +38,9 @@ function doEventSearch () {
 	if(isset($_POST['search_submit'])) {
 
 		$input = $_POST['search_query'];
+
+		// transforms multi word search into regex
+		fixSearchQuery($input);
 
 		$search_results = eventSearch($input, -1, 0, 0, TRUE, FALSE);
 
