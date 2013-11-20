@@ -54,8 +54,11 @@ function displayInviteCard($IID)
 				<p id='Invite'>Invited by <a href='profile.php?u=$invrID'>$invr</a></p>
 				<p id='Msg' class='quote'>$msg</p>
 				<form name='Invite' action='profile.php?u=$guID' method='POST'>
+					<input type='hidden' name='IID' value='$IID'>
+					<input type='hidden' name='InvUser' value='$guID'>
 					<input class='btn-invite' name='invite-submit' type='submit' value='Accept'>
 					<input class='btn-invite' name='invite-submit' type='submit' value='Reject'>
+					
 				</form></div>";
 	
 	}
