@@ -72,7 +72,7 @@ $loggedin = getActiveUser();
 				else
 				{
 
-					$events = eventSearch("", 50, $loc["Lat"], $loc["Lng"], TRUE, FALSE);
+					$events = eventSearch("", 50, $loc["Lat"], $loc["Lng"], TRUE, TRUE);
 					
 					foreach ($events as $s)
 					{

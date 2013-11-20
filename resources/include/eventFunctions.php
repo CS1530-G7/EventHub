@@ -23,7 +23,7 @@ function displayEventCard($EID, $Distance=-1, $rsvp=-1)
 			<p id='loc'>$eloc</p>";
 			if($Distance >= 0)
 			{
-				print "<p id='dist'>$edist</p>";
+				print "<p id='dist'>$edist mi</p>";
 			}
 			if($rsvp >= 0)
 			{
