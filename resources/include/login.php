@@ -45,7 +45,7 @@ function login_div($msg = "")
 	if($UID >= 0) {
 		$user = getUsername($UID);
 		$link = "profile.php?u={$UID}";
-		print "<p>Welcome <a href='$link'>{$user}</a>!</p>";
+		print "<p><a href='$link'>{$user}</a></p>";
 		print"</div>"; //End div login
 		print  "<div id=\"logout\">";
 		print "<p><a href=\"logout.php\">Logout</a></p>";

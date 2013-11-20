@@ -478,6 +478,24 @@ function getEventsByUser($UID)
 	
 	return $events;
 }
+function getEventCard($EID)
+{
+	$sql = getSQL(FALSE);
+	$EID = sanitize($EID);
+	$query = "SELECT e.e_name AS Name, e.e_date AS Date l.l_name AS Location
+	FROM e_events AS e LEFT JOIN e_location ON (e.l_id = l.l_id) WHERE e.e_id = '$EID'";
+	$res = sqlQuery($sql, $query);
+	if($res === -2) return -2;
+	if($row)
+	{
+		return $row;
+	}
+	else
+	{
+		return -2;
+	}
+	
+}
 
 //Location functions
 function newLocation($loc_name, $loc_address)
@@ -798,5 +816,6 @@ function processInvite($IID, $accept)
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
 }
+//Following
 
 ?>

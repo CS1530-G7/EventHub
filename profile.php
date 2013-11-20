@@ -3,6 +3,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/search.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/eventFunctions.php");
 
 $msg = doLogin();
 
@@ -10,14 +11,7 @@ $msg = doLogin();
 $user = $_GET["u"];
 $loggedin = getActiveUser();
 
-if($user === $loggedin)
-{
-	//Display your profile
-}
-else
-{
-	//Public Profile
-}
+
 
 
 
@@ -37,6 +31,47 @@ else
 		<?php
 		login_div($msg);
 		//echo '<h1>Welcome ' . $username .'!</h1>';
+		$username = getUsername($user);
+				
+		if($user === $loggedin)
+			{
+				//Display your profile
+				print "<div id='profile-name'><p>Your page</p>";
+				
+				$events = getEventsByUser($user);
+				foreach ($events as $e)
+				{
+					
+					displayEventCard($e);
+					
+
+					
+					
+					
+				}
+			}
+			else
+			{
+				//Public Profile
+				print "<div id='profile-name'><p>$username's page</p>";
+				$followed = FALSE; //TODO create 'is followed' SQL
+				if($followed)
+				{
+					print "<div id='follow'>
+						<form name='unfollow' id='unfollow' action='profile.php?u=$user' method='POST'>
+							<input class='btn-unfollow' name='follow' type='submit' value='Un-Follow'>
+						</form>
+					</div>";
+				}
+				else
+				{
+					print "<div id='follow'>
+						<form name='follow' id='follow' action='profile.php?u=$user' method='POST'>
+							<input class='btn-follow' name='follow' type='submit' value='Follow'>
+						</form>
+					</div>";
+				}
+			}
 
 		?>
 
