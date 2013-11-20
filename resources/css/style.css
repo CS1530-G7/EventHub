@@ -27,6 +27,7 @@
     margin-top: 10px;
     color: black;
     width: 600px;
+    min-height: 400px;
     text-align: center;
     font-size: 15px;
 }
