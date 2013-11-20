@@ -722,7 +722,7 @@ function getUserRSVPs($UID, $ignoreNotGoing=TRUE, $futureEventsOnly = TRUE)
 	$UID = sanitize($UID);
 	
 	$sql = getSQL(FALSE);
-	$query = "SELECT r.e_id AS id, r.rsvp AS rsvp FROM e_rsvp AS r LEFT JOIN e_events AS e ON (r.e_id = e.e_id)  WHERE u_id='$UID'";
+	$query = "SELECT r.e_id AS id, r.rsvp AS rsvp FROM e_rsvp AS r LEFT JOIN e_events AS e ON (r.e_id = e.e_id)  WHERE r.u_id='$UID'";
 	if($ignoreNotGoing)
 	{
 		$query .= " AND rsvp>0";
