@@ -48,7 +48,7 @@ function login_div($msg = "")
 		print "<p>Welcome <a href='$link'>{$user}</a>!</p>";
 		print"</div>"; //End div login
 		print  "<div id=\"logout\">";
-		print "<a href=\"logout.php\">Logout</a>";
+		print "<p><a href=\"logout.php\">Logout</a></p>";
 		print "</div>";
 	} else {
 
