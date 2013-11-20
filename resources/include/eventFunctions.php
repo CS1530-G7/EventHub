@@ -56,7 +56,7 @@ function displayInviteCard($IID)
 				<form name='Invite' action='profile.php?u=$guID' method='POST'>
 					<input class='btn-invite' name='invite-submit' type='submit' value='Accept'>
 					<input class='btn-invite' name='invite-submit' type='submit' value='Reject'>
-				</form>"
+				</form></div>";
 	
 	}
 }
