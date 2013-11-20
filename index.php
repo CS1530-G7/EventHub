@@ -2,6 +2,7 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/search.php");
 $msg = doLogin();
 ?>
  
@@ -35,6 +36,12 @@ $msg = doLogin();
 				<input type="text" name="search_query" value="" onclick="RemoveText(this);">
 				<input class= "btn" name="search_submit" type="submit" value="Search Events">
 			</form>
+
+
+			<div id="search_results">
+				<?php doEventSearch(); ?>
+			</div>
+
 		</div>
 		
 	</body>
