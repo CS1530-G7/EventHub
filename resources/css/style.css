@@ -11,11 +11,10 @@
 }
 #header
 {
-    text-align: right;
+    text-align: left;
     background-color: #181818;
     color: #E8E8E8;
     font-size: 15px;
-    padding: 5px;
 }
 #content
 {
