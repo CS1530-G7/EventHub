@@ -15,7 +15,7 @@ function doEventSearch () {
 		foreach ($search_results as $result){
 			print "<p>{$result}</p>";
 		}
-}
+	}
 
 }
 
