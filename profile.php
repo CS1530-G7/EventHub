@@ -36,7 +36,7 @@ $loggedin = getActiveUser();
 		if($user === $loggedin)
 			{
 				//Display your profile
-				print "<div id='profile-name'><p>Your page</p>";
+				print "<div id='profile-name'><p>Your page (<a href='editProfile.php'>Edit</a>)</p>";
 				
 				$events = getEventsByUser($user);
 				print "<div id='hosted'><p>Hosted Events</p>";
@@ -63,15 +63,21 @@ $loggedin = getActiveUser();
 				$loc = getUserLocation($user);
 				if($loc == -1 || $loc["Lat"] == NULL)
 				{
-					print "<p class='error'>You have not set a location for yourself.  <a href='profileEdit.php'>Edit your profile</a> to get events near you</p>";
+					print "<p class='error'>You have not set a location for yourself.  <a href='editProfile.php'>Edit your profile</a> to get events near you</p>";
 				}
 				else if($loc == -2)
 				{
 				}
 				else
 				{
-					var_dump($loc);
-					$events = eventSearch("", 50, $loc["Lat"], $loc["Lng"], FALSE, FALSE);
+
+					$events = eventSearch("", 50, $loc["Lat"], $loc["Lng"], TRUE, FALSE);
+					
+					foreach ($events as $s)
+					{
+
+						displayEventCard($s["id"],$s["distance"]);
+					}
 				}
 				
 			}
