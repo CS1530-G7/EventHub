@@ -138,8 +138,31 @@ function checkEmail($email)
 function getUserField($UID, $field)
 {
 	$sql = getSQL(FALSE);
-	
+	$UID = sanitize($UID);
 	$query = "SELECT $field FROM e_users WHERE u_id = '$UID'";
+	
+	//print $query;
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row[$field];
+	}
+	else
+	{
+		return -1;
+	}
+
+}
+function getUserLField($UID, $field)
+{
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT l.$field AS $field FROM e_users AS u LEFT JOIN e_location AS l ON (u.l_id = l.l_id) WHERE u.u_id = '$UID'";
 	
 	//print $query;
 	
@@ -162,6 +185,7 @@ function setUserField($UID, $field, $data)
 {
 	$sql = getSQL(TRUE);
 	$data = sanitize($data);
+	$UID = sanitize($UID);
 	$query = "UPDATE e_users SET $field='$data' WHERE u_id = '$UID'";
 	
 	$res = sqlQuery($sql,$query);
@@ -191,6 +215,14 @@ function getLocID($UID)
 {
 	return getUserField($UID, "l_id");
 }
+function getUserLocationName($UID)
+{
+	return getUserLField($UID, "l_name");
+}
+function getUserAddress($UID)
+{
+	return getUserLField($UID,"l_address");
+}
 //Setters
 function setUsername($UID, $data)
 {
@@ -214,7 +246,13 @@ function setEmail($UID, $data)
 function setUserLocation($UID, $loc_name, $loc_address)
 {
 	$data = newLocation($loc_name, $loc_address);
+	//Delete old user location?
 	setUserField($UID, "l_id", $data);
+}
+function changePassword($UID, $password)
+{
+	$pass = salthash($password);
+	setUserField($UID, "u_pass", $pass);
 }
 //Event SQL wrappers
 function getEventField($EID, $field)
@@ -343,6 +381,7 @@ function makeEventPublic($EID)
 function setEventLocation($EID, $loc_name, $loc_address)
 {
 	$data = newLocation($loc_name, $loc_address);
+	//Delete old event location?
 	setEventField($EID, "l_id", $data);
 }
 
@@ -459,6 +498,25 @@ function deleteUser($uid)
 	if($res === -2) return -2;
 }
 
+function getUserLocation($UID)
+{
+	$sql = getSQL(FALSE);
+	$query = "SELECT l.l_lat As Lat, l.l_lng AS Lng FROM e_users AS u LEFT JOIN e_location AS l ON (u.l_id = l.l_id) WHERE u.u_id = '$UID'";
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row;
+	}
+	else
+	{
+		return -1;
+	}
+}
+
 
 //Event functions
 
@@ -494,11 +552,16 @@ function addEvent($UID, $evName, $evLocName, $evLocAddr, $evDateTime, $evDescrip
 	
 }
 
-function getEventsByUser($UID)
+function getEventsByUser($UID, $futureEventsOnly = TRUE)
 {
 	$sql = getSQL(FALSE);
 	$UID = sanitize($UID);
-	$query = "SELECT e_id FROM e_events WHERE u_id='$UID'";
+	$query = "SELECT e_id FROM e_events WHERE u_id='$UID' ";
+	if($futureEventsOnly)
+	{
+		$query .= "AND (e_date >= CURDATE()) ";
+	}
+	$query .= "ORDER BY e_date";
 	$res = sqlQuery($sql, $query);
 	if($res === -2) return -2;
 	
@@ -514,17 +577,22 @@ function getEventCard($EID)
 {
 	$sql = getSQL(FALSE);
 	$EID = sanitize($EID);
-	$query = "SELECT e.e_name AS Name, e.e_date AS Date l.l_name AS Location
-	FROM e_events AS e LEFT JOIN e_location ON (e.l_id = l.l_id) WHERE e.e_id = '$EID'";
+	$query = "SELECT e.e_name AS Name, e.e_date AS Date, l.l_name AS Location, u.u_name AS Host, u.u_id AS HostID
+	FROM (e_events AS e) LEFT JOIN (e_location AS l) ON (e.l_id = l.l_id) LEFT JOIN (e_users AS u) ON (e.u_id = u.u_id)
+	WHERE e.e_id = '$EID'";
 	$res = sqlQuery($sql, $query);
+
 	if($res === -2) return -2;
+	
+	$row = $res->fetch_assoc();
+	
 	if($row)
 	{
 		return $row;
 	}
 	else
 	{
-		return -2;
+		return -1;
 	}
 	
 }
@@ -549,9 +617,10 @@ function newLocation($loc_name, $loc_address)
    // If Status Code is ZERO_RESULTS, OVER_QUERY_LIMIT, REQUEST_DENIED or INVALID_REQUEST
    if ($response['status'] != 'OK') 
    {
-		//Default for testing.  Change to error.
-		$lat = 123.4;
-		$lng = 567.8;
+		
+		$lat = 'NULL';
+		$lng = 'NULL';
+		addLog("GeocodeError",$response['status'] . ": " . $geocode_url);
    }
    else
    {
@@ -562,7 +631,7 @@ function newLocation($loc_name, $loc_address)
    
    $sql = getSQL(TRUE);
    
-   $query = "INSERT INTO e_location (l_name, l_address, l_lat, l_lng) VALUES ('$lname','$laddr','$lat','$lng')";
+   $query = "INSERT INTO e_location (l_name, l_address, l_lat, l_lng) VALUES ('$lname','$laddr',$lat,$lng)";
    
    	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
@@ -717,16 +786,21 @@ function getUsersByRSVP($EID, $rsvp)
 	return $users;
 }
 
-function getUserRSVPs($UID, $ignoreNotGoing=TRUE)
+function getUserRSVPs($UID, $ignoreNotGoing=TRUE, $futureEventsOnly = TRUE)
 {
 	$UID = sanitize($UID);
 	
 	$sql = getSQL(FALSE);
-	$query = "SELECT e_id, rsvp FROM e_rsvp WHERE u_id='$UID'";
+	$query = "SELECT r.e_id AS id, r.rsvp AS rsvp FROM e_rsvp AS r LEFT JOIN e_events AS e ON (r.e_id = e.e_id)  WHERE r.u_id='$UID'";
 	if($ignoreNotGoing)
 	{
 		$query .= " AND rsvp>0";
 	}
+		if($futureEventsOnly)
+	{
+		$query .= " AND (e.e_date >= CURDATE())";
+	}
+	$query .= " ORDER BY e.e_date";
 	
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
@@ -734,24 +808,9 @@ function getUserRSVPs($UID, $ignoreNotGoing=TRUE)
 	$rsvps = array();
 	while($row = mysqli_fetch_assoc($res))
 	{
-		$new = array();
-		$new["id"] = $row["e_id"];
-		$new["rsvp"] = $row["rsvp"];
-		/*
-		if($row["rsvp"] == 0)
-		{
-			$new["rsvp"]
-		}
-		else if($row["rsvp"] == 1)
-		{
 		
-		}
-		else
-		{
+		$rsvps[] = $row;
 		
-		}
-		*/
-		$rsvps[] = $new; 
 	}
 	
 	return $rsvps;
@@ -774,27 +833,48 @@ function sendInvite($UIDSender, $UIDRecieve, $EID, $msg="")
 	if($res === -2) return -2;
 	
 }
-
 function getInvites($UID)
 {
 	$sql = getSQL(FALSE);
 	$UID = sanitize($UID);
 	
-	$query = "SELECT i.i_id AS ID, u.u_name AS Inviter, e.e_name AS Event, i.i_cmt AS Message 
+	$query = "SELECT i_id FROM e_inv WHERE u_gu_id = '$UID'";
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$invis = array();
+	while($row = mysqli_fetch_assoc($res))
+	{
+		$invis[] = $row["i_id"];
+	}
+	return $invis;
+}
+function getInviteCard($IID)
+{
+	$sql = getSQL(FALSE);
+	$IID = sanitize($IID);
+	
+	$query = "SELECT i.u_gu_id AS GuestID, u.u_name AS Inviter, i.u_inv_id AS InviterID, e.e_name AS Event, e.e_id AS EventID, i.i_cmt AS Message 
 			FROM e_inv AS i
 			LEFT JOIN e_users AS u ON (i.u_inv_id = u.u_id)
 			LEFT JOIN e_events AS e ON (i.e_id = e.e_id)
-			WHERE i.u_gu_id = '$UID'";
+			WHERE i.i_id = '$IID'";
 			
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
 	
-	$invs = array();
-	while($row = mysqli_fetch_assoc($res))
+	$row = $res->fetch_assoc();
+	
+	if($row)
 	{
-		$invs[] = $row;
+		return $row;
 	}
-	return $invs;
+	else
+	{
+		return -1;
+	}
+	
 	
 } 
 
@@ -849,5 +929,64 @@ function processInvite($IID, $accept)
 	if($res === -2) return -2;
 }
 //Following
+
+function followUser($UID, $UIDtoFollow)
+{
+	$UID = sanitize($UID);
+	$UID2 = sanitize($UIDtoFollow);
+	$sql = getSQL(TRUE);
+	$query = "INSERT INTO e_follow (u_head_id, u_tail_id) VALUES ('$UID','$UID2')";
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+}
+function unfollowUser($UID, $UIDtoUnfollow)
+{
+	$UID = sanitize($UID);
+	$UID2 = sanitize($UIDtoUnfollow);
+	$sql = getSQL(TRUE);
+	$query = "DELETE FROM e_follow WHERE u_head_id = '$UID' AND u_tail_id = '$UID2'";
+	
+		$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+}
+function isFollowed($UID, $UIDtoCheck)
+{
+	$UID = sanitize($UID);
+	$UID2 = sanitize($UIDtoCheck);
+	$sql = getSQL(FALSE);
+	$query = "SELECT * FROM e_follow WHERE u_head_id = '$UID' AND u_tail_id = '$UID2'";
+	
+		$res = sqlQuery($sql,$query);
+	if($res === -2) return FALSE;
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return TRUE;
+	}
+	return FALSE;
+	
+}
+function getFollows($UID)
+{
+	$sql = getSQL(FALSE);
+	$UID = sanitize($UID);
+	$query = "SELECT u_tail_id AS id FROM e_follow WHERE u_head_id = '$UID'";
+	
+		$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$users = array();
+	while($row = mysqli_fetch_assoc($res))
+	{
+		$users[] = $row["id"];
+	}
+	
+	return $users;	
+	
+}
 
 ?>

@@ -6,7 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
 function eventHTML() {
 
-$EID = $_GET['u'];
+$EID = $_GET['e'];
 
 $e_name = getEventField($EID, 'e_name');
 $e_date = getEventField($EID, 'e_date');

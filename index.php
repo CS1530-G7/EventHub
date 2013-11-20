@@ -7,44 +7,34 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/search.php");
 $msg = doLogin();
 ?>
  
- <html>
+<html>
+	<head>
+ 		<title>EventHub</title>
+        <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 
- 	<header>
+		<script>
+			function RemoveText(obj) {   obj.value = ''; } 
+		</script>
+    </head>
 
- 	<script>
- 		function RemoveText(obj) {   obj.value = ''; } 
- 	</script>
-
- 	</header>
 	<body>
-
-
-		<!-- Simple login logic here:
-					If not logged in, show the login form
-					If logged in, then welcome user and show profile link
-		-->
-		<?php login_div($msg); ?>
-
-		
-
-		<h1>Welcome to EventHub!!!</h1>
-
-		
-		<!--<img src="./resources/img/Homepage.jpg" />-->
-		<div id="search-area">
-			<form name="login" id="login" action="index.php" method="POST">
-				<label for="username"/></label>
-				<input type="text" name="search_query" value="" onclick="RemoveText(this);">
-				<input class= "btn" name="search_submit" type="submit" value="Search Events">
-			</form>
-
-
-			<div id="search_results">
-				<?php doEventSearch(); ?>
+	 	<div id="main-center">
+			<div id="header">
+				<?php login_div($msg); ?>
 			</div>
+			
+			<div id="content">
+				<h1>EventHub</h1>
 
+				<?php searchBar(); ?>
+			</div>
+			
+			<div id="footer">
+                <a href='./index.php'>Home</a>&nbsp&nbsp
+                <a href='./profile.php'>Profile</a>&nbsp&nbsp
+                <a href='./logout.php'>Logout</a>
+			</div>
 		</div>
-		
 	</body>
 </html>
 
