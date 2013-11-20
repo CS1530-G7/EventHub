@@ -2,7 +2,7 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
-doLogin();
+$msg = doLogin();
 ?>
  
  <html>
@@ -21,7 +21,7 @@ doLogin();
 					If not logged in, show the login form
 					If logged in, then welcome user and show profile link
 		-->
-		<?php login_div(); ?>	
+		<?php login_div($msg); ?>	
 		</div>
 		
 		<h1>Welcome to EventHub!!</h1>

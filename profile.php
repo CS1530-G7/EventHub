@@ -2,7 +2,7 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
-doLogin();
+$msg = doLogin();
 
 
 $user = $_GET["u"];
@@ -18,7 +18,7 @@ else
 }
 
 
-login_div();
+
 ?>
  
  <html>
@@ -33,8 +33,8 @@ login_div();
 	<body>
 	
 		<?php
-
-		echo '<h1>Welcome ' . $username .'!</h1>';
+		login_div($msg);
+		//echo '<h1>Welcome ' . $username .'!</h1>';
 
 		?>
 		

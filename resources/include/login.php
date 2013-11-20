@@ -29,14 +29,16 @@ function doLogin()
 		 }
 		 else
 		 {
-			 header( 'Location:./profile.php?u=$userID');
+			 header( 'Location:profile.php?u=$userID');
 		 }
 
 	}
 	
+	return $error_message;
+	
 }
 
-function login_div()
+function login_div($msg = "")
 {
 	print '<div id="login">';
 	$UID = getActiveUser();
@@ -50,7 +52,7 @@ function login_div()
 			<div id="login-form">
 
 			<div id="login-errors">
-				$error_message
+				$msg
 			</div>
 			<form name="login" id="login" action="index.php" method="POST">
 				<label for="username"/>Username:</label>
