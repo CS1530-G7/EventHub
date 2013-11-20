@@ -32,6 +32,7 @@ $attendees = getUsersByRSVP($EID, 2);
 $attendee_list = "";
 $num_attendees = count($attendee_list);
 
+echo $attendees;
 
 if($attendees != -1) {
 
