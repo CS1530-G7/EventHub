@@ -4,7 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
 function fixSearchQuery ($query){
 
-	$words = explode(" ", $fixed_query);
+	$words = explode(" ", $query);
 
 	$num_words = count($words);
 
