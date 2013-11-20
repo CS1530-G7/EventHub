@@ -63,7 +63,7 @@ $loggedin = getActiveUser();
 				$loc = getUserLocation($user);
 				if($loc == -1)
 				{
-					print "<p class='error'>You have not set a location for yourself.  <a href='profileEdit.php'>Edit your profile</a> to get events near you</p>"
+					print "<p class='error'>You have not set a location for yourself.  <a href='profileEdit.php'>Edit your profile</a> to get events near you</p>";
 				}
 				else if($loc == -2)
 				{
