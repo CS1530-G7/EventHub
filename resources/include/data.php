@@ -61,7 +61,7 @@ function sqlQuery($sql, $query)
 
 function sqlError()
 {
-	if(isset($_SESSION["sql_error"]))
+	if(!empty($_SESSION["sql_error"]))
 	{
 		return $_SESSION["sql_error"];
 	}
