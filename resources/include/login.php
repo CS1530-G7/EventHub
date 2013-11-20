@@ -29,7 +29,7 @@ function doLogin()
 		 }
 		 else
 		 {
-			 header( 'Location:profile.php?u=$userID');
+			 header( "Location:profile.php?u=$userID");
 		 }
 
 	}
@@ -48,25 +48,26 @@ function login_div($msg = "")
 		print "<p>Welcome <a href='$link'>{$user}</a>!</p>";
 		print"</div>"; //End div login
 	} else {
-		print ' 
-			<div id="login-form">
+print <<<END 
+<div id="login-form">
 
-			<div id="login-errors">
-				$msg
-			</div>
-			<form name="login" id="login" action="index.php" method="POST">
-				<label for="username"/>Username:</label>
-				<input type="text" name="username">
-				<label for="password"/>Password:</label>
-				<input type="password" name="password">
-				<input class= "btn" name="submit" type="submit" value="Submit">
-			</form>
+<div id="login-errors">
+	$msg
+</div>
+<form name="login" id="login" action="index.php" method="POST">
+	<label for="username"/>Username:</label>
+	<input type="text" name="username">
+	<label for="password"/>Password:</label>
+	<input type="password" name="password">
+	<input class= "btn" name="submit" type="submit" value="Submit">
+</form>
 
-		</div>
+</div>
 
-		<div id="sign-up">
-			<a href="signup.php">Sign up</a>	
-			</div>';
+<div id="sign-up">
+<a href="signup.php">Sign up</a>	
+</div>";
+END;
 	}
 }
 
