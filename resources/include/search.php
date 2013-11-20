@@ -64,7 +64,7 @@ function doEventSearch () {
 		//Eventually we should do an advance search to change all of these fixed vars in to variables set by user.
 		if($doDistance)
 		{
-			$events = eventSearch($input, 50, $loc["Lat"], $loc["Lng"], TRUE, TRUE);
+			$search_results = eventSearch($input, 50, $loc["Lat"], $loc["Lng"], TRUE, TRUE);
 		}
 		else
 		{
