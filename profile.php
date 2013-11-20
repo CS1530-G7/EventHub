@@ -12,7 +12,8 @@ $user = $_GET["u"];
 $loggedin = getActiveUser();
 
 
-var_dump($_POST);
+
+
 
 
 ?>

@@ -3,28 +3,85 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
 $user = getActiveUser();
 
-if($user < 0)
+	if($user < 0)
+	{
+		header( "Location: index.php");
+	}
+	$email = getEmail($user);
+	$locname = getUserLocationName($user);
+	if($locname < 0)
+	{
+		$locname = "";
+	}
+	$address = getUserAddress($user); 
+	if($address < 0)
+	{
+		$address = "";
+	}
+
+//Changes
+if(isset($_POST['edit-profile']))
 {
-	header( "Location: index.php");
+	//Email
+	$email = $_POST['email'];
+	$emailid = checkEmail($email);
+	$emailerror = "";
+	if(empty($email))
+	{
+		//No change
+	}
+	else if ($emailid == $user)
+	{
+		//No change
+	}
+	else if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+	{
+		$emailerror = "<p>Please enter a valid email.</p>";
+	}
+	else if($emailid  >= 0)
+	{
+		$emailerror = "<p>Someone already signed up with that email.</p>";
+	}
+	else
+	{
+		//Change email
+		setEmail($user, $email);
+	}
+	//Location
+	$loc_name = $_POST['loc_name'];
+	$loc_addr = $_POST['address'];
+	$locerror = "";
+	if(empty($loc_name) && empty($loc_addr))
+	{
+		//No change
+	}
+	else if($loc_name === $locname && $loc_addr === $addres)
+	{
+		//No change
+	}
+	else
+	{
+		setUserLocation($user, $loc_name, $loc_address);
+	}
+	
+	//Password
+	
+	
+	
+	
 }
-$email = getEmail($user);
-$locname = getUserLocationName($user);
-if($locname < 0)
+else
 {
-	$locname = "";
+
 }
-$address = getUserAddress($user); 
-if($address < 0)
-{
-	$address = "";
-}
+
 
 
 ?>
 
  <html>
 	<body>
-		<form id='edit-profile' action='profile.php?u=<?php print $user?>' method='post'>
+		<form id='edit-profile' action='editProfile.php' method='post'>
 			<div id='public'>
 				<p>Public Profile</p>
 				<p>Area where you live <input type="text" name="loc_name" value='<?php print $locname?>'></p>
