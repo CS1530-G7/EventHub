@@ -2,7 +2,7 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
-$EID = $_POST['u'];
+$EID = $_GET['u'];
 
 $e_name = getEventField($EID, 'e_name');
 $e_date = getEventField($EID, 'e_date');
