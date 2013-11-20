@@ -37,6 +37,7 @@ else
 		//echo '<h1>Welcome ' . $username .'!</h1>';
 
 		?>
+
 		
 		<!--<img src="./resources/img/Homepage.jpg" />-->
 		<div id="search-area">

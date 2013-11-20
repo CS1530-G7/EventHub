@@ -47,6 +47,9 @@ function login_div($msg = "")
 		$link = "profile.php?u={$UID}";
 		print "<p>Welcome <a href='$link'>{$user}</a>!</p>";
 		print"</div>"; //End div login
+		print  "<div id=\"logout\">";
+		print "<a href=\"logout.php\">Logout</a>";
+		print "</div>";
 	} else {
 
 $str = <<<END

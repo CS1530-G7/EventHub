@@ -23,9 +23,6 @@ $msg = doLogin();
 		-->
 		<?php login_div($msg); ?>
 
-		<div id="logout">
-			<a href="logout.php">Logout</a>
-		</div>
 		
 
 		<h1>Welcome to EventHub!!!</h1>
