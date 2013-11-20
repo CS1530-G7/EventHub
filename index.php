@@ -21,7 +21,7 @@ doLogin();
 					If not logged in, show the login form
 					If logged in, then welcome user and show profile link
 		-->
-		login_div();	
+		<?php login_div(); ?>	
 		</div>
 		
 		<h1>Welcome to EventHub!!</h1>
