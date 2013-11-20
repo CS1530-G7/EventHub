@@ -6,7 +6,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
 function displayEventCard($EID, $Distance=-1, $rsvp=-1)
 {
-	$event = getEventCard($e);
+
+	$event = getEventCard($EID);
 	$ename = $event["Name"];
 	$edate = date("F j, Y g:i a",strtotime($event["Date"]));
 	$eloc = $event["Location"];
