@@ -24,6 +24,8 @@ $attendee_list = "";
 
 foreach ($attendees as $going) {
 	$username = getUsername($going);
+	echo $going . "</br>";
+	echo $username . "</br>";
 	$attendee_list .= "<p>{$username}</p>";
 }
 
