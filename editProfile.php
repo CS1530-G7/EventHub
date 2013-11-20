@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
-
+require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
+$msg=doLogin();
 $user = getActiveUser();
 
 	if($user < 0)
@@ -74,13 +75,24 @@ else
 {
 
 }
-
+	$email = getEmail($user);
+	$locname = getUserLocationName($user);
+	if($locname < 0)
+	{
+		$locname = "";
+	}
+	$address = getUserAddress($user); 
+	if($address < 0)
+	{
+		$address = "";
+	}
 
 
 ?>
 
  <html>
 	<body>
+	<?php login_div($msg) ?>
 		<form id='edit-profile' action='editProfile.php' method='post'>
 			<div id='public'>
 				<p>Public Profile</p>
