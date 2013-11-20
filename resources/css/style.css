@@ -2,12 +2,13 @@
 {
     width: 600px;
     font-size: 15px;
+    text-align: center;
+    font-family: sans-serif;
     color: black;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
-    font-family: sans-serif;
-    margin: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 #header
 {
@@ -19,11 +20,13 @@
 }
 #content
 {
+    text-align: center;
     background-color: #669999;
     min-height: 400px;
 }
 #footer
 {
+    text-align: center;
     background-color: #181818;
     height: 50px;
 }
