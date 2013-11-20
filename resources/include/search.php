@@ -2,6 +2,8 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
+
+// transforms multi word search into an OR regex
 function fixSearchQuery ($query){
 
 	$words = explode(" ", $query);
