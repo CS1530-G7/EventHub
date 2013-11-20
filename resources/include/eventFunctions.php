@@ -13,9 +13,12 @@ function displayEventCard($EID, $Distance=-1, $rsvp=-1)
 	$edate = date("F j, Y g:i a",strtotime($event["Date"]));
 	$eloc = $event["Location"];
 	$edist = number_format($Distance,2);
+	$hname = $event["Host"];
+	$hid = $event["HostID"];
 	
 	print "<div id='event-$EID' class='event-card'>
 			<p id='name'><a href='event.php?e=$EID'>$ename</a></p>
+			<p id='host'><a href='profile.php?u=$hid'>$hname</a></p>
 			<p id='date'>$edate</p>
 			<p id='loc'>$eloc</p>";
 			if($Distance >= 0)
@@ -27,6 +30,7 @@ function displayEventCard($EID, $Distance=-1, $rsvp=-1)
 				$ersvp = rsvpText($rsvp);
 				print "<p id='rsvp'>$ersvp</p>";  
 			}
+			
 			
 			
 			print "</div>";

@@ -214,6 +214,7 @@ function setEmail($UID, $data)
 function setUserLocation($UID, $loc_name, $loc_address)
 {
 	$data = newLocation($loc_name, $loc_address);
+	//Delete old user location?
 	setUserField($UID, "l_id", $data);
 }
 //Event SQL wrappers
@@ -343,6 +344,7 @@ function makeEventPublic($EID)
 function setEventLocation($EID, $loc_name, $loc_address)
 {
 	$data = newLocation($loc_name, $loc_address);
+	//Delete old event location?
 	setEventField($EID, "l_id", $data);
 }
 
@@ -459,6 +461,24 @@ function deleteUser($uid)
 	if($res === -2) return -2;
 }
 
+function getUserLocation($UID)
+{
+	$query = "SELECT l.l_lat As Lat, l.l_lon AS Lon FROM e_users AS u LEFT JOIN e_location AS l ON (u.l_id = l.l_id) WHERE u.u_id = '$UID'";
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row;
+	}
+	else
+	{
+		return -1;
+	}
+}
+
 
 //Event functions
 
@@ -519,8 +539,9 @@ function getEventCard($EID)
 {
 	$sql = getSQL(FALSE);
 	$EID = sanitize($EID);
-	$query = "SELECT e.e_name AS Name, e.e_date AS Date, l.l_name AS Location
-	FROM (e_events AS e) LEFT JOIN (e_location AS l) ON (e.l_id = l.l_id) WHERE e.e_id = '$EID'";
+	$query = "SELECT e.e_name AS Name, e.e_date AS Date, l.l_name AS Location, u.u_name AS Host, u.u_id AS HostID
+	FROM (e_events AS e) LEFT JOIN (e_location AS l) ON (e.l_id = l.l_id) LEFT JOIN (e_users AS u) ON (e.u_id = u.u_id)
+	WHERE e.e_id = '$EID'";
 	$res = sqlQuery($sql, $query);
 
 	if($res === -2) return -2;
