@@ -69,7 +69,7 @@ $loggedin = getActiveUser();
 						<form name='follow' id='follow' action='profile.php?u=$user' method='POST'>
 							<input class='btn-follow' name='follow' type='submit' value='Follow'>
 						</form>
-					</div>"
+					</div>";
 				}
 			}
 
