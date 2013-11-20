@@ -618,8 +618,8 @@ function newLocation($loc_name, $loc_address)
    if ($response['status'] != 'OK') 
    {
 		
-		$lat = NULL;
-		$lng = NULL;
+		$lat = 'NULL';
+		$lng = 'NULL';
 		addLog("GeocodeError",$response['status'] . ": " . $geocode_url);
    }
    else
@@ -631,7 +631,7 @@ function newLocation($loc_name, $loc_address)
    
    $sql = getSQL(TRUE);
    
-   $query = "INSERT INTO e_location (l_name, l_address, l_lat, l_lng) VALUES ('$lname','$laddr','$lat','$lng')";
+   $query = "INSERT INTO e_location (l_name, l_address, l_lat, l_lng) VALUES ('$lname','$laddr',$lat,$lng)";
    
    	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
