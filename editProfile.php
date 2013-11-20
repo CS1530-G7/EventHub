@@ -1,4 +1,6 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
+
 $user = getActiveUser();
 
 if($user < 0)
