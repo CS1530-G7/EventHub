@@ -55,10 +55,10 @@ if(isset($_POST["follow-submit"]))
 		if($user === $loggedin)
 			{
 				//Display your profile
-				print "<div id='profile-name'><p>Your page (<a href='editProfile.php'>Edit</a>)</p>";
+				print "<div id='profile-name'><h3>Your page</h3><p>(<a href='editProfile.php'>Edit</a>)</p>";
 				
 				$events = getEventsByUser($user);
-				print "<div id='hosted'><p>Hosted Events</p>";
+				print "<div id='hosted'><h3>Hosted Events</h3>";
 				foreach ($events as $e)
 				{
 
@@ -66,7 +66,7 @@ if(isset($_POST["follow-submit"]))
 				}
 				print "</div>";
 				
-				print "<div id='schedule'><p>Schedule</p>";
+				print "<div id='schedule'><h3>Schedule</h3>";
 				$events = getUserRSVPs($user);
 
 				foreach ($events as $f)
@@ -77,7 +77,7 @@ if(isset($_POST["follow-submit"]))
 				
 				print "</div>";
 				
-				print "<div id='feed'>Event Feed</div>";
+				print "<div id='feed'><h3>Event Feed</h3></div>";
 				//Get user location
 				$loc = getUserLocation($user);
 				if($loc == -1 || $loc["Lat"] == NULL)
@@ -98,7 +98,7 @@ if(isset($_POST["follow-submit"]))
 						displayEventCard($s["id"],$s["distance"]);
 					}
 				}
-				print "<div id='followedUsers'><p>Following</p>";
+				print "<div id='followedUsers'><h3>Following</h3>";
 				$users = getFollows($user);
 				
 				foreach($users as $u)
@@ -111,7 +111,13 @@ if(isset($_POST["follow-submit"]))
 				
 				}
 				print "</div>";
-				
+				print "<div id='invites'><h3>Invites</h3>";
+				$inv = getInvites($user);
+				foreach($inv as $i)
+				{
+					displayInviteCard($i);
+				}
+				print "</div>";
 			}
 			else if($username < 0)
 			{
