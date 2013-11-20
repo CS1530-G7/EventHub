@@ -43,7 +43,7 @@ function doEventSearch () {
 
 		// transforms multi word search into regex
 		fixSearchQuery($input);
-		$doDistance = FALSE
+		$doDistance = FALSE;
 		//Check if distance search can be done
 		$user = getActiveUser();
 		if($user >= 0)
