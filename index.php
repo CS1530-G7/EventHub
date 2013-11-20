@@ -21,7 +21,10 @@ $msg = doLogin();
 					If not logged in, show the login form
 					If logged in, then welcome user and show profile link
 		-->
-		<?php login_div($msg); ?>	
+		<?php login_div($msg); ?>
+
+		<div id="logout">
+			<a href="logout.php">Logout</a>
 		</div>
 		
 
