@@ -12,7 +12,24 @@ $user = $_GET["u"];
 $loggedin = getActiveUser();
 
 
-
+if(isset($_POST["follow-submit"])
+{
+	if($loggedin >= 0)
+	{
+		if($_POST["follow-submit"] === "Follow")
+		{
+			followUser($loggedin, $user);
+		}
+		else
+		{
+			unfollowUser($loggedin, $user);
+		}
+	}
+	else
+	{
+		$msg = "You must be logged in to follow a user";
+	}
+}
 
 
 
@@ -90,13 +107,18 @@ $loggedin = getActiveUser();
 			else
 			{
 				//Public Profile
-				print "<div id='profile-name'><p>$username's page</p>";
-				$followed = FALSE; //TODO create 'is followed' SQL
-				if($followed)
+				$loc = getUserLocationName($UID);
+				print "<div id='profile-name'><p>$username's page</p></div>";
+				if(!empty($loc)
+				{
+					print "<div id='location'><p>Location $loc</p></div>";
+				}
+				
+				if(isFollowed($loggedin, $user))
 				{
 					print "<div id='follow'>
 						<form name='unfollow' id='unfollow' action='profile.php?u=$user' method='POST'>
-							<input class='btn-unfollow' name='follow' type='submit' value='Un-Follow'>
+							<input class='btn-unfollow' name='follow-submit' type='submit' value='Un-Follow'>
 						</form>
 					</div>";
 				}
@@ -104,10 +126,23 @@ $loggedin = getActiveUser();
 				{
 					print "<div id='follow'>
 						<form name='follow' id='follow' action='profile.php?u=$user' method='POST'>
-							<input class='btn-follow' name='follow' type='submit' value='Follow'>
+							<input class='btn-follow' name='follow-submit' type='submit' value='Follow'>
 						</form>
 					</div>";
 				}
+				
+				print "<div id='followedUsers'><p>Following</p>"
+				$users = getFollows($user)
+				foreach($users as $u)
+				{
+					$name = getUsername($u);
+					if($name >= 0)
+					{
+						print "<a href='profile.php?u=$u'>$name</a>";
+					}
+				
+				}
+				print "</div>";
 			}
 
 		?>

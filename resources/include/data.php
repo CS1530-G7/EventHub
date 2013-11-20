@@ -909,4 +909,63 @@ function processInvite($IID, $accept)
 }
 //Following
 
+function followUser($UID, $UIDtoFollow)
+{
+	$UID = sanitize($UID);
+	$UID2 = sanitize($UIDtoFollow);
+	$sql = getSQL(TRUE);
+	$query = "INSERT INTO e_follow (u_head_id, u_tail_id) VALUES ('$UID','$UID2')";
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+}
+function unfollowUser($UID, $UIDtoUnfollow)
+{
+	$UID = sanitize($UID);
+	$UID2 = sanitize($UIDtoFollow);
+	$sql = getSQL(TRUE);
+	$query = "DELETE FROM e_follow WHERE u_head_id = '$UID' AND u_tail_id = '$UID2'";
+	
+		$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+}
+function isFollowed($UID, $UIDtoCheck)
+{
+	$UID = sanitize($UID);
+	$UID2 = sanitize($UIDtoFollow);
+	$sql = getSQL(FALSE);
+	$query = "SELECT * FROM e_follow WHERE u_head_id = '$UID' AND u_tail_id = '$UID2'";
+	
+		$res = sqlQuery($sql,$query);
+	if($res === -2) return FALSE;
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return TRUE;
+	}
+	return FALSE;
+	
+}
+function getFollows($UID)
+{
+	$sql = getSQL(FALSE);
+	$UID = sanitize($UID);
+	$query = "SELECT u_tail_id AS id FROM e_follow WHERE u_head_id = '$UID'";
+	
+		$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$users = array();
+	while($row = mysqli_fetch_assoc($res))
+	{
+		$users = $row["id"];
+	}
+	
+	return $users;	
+	
+}
+
 ?>
