@@ -61,7 +61,7 @@ $loggedin = getActiveUser();
 				print "<div id='feed'>Event Feed</div>";
 				//Get user location
 				$loc = getUserLocation($user);
-				if($loc == -1)
+				if($loc == -1 || $loc["Lat"] == NULL)
 				{
 					print "<p class='error'>You have not set a location for yourself.  <a href='profileEdit.php'>Edit your profile</a> to get events near you</p>";
 				}
