@@ -132,7 +132,7 @@ if(isset($_POST["follow-submit"]))
 				}
 				
 				print "<div id='followedUsers'><p>Following</p>";
-				$users = getFollows($user)
+				$users = getFollows($user);
 				foreach($users as $u)
 				{
 					$name = getUsername($u);
