@@ -70,7 +70,7 @@ if(isset($_POST['edit-profile']))
 	$password = $_POST["pass1"];
 	$password_confirm = $_POST["pass2"];
 	$passerror = "";
-	if(empty($password)
+	if(empty($password))
 	{
 		// No change
 	}
