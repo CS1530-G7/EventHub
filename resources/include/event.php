@@ -33,7 +33,7 @@ $attendee_list = "";
 $num_attendees = count($attendee_list);
 
 
-if($num_attendees > 0) {
+if($attendee_list != -1) {
 
 	foreach ($attendees as $uid) {
 		if($username > 0) {
@@ -55,10 +55,10 @@ $HTML = <<<END
  
  <h1>$e_name</h1>
 
- <p>Date: $e_date</p>
- <p>Location: $e_location</p>
- <p>Address: $e_address</p>
- <p>Description: $e_descrip</p>
+ <p><b>Date</b>: $e_date</p>
+ <p><b>Location</b>: $e_location</p>
+ <p><b>Address</b>: $e_address</p>
+ <p><b>Description</b>: $e_descrip</p>
 
  <h2>Who's going</h2>
  $attendee_list
