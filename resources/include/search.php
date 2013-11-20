@@ -14,7 +14,7 @@ function doEventSearch () {
 
 		foreach ($search_results as $result){
 			$e_id = $result['id'];
-			print "<p>{$result}</p>";
+			print "<p>{$e_id}</p>";
 		}
 	}
 
