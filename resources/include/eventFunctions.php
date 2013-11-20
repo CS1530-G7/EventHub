@@ -15,7 +15,7 @@ function displayEventCard($EID, $Distance=-1)
 	print "<div id='event-$EID' class='event-card'>
 			<p id='name'><a href='event.php?e=$EID'>$ename</a></p><br>
 			<p id='date'>$edate</p><br>
-			<p id='loc'>$eloc</p>"
+			<p id='loc'>$eloc</p>";
 			if($Distance >= 0)
 			{
 				print "<p id='dist'>$edist</p>";
