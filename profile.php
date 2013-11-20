@@ -109,7 +109,7 @@ if(isset($_POST["follow-submit"]))
 				//Public Profile
 				$loc = getUserLocationName($UID);
 				print "<div id='profile-name'><p>$username's page</p></div>";
-				if(!empty($loc)
+				if(!empty($loc))
 				{
 					print "<div id='location'><p>Location $loc</p></div>";
 				}
