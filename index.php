@@ -17,18 +17,20 @@ $msg = doLogin();
     </head>
 
 	<body>
-		<div id="header">
-			<?php login_div($msg); ?>
-		</div>
 	 	<div id="main-center">
-			<!-- Simple login logic here:
-						If not logged in, show the login form
-						If logged in, then welcome user and show profile link
-			-->
+			<div id="header">
+				<?php login_div($msg); ?>
+			</div>
+			<div id="content">
+				<!-- Simple login logic here:
+							If not logged in, show the login form
+							If logged in, then welcome user and show profile link
+				-->
+				<h1>EventHub</h1>
 
-			<h1>EventHub</h1>
-
-			<?php searchBar(); ?>
+				<?php searchBar(); ?>
+			</div>
+			<div id="footer">EventHub</div>
 		</div>
 	</body>
 </html>
