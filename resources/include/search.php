@@ -8,8 +8,6 @@ function fixSearchQuery ($query){
 
 	$num_words = count($words);
 
-	echo $num_words;
-
 	if($num_words == 0) {
 		$fixed_query = '';
 	} else if ($num_words == 1){
@@ -41,8 +39,8 @@ function doEventSearch () {
 
 		$input = $_POST['search_query'];
 
+		// transforms multi word search into regex
 		fixSearchQuery($input);
-		echo $input;
 
 		$search_results = eventSearch($input, -1, 0, 0, TRUE, FALSE);
 
