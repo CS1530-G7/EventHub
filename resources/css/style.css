@@ -23,6 +23,8 @@ a:hover
     background-color: #181818;
     color: #E8E8E8;
     font-size: 15px;
+    padding: 8px;
+    box-sizing: border-box;
 }
 #content
 {
