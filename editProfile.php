@@ -126,7 +126,7 @@ else
 
  <html>
 	<body>
-	<?php login_div($msg) 
+	<?php login_div($msg);
 	if($showerror)
 	{
 		print "<div class='error'>$emailerror\n$locerror\n$passerror</div>";
