@@ -10,18 +10,15 @@ $msg = doLogin();
 <html>
 	<head>
  		<title>EventHub</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
 
-    <header>
- 		<script>
- 			function RemoveText(obj) {   obj.value = ''; } 
- 		</script>
- 	</header>
+		<script>
+			function RemoveText(obj) {   obj.value = ''; } 
+		</script>
+    </head>
 
 	<body>
 	 	<div id="main-center">
-			
 			<div id="header">
 				<?php login_div($msg); ?>
 			</div>
@@ -42,7 +39,6 @@ $msg = doLogin();
                 <a href='./profile.php'>Profile</a>&nbsp&nbsp
                 <a href='./logout.php'>Logout</a>
 			</div>
-
 		</div>
 	</body>
 </html>
