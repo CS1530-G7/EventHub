@@ -529,7 +529,7 @@ function getEventCard($EID)
 	}
 	else
 	{
-		return -2;
+		return -1;
 	}
 	
 }
