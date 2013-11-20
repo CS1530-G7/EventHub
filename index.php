@@ -24,10 +24,6 @@ $msg = doLogin();
 			</div>
 			
 			<div id="content">
-				<!-- Simple login logic here:
-							If not logged in, show the login form
-							If logged in, then welcome user and show profile link
-				-->
 				<h1>EventHub</h1>
 
 				<?php searchBar(); ?>

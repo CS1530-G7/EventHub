@@ -64,12 +64,12 @@ $str = <<<END
 	<input type="text" name="username">
 	<label for="password"/>Password:</label>
 	<input type="password" name="password">
-	<input class= "btn" name="submit" type="submit" value="Submit">
 </form>
 
 </div>
 <div id="sign-up">
-<a href="signup.php">Sign up</a>	
+Not Registered?
+<a href="signup.php">Sign up!</a>	
 </div>
 
 END;
