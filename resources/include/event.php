@@ -6,7 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
 function eventHTML() {
 
-$EID = $_GET['e'];
+$EID = $_GET['u'];
 
 $e_name = getEventField($EID, 'e_name');
 $e_date = getEventField($EID, 'e_date');
@@ -40,9 +40,9 @@ $HTML = <<<END
  <p>$e_descrip</p>
 
  <h2>Who's going</h2>
- $attendee_list;
+ $attendee_list
 
- 
+
 
 END;
 
