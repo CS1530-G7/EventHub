@@ -10,7 +10,7 @@ $msg = doLogin();
 <html>
 	<head>
  		<title>EventHub</title>
-        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 
 		<script>
 			function RemoveText(obj) {   obj.value = ''; } 
