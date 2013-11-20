@@ -61,7 +61,7 @@ if(isset($_POST['edit-profile']))
 	}
 	else
 	{
-		setUserLocation($user, $loc_name, $loc_address);
+		setUserLocation($user, $loc_name, $loc_addr);
 	}
 	
 	//Password
