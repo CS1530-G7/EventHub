@@ -18,6 +18,17 @@ $LID = getEventLocation($EID);
 $e_location = getEventLocationAddress($EID);
 $e_address = getEventLocationName($EID);
 
+// get people who are going
+$attendees = getUsersByRSVP($EID, 2);
+$attendee_list = "";
+
+foreach ($attendees as $going) {
+	$username = getUsername($going);
+	$attendee_list .= "<p>{$username}</p>";
+}
+
+
+
 
 $HTML = <<<END
  
@@ -28,8 +39,10 @@ $HTML = <<<END
  <p>$e_address</p>
  <p>$e_descrip</p>
 
+ <h2>Who's going</h2>
+ $attendee_list;
 
-
+ 
 
 END;
 
