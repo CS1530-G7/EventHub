@@ -10,7 +10,6 @@ function doInvite() {
 
 	if(isset($_POST['invite_submit'])) {
 
-		echo "invite submit pressed";
 
 		$username = $_POST['username'];
 		$invitee_UID = getUserID($username);

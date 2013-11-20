@@ -8,6 +8,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/invite.php");
 $msg = doLogin();
 
 $invite_message = doInvite();
+$url = "\"" . $_SERVER['PATH_INFO'] . "\"";
 ?>
  
  <html>
@@ -29,7 +30,7 @@ $invite_message = doInvite();
 
 		<div id="invite">
 			<h2>Send invites to this event...</h2>
-			<form name="invite" id="invite" action="event.php" method="POST">
+			<form name="invite" id="invite" action=<?php echo $url; ?> method="POST">
 				<label for="username"/></label>
 				<input type="text" name="username" value="" size="50">
 				<input class= "btn" type="submit" name="invite_submit" value="Invite user">
