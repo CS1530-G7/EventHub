@@ -65,10 +65,9 @@ $str = <<<END
 </form>
 
 </div>
-
 <div id="sign-up">
 <a href="signup.php">Sign up</a>	
-</div>";
+</div>
 
 END;
 
