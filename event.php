@@ -29,7 +29,7 @@ $invite_message = doInvite();
 
 		<div id="invite">
 			<h2>Send invites to this event...</h2>
-			<form name="invite" id="invite" action="invite.php" method="POST">
+			<form name="invite" id="invite" action="event.php" method="POST">
 				<label for="username"/></label>
 				<input type="text" name="username" value="" size="50">
 				<input class= "btn" type="submit" name="invite_submit" value="Invite user">
