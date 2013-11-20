@@ -2,7 +2,7 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
-
+doLogin();
 ?>
  
  <html>
@@ -21,44 +21,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
 					If not logged in, show the login form
 					If logged in, then welcome user and show profile link
 		-->
-		<div id="login">
-			<?php
-				$UID = getActiveUser();
-					if($UID >= 0) {
-						$user = getUsername($UID);
-						$link = "profile.php?u={$UID}";
-						echo "<p>Welcome {$user}!</p>";
-						echo "<p><a href=\"{$link}\">Click here</a> to view your profile.</p>";
-					} else {
-						echo '
-						
-						<div id="login-form">
-						'; ?>
-
-							<div id="login-errors">
-								<?php echo $error_message; ?>
-							</div>
-
-							<?php
-							echo'
-							<form name="login" id="login" action="index.php" method="POST">
-								<label for="username"/>Username:</label>
-								<input type="text" name="username">
-								<label for="password"/>Password:</label>
-								<input type="password" name="password">
-								<input class= "btn" name="submit" type="submit" value="Submit">
-							</form>
-
-						</div>
-
-						<div id="sign-up">
-							<a href="signup.php">Sign up</a>
-						</div>';
-						
-
-					}
-
-				?>			
+		login_div();	
 		</div>
 		
 		<h1>Welcome to EventHub!!</h1>

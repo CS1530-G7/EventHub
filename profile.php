@@ -1,9 +1,24 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/profile.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
+doLogin();
 
 
+$user = $_GET["u"];
+$loggedin = getActiveUser();
+
+if($user === $loggedin)
+{
+	//Display your profile
+}
+else
+{
+	//Public Profile
+}
+
+
+login_div();
 ?>
  
  <html>
