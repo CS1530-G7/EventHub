@@ -29,19 +29,9 @@ $msg = doLogin();
 
 		<h1>Welcome to EventHub!!!</h1>
 
+		<?php searchBar(); ?>
 		
 		<!--<img src="./resources/img/Homepage.jpg" />-->
-		<div id="search-area">
-			<form name="login" id="login" action="index.php" method="POST">
-				<label for="username"/></label>
-				<input type="text" name="search_query" value="" onclick="RemoveText(this);">
-				<input class= "btn" name="search_submit" type="submit" value="Search Events">
-			</form>
-
-
-			<div id="search_results">
-				<?php doEventSearch(); ?>
-			</div>
 
 		</div>
 		
