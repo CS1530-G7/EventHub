@@ -878,8 +878,6 @@ function getInviteCard($IID)
 	
 } 
 
-function 
-
 function acceptInvite($IID)
 {
 
