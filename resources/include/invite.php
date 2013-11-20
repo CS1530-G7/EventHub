@@ -19,11 +19,11 @@ function doInvite() {
 		$EID = $_GET['u'];
 
 		if ($inviter_UID == -1) {
-			$error_message .= "<p>You must be logged in to invite others.</p>"
+			$error_message .= "<p>You must be logged in to invite others.</p>";
 		}
 
 		if ($invitee_UID == -1) {
-			$error_message .= "<p>Please check that the user you want to invite exists.</p>"
+			$error_message .= "<p>Please check that the user you want to invite exists.</p>";
 		}
 
 		// if no errors, then send the invite
