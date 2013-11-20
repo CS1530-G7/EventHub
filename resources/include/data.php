@@ -498,7 +498,7 @@ function getEventsByUser($UID, $futureEventsOnly = TRUE)
 {
 	$sql = getSQL(FALSE);
 	$UID = sanitize($UID);
-	$query = "SELECT e_id FROM e_events WHERE u_id='$UID' "
+	$query = "SELECT e_id FROM e_events WHERE u_id='$UID' ";
 	if($futureEventsOnly)
 	{
 		$query .= "AND (e_date >= CURDATE()) ";
