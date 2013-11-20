@@ -833,29 +833,52 @@ function sendInvite($UIDSender, $UIDRecieve, $EID, $msg="")
 	if($res === -2) return -2;
 	
 }
-
 function getInvites($UID)
 {
 	$sql = getSQL(FALSE);
 	$UID = sanitize($UID);
 	
-	$query = "SELECT i.i_id AS ID, u.u_name AS Inviter, e.e_name AS Event, i.i_cmt AS Message 
+	$query = "SELECT i_id FROM e_inv WHERE u_gu_id = '$UID'";
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$invis = array();
+	while($row = mysqli_fetch_assoc($res))
+	{
+		$invis[] = $row["i_id"];
+	}
+	return $invis;
+}
+function getInviteCard($IID)
+{
+	$sql = getSQL(FALSE);
+	$IID = sanitize($IID);
+	
+	$query = "SELECT i.u_gu_id AS GuestID, u.u_name AS Inviter, i.u_inv_id AS InviterID, e.e_name AS Event, i.i_cmt AS Message 
 			FROM e_inv AS i
 			LEFT JOIN e_users AS u ON (i.u_inv_id = u.u_id)
 			LEFT JOIN e_events AS e ON (i.e_id = e.e_id)
-			WHERE i.u_gu_id = '$UID'";
+			WHERE i.i_id = '$IID'";
 			
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
 	
-	$invs = array();
-	while($row = mysqli_fetch_assoc($res))
+	$row = $res->fetch_assoc();
+	
+	if($row)
 	{
-		$invs[] = $row;
+		return $row;
 	}
-	return $invs;
+	else
+	{
+		return -1;
+	}
+	
 	
 } 
+
+function 
 
 function acceptInvite($IID)
 {

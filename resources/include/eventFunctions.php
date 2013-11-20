@@ -35,6 +35,10 @@ function displayEventCard($EID, $Distance=-1, $rsvp=-1)
 			
 			print "</div>";
 }
+function displayInviteCard($UID)
+{
+
+}
 function rsvpText($rsvp)
 {
 	$RSVPText = array("Not Going","Maybe", "Going");
