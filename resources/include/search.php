@@ -13,6 +13,7 @@ function doEventSearch () {
 		$search_results = eventSearch($input, -1, 0, 0, TRUE, FALSE);
 
 		foreach ($search_results as $result){
+			$e_id = $result['id'];
 			print "<p>{$result}</p>";
 		}
 	}
