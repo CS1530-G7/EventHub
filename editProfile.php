@@ -24,7 +24,7 @@ if($address < 0)
 
  <html>
 	<body>
-		<form id='edit-profile' action='profile.php?u='<?php print $user?>' method='post'>
+		<form id='edit-profile' action='profile.php?u=<?php print $user?>' method='post'>
 			<div id='public'>
 				<p>Public Profile</p>
 				<p>Area where you live <input type="text" name="loc_name" value='<?php print $locname?>'></p>

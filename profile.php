@@ -81,6 +81,10 @@ var_dump($_POST);
 				}
 				
 			}
+			else if($username < 0)
+			{
+			
+			}
 			else
 			{
 				//Public Profile
