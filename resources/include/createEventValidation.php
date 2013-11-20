@@ -41,7 +41,7 @@ if(isset($_POST['submit'])) {
 
 	// checks for empty form fields
  	if(empty($event_name) || empty($event_location) || empty($event_date) || empty($event_time) 
- 			|| empty($event_description)) || empty($event_addr) ){
+ 			|| empty($event_description) || empty($event_addr) ){
 
  		$error_message .= "<p>There are empty form fields.</p>";
 
