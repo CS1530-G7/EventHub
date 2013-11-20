@@ -24,15 +24,15 @@ if($address < 0)
 
  <html>
 	<body>
-		<form id='edit-profile' submit='profile.php?u=$user' method='post'>
+		<form id='edit-profile' action='profile.php?u='<?php print $user?>' method='post'>
 			<div id='public'>
 				<p>Public Profile</p>
-				<p>Area where you live <input type="text" name="loc_name" value='$locname'></p>
+				<p>Area where you live <input type="text" name="loc_name" value='<?php print $locname?>'></p>
 			</div>
 			<div id='private'>
 				<p>Private Profile</p>
-				<p>Email address <input type="text" name="email" value='$email'></p>
-				<p>House address <input type="text" name="address" value='$address'></p>
+				<p>Email address <input type="text" name="email" value='<?php print $email?>'></p>
+				<p>House address <input type="text" name="address" value='<?php print $address?>'></p>
 				<p>Note: House address is only used for location based searching and will never be displayed</p>
 			</div>
 			<input type="submit" name="submit" value="Submit Changes">
