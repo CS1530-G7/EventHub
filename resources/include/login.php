@@ -44,7 +44,7 @@ function login_div()
 		$user = getUsername($UID);
 		$link = "profile.php?u={$UID}";
 		print "<p>Welcome <a href='$link'>{$user}</a>!</p>";
-		print"</div>" //End div login
+		print"</div>"; //End div login
 	} else {
 		print ' 
 			<div id="login-form">
