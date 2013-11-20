@@ -9,7 +9,29 @@ $e_date = getEventField($EID, 'e_date');
 $e_descrip = getEventField($EID, 'e_descrip');
 $e_private = getEventField($EID, 'e_private');
 
-echo $e_name . $e_date . $e_descrip . $e_private;
+$LID = getEventLocation($EID);
 
+
+
+//echo $e_name . $e_date . $e_descrip . $e_private;
+
+
+function eventHTML() {
+
+
+$HTML = <<<END
+ 
+ <h1>$e_name</h1>
+
+ <h2>$e_date</h2>
+
+ <p>$e_descrip</p>
+
+
+END;
+
+print $HTML;
+
+}
 
 ?>

@@ -16,6 +16,10 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/event.php");
  	</header>
 	<body>
 
+		<?php
+			eventHTML();
+		?>
+
 		
 	</body>
 </html>
