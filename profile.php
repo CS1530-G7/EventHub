@@ -10,14 +10,7 @@ $msg = doLogin();
 $user = $_GET["u"];
 $loggedin = getActiveUser();
 
-if($user === $loggedin)
-{
-	//Display your profile
-}
-else
-{
-	//Public Profile
-}
+
 
 
 
@@ -37,6 +30,17 @@ else
 		<?php
 		login_div($msg);
 		//echo '<h1>Welcome ' . $username .'!</h1>';
+		$username = getUsername($user);
+		$
+		if($user === $loggedin)
+			{
+				//Display your profile
+				
+			}
+			else
+			{
+				//Public Profile
+			}
 
 		?>
 
