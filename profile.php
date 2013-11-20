@@ -70,6 +70,7 @@ $loggedin = getActiveUser();
 				}
 				else
 				{
+					var_dump($loc);
 					$events = eventSearch("", 50, $loc["Lat"], $loc["Lon"], FALSE, FALSE);
 				}
 				
