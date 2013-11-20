@@ -16,9 +16,9 @@ function doEventSearch () {
 		foreach ($search_results as $result){
 			$e_id = $result['id'];
 			$event_name = getEventName($e_id);
-			$event_link = "<a href=\"event.php?u={$e_id}\"></a>";
+			$event_link = "<a href=\"event.php?u={$e_id}\">{$event_name}</a>";
 
-			print "<p>{$event_name} - {$event_link}</p>";
+			print "<p>{$event_link}</p>";
 		}
 	}
 
