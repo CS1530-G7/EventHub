@@ -32,20 +32,16 @@ $attendees = getUsersByRSVP($EID, 2);
 $attendee_list = "";
 $num_attendees = count($attendee_list);
 
-echo $attendees;
 
-if($attendees != -1) {
-
-	foreach ($attendees as $uid) {
-		if($username > 0) {
+foreach ($attendees as $uid) {
+	if($username > 0) {
 			$username = getUsername($uid);
 			$attendee_list .= "<p>{$username}</p>";
+		} else {
+			$attendee_list = "<p>No one's going... Be the first and <a href=\"#\">RSVP!</a></p>";
 		}
-	}
-
-} else {
-	$attendee_list = "<p>No one's going... Be the first and <a href=\"#\">RSVP!</a></p>";
 }
+
 
 
 
