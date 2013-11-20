@@ -24,7 +24,11 @@ $msg = doLogin();
 		<?php login_div($msg); ?>	
 		</div>
 		
+
 		<h1>Welcome to EventHub!!!!</h1>
+
+		<h1>Welcome to EventHub!!!!!!!!!!!</h1>
+
 		
 		<!--<img src="./resources/img/Homepage.jpg" />-->
 		<div id="search-area">

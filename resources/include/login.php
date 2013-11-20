@@ -48,7 +48,9 @@ function login_div($msg = "")
 		print "<p>Welcome <a href='$link'>{$user}</a>!</p>";
 		print"</div>"; //End div login
 	} else {
-print <<<END 
+
+$str = <<<END
+ 
 <div id="login-form">
 
 <div id="login-errors">
@@ -67,7 +69,10 @@ print <<<END
 <div id="sign-up">
 <a href="signup.php">Sign up</a>	
 </div>";
+
 END;
+
+print $str;
 	}
 }
 
