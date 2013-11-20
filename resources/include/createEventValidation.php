@@ -17,6 +17,7 @@ if(isset($_POST['submit'])) {
 
 	// put date/time in right format for DB entry
 	$event_date_time = $event_date . " " . $event_time . ":00";
+	$event_date_time = strtotime($event_date_time);
 
 	// get the date for error checking purposes
 	$current_date = date("m-d-y");
@@ -48,16 +49,16 @@ if(isset($_POST['submit'])) {
  	}
 
  	// checks event name length
- 	if(strlen($event_location) > 50 ) {
+ 	if(strlen($event_location) < 6 || strlen($event_location) > 50 ) {
 
- 		$error_message .= "<p>Event location is too long.</p>";
+ 		$error_message .= "<p>Please enter a valid location.</p>";
 
  	}
 
  	// check event description length
- 	if(strlen($event_description) > 1000 ) {
+ 	if(strlen($event_description) < 10 || strlen($event_description) > 1000 ) {
 
- 		$error_message .= "<p>The description is too long, please enter a shorter description.</p>";
+ 		$error_message .= "<p>Please describe the event a bit.</p>";
 
  	}
 
