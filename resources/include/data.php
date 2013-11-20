@@ -158,6 +158,29 @@ function getUserField($UID, $field)
 	}
 
 }
+function getUserLField($UID, $field)
+{
+	$sql = getSQL(FALSE);
+	
+	$query = "SELECT l.$field AS $field FROM e_users AS u LEFT JOIN e_location AS l ON (u.l_id = l.l_id) WHERE u.u_id = '$UID'";
+	
+	//print $query;
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row[$field];
+	}
+	else
+	{
+		return -1;
+	}
+
+}
 function setUserField($UID, $field, $data)
 {
 	$sql = getSQL(TRUE);
@@ -190,6 +213,14 @@ function getEmail($UID)
 function getLocID($UID)
 {
 	return getUserField($UID, "l_id");
+}
+function getUserLocationName($UID)
+{
+	return getUserLField($UID, "l_name");
+}
+function getUserAddress($UID)
+{
+	return getUserLField($UID,"l_address");
 }
 //Setters
 function setUsername($UID, $data)
@@ -580,9 +611,10 @@ function newLocation($loc_name, $loc_address)
    // If Status Code is ZERO_RESULTS, OVER_QUERY_LIMIT, REQUEST_DENIED or INVALID_REQUEST
    if ($response['status'] != 'OK') 
    {
-		//Default for testing.  Change to error.
-		$lat = 123.4;
-		$lng = 567.8;
+		
+		$lat = NULL;
+		$lng = NULL;
+		addLog("GeocodeError",$response['status'] . ": " . $geocode_url);
    }
    else
    {
