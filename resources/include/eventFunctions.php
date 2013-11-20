@@ -8,7 +8,7 @@ function displayEventCard($EID, $Distance=-1, $rsvp=-1)
 {
 
 	$event = getEventCard($EID);
-	var_dump($event);
+
 	$ename = $event["Name"];
 	$edate = date("F j, Y g:i a",strtotime($event["Date"]));
 	$eloc = $event["Location"];
