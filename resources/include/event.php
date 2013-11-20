@@ -23,8 +23,10 @@ $attendees = getUsersByRSVP($EID, 2);
 $attendee_list = "";
 
 foreach ($attendees as $uid) {
-	$username = getUsername($uid);
-	$attendee_list .= "<p>{$username}</p>";
+	if($username > 0) {
+		$username = getUsername($uid);
+		$attendee_list .= "<p>{$username}</p>";
+	}
 }
 
 
@@ -41,6 +43,7 @@ $HTML = <<<END
 
  <h2>Who's going</h2>
  $attendee_list
+
 
 
 

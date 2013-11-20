@@ -29,7 +29,6 @@ function fixSearchQuery ($query){
 		}
 	}
 
-
 	return $fixed_query;
 }
 
