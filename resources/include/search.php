@@ -75,7 +75,7 @@ function doEventSearch () {
 		foreach ($search_results as $result)
 		{
 			$e_id = $result['id'];
-			$e_dist = $result['distance']
+			$e_dist = $result['distance'];
 			if($doDistance)
 			{
 				displayEventCard($e_id, $edist);
@@ -105,5 +105,5 @@ $search = <<<SEARCH
 SEARCH;
 
 print $search;
-
+}
 ?>
