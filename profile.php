@@ -98,6 +98,19 @@ if(isset($_POST["follow-submit"]))
 						displayEventCard($s["id"],$s["distance"]);
 					}
 				}
+				print "<div id='followedUsers'><p>Following</p>";
+				$users = getFollows($user);
+				
+				foreach($users as $u)
+				{
+					$name = getUsername($u);
+					if($name >= 0)
+					{
+						print "<a href='profile.php?u=$u'>$name</a>";
+					}
+				
+				}
+				print "</div>";
 				
 			}
 			else if($username < 0)
@@ -107,9 +120,9 @@ if(isset($_POST["follow-submit"]))
 			else
 			{
 				//Public Profile
-				$loc = getUserLocationName($UID);
+				$loc = getUserLocationName($user);
 				print "<div id='profile-name'><p>$username's page</p></div>";
-				if(!empty($loc))
+				if(!empty($loc) && $loc >= 0)
 				{
 					print "<div id='location'><p>Location $loc</p></div>";
 				}
@@ -133,6 +146,7 @@ if(isset($_POST["follow-submit"]))
 				
 				print "<div id='followedUsers'><p>Following</p>";
 				$users = getFollows($user);
+				
 				foreach($users as $u)
 				{
 					$name = getUsername($u);

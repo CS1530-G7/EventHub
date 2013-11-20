@@ -923,7 +923,7 @@ function followUser($UID, $UIDtoFollow)
 function unfollowUser($UID, $UIDtoUnfollow)
 {
 	$UID = sanitize($UID);
-	$UID2 = sanitize($UIDtoFollow);
+	$UID2 = sanitize($UIDtoUnfollow);
 	$sql = getSQL(TRUE);
 	$query = "DELETE FROM e_follow WHERE u_head_id = '$UID' AND u_tail_id = '$UID2'";
 	
@@ -933,7 +933,7 @@ function unfollowUser($UID, $UIDtoUnfollow)
 function isFollowed($UID, $UIDtoCheck)
 {
 	$UID = sanitize($UID);
-	$UID2 = sanitize($UIDtoFollow);
+	$UID2 = sanitize($UIDtoCheck);
 	$sql = getSQL(FALSE);
 	$query = "SELECT * FROM e_follow WHERE u_head_id = '$UID' AND u_tail_id = '$UID2'";
 	
@@ -961,7 +961,7 @@ function getFollows($UID)
 	$users = array();
 	while($row = mysqli_fetch_assoc($res))
 	{
-		$users = $row["id"];
+		$users[] = $row["id"];
 	}
 	
 	return $users;	
