@@ -78,7 +78,7 @@ function doEventSearch () {
 			$e_dist = $result['distance'];
 			if($doDistance)
 			{
-				displayEventCard($e_id, $edist);
+				displayEventCard($e_id, $e_dist);
 			}
 			else
 			{
