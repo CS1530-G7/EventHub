@@ -18,9 +18,11 @@ $msg = doLogin();
 
 	<body>
 	 	<div id="main-center">
+			
 			<div id="header">
 				<?php login_div($msg); ?>
 			</div>
+			
 			<div id="content">
 				<!-- Simple login logic here:
 							If not logged in, show the login form
@@ -30,7 +32,14 @@ $msg = doLogin();
 
 				<?php searchBar(); ?>
 			</div>
-			<div id="footer">EventHub</div>
+			
+			<div id="footer">
+				<hr>
+                <a href='./index.php'>Home</a>&nbsp&nbsp
+                <a href='./profile.php'>Profile</a>&nbsp&nbsp
+                <a href='./logout.php'>Logout</a>
+			</div>
+
 		</div>
 	</body>
 </html>
