@@ -241,6 +241,30 @@ function getEventField($EID, $field)
 
 }
 
+function getEventLField($EID, $field)
+{
+$sql = getSQL(FALSE);
+	
+	$query = "SELECT l.$field AS $field FROM e_events AS e LEFT JOIN e_location AS l ON (e.l_id = l.l_id) WHERE e.e_id = '$EID'";
+	
+	//print $query;
+	
+	$res = sqlQuery($sql,$query);
+	if($res === -2) return -2;
+	
+	$row = $res->fetch_assoc();
+	
+	if($row)
+	{
+		return $row[$field];
+	}
+	else
+	{
+		return -1;
+	}
+
+}
+
 function setEventField($EID, $field, $data)
 {
 	$sql = getSQL(TRUE);
@@ -286,6 +310,14 @@ function getEventHost($EID)
 function getEventLocation($EID)
 {
 	return getEventField($EID,"l_id");
+}
+function getEventLocationName($EID)
+{
+	return getEventLField($EID,"l_name");
+}
+function getEventLocationAddress($EID)
+{
+	return getEventLField($EID,"l_address");
 }
 
 function setEventName($EID, $data)
