@@ -816,5 +816,6 @@ function processInvite($IID, $accept)
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
 }
+//Following
 
 ?>

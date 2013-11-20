@@ -19,5 +19,19 @@ function doEventSearch () {
 
 }
 
+function displayEventCard($EID, $Distance=-1)
+{
+	$event = getEventCard($e);
+	$ename = $event["Name"];
+	$edate = date("F j, Y g:i a",strtotime($event["Date"]));
+	$eloc = $event["Location"];
+	
+	print "<div id='event-$EID' class='event-card'>
+			<p id='name'><a href='event.php?e=$EID'>$ename</a></p><br>
+			<p id='date'>$edate</p><br>
+			<p id='loc'>$eloc</p>
+			</div>";
+}
+
 
 ?>
