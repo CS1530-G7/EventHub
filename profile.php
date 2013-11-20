@@ -42,7 +42,7 @@ $loggedin = getActiveUser();
 				print "<div id='hosted'><p>Hosted Events</p>";
 				foreach ($events as $e)
 				{
-					print $e;
+
 					displayEventCard($e);
 				}
 				print "</div>";
@@ -52,7 +52,7 @@ $loggedin = getActiveUser();
 
 				foreach ($events as $f)
 				{
-					var_dump($f);
+
 					displayEventCard($f["id"],-1, $f["rsvp"]);
 				}
 				
