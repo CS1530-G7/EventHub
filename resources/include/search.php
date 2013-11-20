@@ -12,9 +12,13 @@ function doEventSearch () {
 
 		$search_results = eventSearch($input, -1, 0, 0, TRUE, FALSE);
 
+		// print results
 		foreach ($search_results as $result){
 			$e_id = $result['id'];
-			print "<p>{$e_id}</p>";
+			$event_name = getEventName($e_id);
+			$event_link = "<a href=\"event.php?u={$e_id}\"></a>";
+
+			print "<p>{$event_name} - {$event_link}</p>";
 		}
 	}
 
