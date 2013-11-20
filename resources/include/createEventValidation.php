@@ -48,16 +48,16 @@ if(isset($_POST['submit'])) {
  	}
 
  	// checks event name length
- 	if(strlen($event_location) < 6 || strlen($event_location) > 50 ) {
+ 	if(strlen($event_location) > 50 ) {
 
- 		$error_message .= "<p>Please enter a valid location.</p>";
+ 		$error_message .= "<p>Event location is too long.</p>";
 
  	}
 
  	// check event description length
- 	if(strlen($event_description) < 10 || strlen($event_description) > 1000 ) {
+ 	if(strlen($event_description) > 1000 ) {
 
- 		$error_message .= "<p>Please describe the event a bit.</p>";
+ 		$error_message .= "<p>The description is too long, please enter a shorter description.</p>";
 
  	}
 
