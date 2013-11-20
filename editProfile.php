@@ -94,7 +94,7 @@ if(isset($_POST['edit-profile']))
 		changePassword($user,$password);
 	 }
 
-	if(empty($emailerror . $passerror . $locerror)
+	if(empty($emailerror) && empty($passerror) && empty($locerror))
 	{
 		header( "Location: profile.php?u=$user");
 	}
