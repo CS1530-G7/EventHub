@@ -39,7 +39,7 @@ $loggedin = getActiveUser();
 				print "<div id='profile-name'><p>Your page</p>";
 				
 				$events = getEventsByUser($user);
-				print "<div id='hosted'><p>Hosted Events</p>"
+				print "<div id='hosted'><p>Hosted Events</p>";
 				foreach ($events as $e)
 				{
 					displayEventCard($e);
