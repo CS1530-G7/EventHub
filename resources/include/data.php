@@ -961,7 +961,7 @@ function getFollows($UID)
 	$users = array();
 	while($row = mysqli_fetch_assoc($res))
 	{
-		$users = $row["id"];
+		$users[] = $row["id"];
 	}
 	
 	return $users;	
