@@ -48,10 +48,10 @@ $loggedin = getActiveUser();
 				
 				print "<div id='schedule'><p>Schedule</p>";
 				$events = getUserRSVPs($user);
-				
-				foreach ($events as $e)
+				var_dump($events);
+				foreach ($events as $f)
 				{
-					displayEventCard($e);
+					displayEventCard($f);
 				}
 				
 				print "</div>";
