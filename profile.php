@@ -61,7 +61,7 @@ $loggedin = getActiveUser();
 						<form name='unfollow' id='unfollow' action='profile.php?u=$user' method='POST'>
 							<input class='btn-unfollow' name='follow' type='submit' value='Un-Follow'>
 						</form>
-					</div>"
+					</div>";
 				}
 				else
 				{
