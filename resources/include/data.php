@@ -494,11 +494,16 @@ function addEvent($UID, $evName, $evLocName, $evLocAddr, $evDateTime, $evDescrip
 	
 }
 
-function getEventsByUser($UID)
+function getEventsByUser($UID, $futureEventsOnly = TRUE)
 {
 	$sql = getSQL(FALSE);
 	$UID = sanitize($UID);
-	$query = "SELECT e_id FROM e_events WHERE u_id='$UID'";
+	$query = "SELECT e_id FROM e_events WHERE u_id='$UID' "
+	if($futureEventsOnly)
+	{
+		$query .= "AND (e_date >= CURDATE()) ";
+	}
+	$query .= "ORDER BY e_date";
 	$res = sqlQuery($sql, $query);
 	if($res === -2) return -2;
 	
@@ -739,11 +744,8 @@ function getUserRSVPs($UID, $ignoreNotGoing=TRUE, $futureEventsOnly = TRUE)
 	$rsvps = array();
 	while($row = mysqli_fetch_assoc($res))
 	{
-		$new = array();
-		$new = getEventCard($row["id"]);
-		$new[] = $row["RSVP"];
 		
-		$rsvps[] = $new;
+		$rsvps[] = $row;
 		
 	}
 	

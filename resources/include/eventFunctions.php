@@ -4,7 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
 
 
-function displayEventCard($EID, $Distance=-1)
+function displayEventCard($EID, $Distance=-1, $rsvp=-1)
 {
 	$event = getEventCard($e);
 	$ename = $event["Name"];
@@ -20,9 +20,9 @@ function displayEventCard($EID, $Distance=-1)
 			{
 				print "<p id='dist'>$edist</p>";
 			}
-			if(isset($event["RSVP"]))
+			if($rsvp >= 0)
 			{
-				$ersvp = rsvpText($event["RSVP"]);
+				$ersvp = rsvpText($rsvp);
 				print "<p id='rsvp'>$ersvp</p>";  
 			}
 			
