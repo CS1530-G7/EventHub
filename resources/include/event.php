@@ -33,7 +33,7 @@ $attendee_list = "";
 $num_attendees = count($attendee_list);
 
 
-if($attendee_list != -1) {
+if($attendees != -1) {
 
 	foreach ($attendees as $uid) {
 		if($username > 0) {
