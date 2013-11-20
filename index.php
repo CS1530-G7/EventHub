@@ -7,16 +7,18 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/search.php");
 $msg = doLogin();
 ?>
  
- <html>
+<html>
+	<head>
+ 		<title>EventHub</title>
+ 		<!-- Time stamp on css to stop caching so I can actually get work done when making changes -->
+        <link rel="stylesheet" type="text/css" href="css/style.css?<?php echo date('l jS \of F Y h:i:s A'); ?>" media="screen" />
+	 	<script>
+	 		function RemoveText(obj) {   obj.value = ''; } 
+	 	</script>
+    </head>
 
- 	<header>
-
- 	<script>
- 		function RemoveText(obj) {   obj.value = ''; } 
- 	</script>
-
- 	</header>
 	<body>
+
 
 
 		<!-- Simple login logic here:
@@ -32,6 +34,7 @@ $msg = doLogin();
 		<?php searchBar(); ?>
 		
 		<!--<img src="./resources/img/Homepage.jpg" />-->
+
 
 		</div>
 		
