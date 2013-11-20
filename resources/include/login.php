@@ -56,14 +56,15 @@ $str = <<<END
  
 <div id="login-form">
 
-<div id="login-errors">
-	$msg
-</div>
 <form name="login" id="login" action="index.php" method="POST">
 	<input type="text" name="username" value="Username">
 	<input type="password" name="password" value="Password">
 	<input class= "btn" name="submit" type="submit" value="Login">
 </form>
+
+<div id="login-errors">
+	$msg
+</div>
 
 </div>
 <div id="sign-up">
