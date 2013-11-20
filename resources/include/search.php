@@ -98,7 +98,7 @@ $search = <<<SEARCH
 <div id="search-area">
 		<form name="login" id="login" action="search.php" method="GET">
 			<label for="username"/></label>
-			<input type="text" name="q" value="" width="5000"><br><br>
+			<input type="text" name="q" value="" size="100"><br><br>
 			<input class= "btn" type="submit" value="Search Events">
 		</form>
 </div>
