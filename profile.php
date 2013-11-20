@@ -47,7 +47,14 @@ $loggedin = getActiveUser();
 				print "</div>";
 				
 				print "<div id='schedule'><p>Schedule</p>";
-				$events = 
+				$events = getUserRSVPs($user);
+				
+				foreach ($events as $e)
+				{
+					displayEventCard($e);
+				}
+				
+				print "</div>";
 				
 			}
 			else

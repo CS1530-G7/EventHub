@@ -13,17 +13,27 @@ function displayEventCard($EID, $Distance=-1)
 	$edist = number_format($Distance,2);
 	
 	print "<div id='event-$EID' class='event-card'>
-			<p id='name'><a href='event.php?e=$EID'>$ename</a></p><br>
-			<p id='date'>$edate</p><br>
+			<p id='name'><a href='event.php?e=$EID'>$ename</a></p>
+			<p id='date'>$edate</p>
 			<p id='loc'>$eloc</p>";
 			if($Distance >= 0)
 			{
 				print "<p id='dist'>$edist</p>";
 			}
+			if(isset($event["RSVP"]))
+			{
+				$ersvp = rsvpText($event["RSVP"]);
+				print "<p id='rsvp'>$ersvp</p>";  
+			}
 			
 			
 			print "</div>";
 }
-
+function rsvpText($rsvp)
+{
+	$RSVPText = array("Not Going","Maybe", "Going");
+	
+	return $RSVPText[$rsvp];
+}
 
 ?>

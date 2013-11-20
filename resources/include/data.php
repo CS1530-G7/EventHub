@@ -717,16 +717,21 @@ function getUsersByRSVP($EID, $rsvp)
 	return $users;
 }
 
-function getUserRSVPs($UID, $ignoreNotGoing=TRUE)
+function getUserRSVPs($UID, $ignoreNotGoing=TRUE, $futureEventsOnly = TRUE)
 {
 	$UID = sanitize($UID);
 	
 	$sql = getSQL(FALSE);
-	$query = "SELECT e_id, rsvp FROM e_rsvp WHERE u_id='$UID'";
+	$query = "SELECT r.e_id AS id, r.rsvp AS rsvp FROM e_rsvp AS r LEFT JOIN e_events AS e ON (r.e_id = e.e_id)  WHERE u_id='$UID'";
 	if($ignoreNotGoing)
 	{
 		$query .= " AND rsvp>0";
 	}
+		if($futureEventsOnly)
+	{
+		$query .= " AND (e.e_date >= CURDATE())";
+	}
+	$query .= " ORDER BY e.e_date";
 	
 	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
@@ -735,23 +740,11 @@ function getUserRSVPs($UID, $ignoreNotGoing=TRUE)
 	while($row = mysqli_fetch_assoc($res))
 	{
 		$new = array();
-		$new["id"] = $row["e_id"];
-		$new["rsvp"] = $row["rsvp"];
-		/*
-		if($row["rsvp"] == 0)
-		{
-			$new["rsvp"]
-		}
-		else if($row["rsvp"] == 1)
-		{
+		$new = getEventCard($row["id"]);
+		$new[] = $row["RSVP"];
 		
-		}
-		else
-		{
+		$rsvps[] = $new;
 		
-		}
-		*/
-		$rsvps[] = $new; 
 	}
 	
 	return $rsvps;
