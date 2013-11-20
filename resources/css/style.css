@@ -9,12 +9,14 @@
     margin-right: auto;
     margin-top: 0px;
     margin-bottom: 0px;
+    padding: 8px;
 }
 #header
 {
     background-color: #181818;
     color: #E8E8E8;
     text-align: right;
+    margin-bottom: 0px;
     font-size: 10px;
     height: 50px;
 }
