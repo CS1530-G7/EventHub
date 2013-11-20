@@ -22,10 +22,8 @@ $e_address = getEventLocationName($EID);
 $attendees = getUsersByRSVP($EID, 2);
 $attendee_list = "";
 
-foreach ($attendees as $going) {
-	$username = getUsername($going);
-	echo $going . "</br>";
-	echo $username . "</br>";
+foreach ($attendees as $uid) {
+	$username = getUsername($uid);
 	$attendee_list .= "<p>{$username}</p>";
 }
 
