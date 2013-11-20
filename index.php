@@ -32,7 +32,7 @@ $msg = doLogin();
 		<div id="search-area">
 			<form name="login" id="login" action="index.php" method="POST">
 				<label for="username"/></label>
-				<input type="text" name="search_query" value="Type your location" onclick="RemoveText(this);">
+				<input type="text" name="search_query" value="" onclick="RemoveText(this);">
 				<input class= "btn" name="search_submit" type="submit" value="Search Events">
 			</form>
 		</div>
