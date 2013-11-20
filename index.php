@@ -13,10 +13,12 @@ $msg = doLogin();
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
 
- 	<script>
- 		function RemoveText(obj) {   obj.value = ''; } 
- 	</script>
- 	
+    <header>
+ 		<script>
+ 			function RemoveText(obj) {   obj.value = ''; } 
+ 		</script>
+ 	</header>
+
 	<body>
 	 	<div id="main-center">
 			
