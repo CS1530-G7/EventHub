@@ -138,7 +138,7 @@ function checkEmail($email)
 function getUserField($UID, $field)
 {
 	$sql = getSQL(FALSE);
-	
+	$UID = sanitize($UID);
 	$query = "SELECT $field FROM e_users WHERE u_id = '$UID'";
 	
 	//print $query;
@@ -185,6 +185,7 @@ function setUserField($UID, $field, $data)
 {
 	$sql = getSQL(TRUE);
 	$data = sanitize($data);
+	$UID = sanitize($UID);
 	$query = "UPDATE e_users SET $field='$data' WHERE u_id = '$UID'";
 	
 	$res = sqlQuery($sql,$query);
@@ -247,6 +248,11 @@ function setUserLocation($UID, $loc_name, $loc_address)
 	$data = newLocation($loc_name, $loc_address);
 	//Delete old user location?
 	setUserField($UID, "l_id", $data);
+}
+function changePassword($UID, $password)
+{
+	$pass = salthash($password);
+	setUserField($UID, "u_pass", $pass);
 }
 //Event SQL wrappers
 function getEventField($EID, $field)

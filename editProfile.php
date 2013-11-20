@@ -34,8 +34,10 @@ if($address < 0)
 				<p>Email address <input type="text" name="email" value='<?php print $email?>'></p>
 				<p>House address <input type="text" name="address" value='<?php print $address?>'></p>
 				<p>Note: House address is only used for location based searching and will never be displayed</p>
+				<p>New Password <input type="password" name="pass1" value=''></p>
+				<p>New Password Again <input type="password" name="pass2" value=''></p>
 			</div>
-			<input type="submit" name="submit" value="Submit Changes">
+			<input type="submit" name="edit-profile" value="Submit Changes">
 		</form>
 	</body>
 </html>
