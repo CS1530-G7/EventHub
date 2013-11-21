@@ -5,7 +5,10 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
 $Home = FALSE;
 
-print $_SERVER["PHP_SELF"]; 
+if($_SERVER["PHP_SELF"] === '/index.php')
+{
+	$Home = TRUE;
+} 
 
 
 ?>
