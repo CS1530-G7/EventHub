@@ -13,8 +13,11 @@ function doRSVP() {
 		$UID = getActiveUser();
 		$EID = $_GET['e'];
 
-	
 
+		echo getUserRSVP($UID, $EID);
+
+	
+		// check for input errors
 		if (empty($rsvp)){
 			$message .= "<p>Please select an RSVP option.</p>";
 		}
@@ -23,9 +26,19 @@ function doRSVP() {
 			$message .= "<p>Please log in to RSVP.</p>";
 		}
 
+		// no input errors
  		if ($message == "") {
 
- 			$test = changeRSVP($UID, $EID, 0);
+ 			// check to see if user already RSVP'd
+ 			$userCurrentRSVP = -1;
+
+ 			$userRSVPs = getUsersRSVP($UID, FALSE, FALSE);
+
+ 			foreach($userRSVPs as $r){
+ 				if($r == $EID) {
+ 					$userCurrentRSVP = getUserRSVP($UID, $EID);
+ 				}
+ 			}
  			echo $test;
 
 
