@@ -770,7 +770,7 @@ function getUserRSVP($UID, $EID){
 
 	if($rsvp)
 	{
-		return $rsvp;
+		return $rsvp['rsvp'];
 	}
 	else
 	{
