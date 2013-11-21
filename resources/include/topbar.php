@@ -42,7 +42,7 @@ $Home = FALSE;
 
 print $_SERVER["PHP_SELF"]; 
 
-$msg = doLogin();
+
 ?>
 
 		<div id='header'>

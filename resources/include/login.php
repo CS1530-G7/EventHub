@@ -18,7 +18,7 @@ $str = <<<END
 
 <form name="login" id="login" action="index.php" method="POST">
 	<input type="text" name="username" value="Username">
-	<input type="password" name="password" value="Password">
+	<input type="password" name="password" value="">
 	<input class= "btn" name="submit" type="submit" value="Login">
 </form>
 

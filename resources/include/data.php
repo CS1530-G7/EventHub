@@ -753,6 +753,32 @@ function addRSVP($UID, $EID, $rsvp)
 	return $id;
 }
 
+function getUserRSVP($UID, $EID){
+	$UID = sanitize($UID);
+	$EID = sanitize($EID);
+
+	$sql = getSQL(TRUE);
+
+	$query = "SELECT rsvp FROM e_rsvp WHERE (u_id='$UID' AND e_id='$EID')";
+
+	$res = sqlQuery($sql,$query);
+
+	if($res === -2) 
+		return -2;
+
+	$rsvp = $res->fetch_assoc();
+
+	if($rsvp)
+	{
+		return $rsvp['rsvp'];
+	}
+	else
+	{
+		return -2;
+	}
+
+}
+
 function changeRSVP($UID, $EID, $rsvp)
 {
 	$UID = sanitize($UID);
