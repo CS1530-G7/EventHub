@@ -48,7 +48,7 @@ function doRSVP() {
  			}
 
 
- 			//echo $userCurrentRSVP;
+ 			//echo $userCurrentRSVP; 
 
 
  			// if a user is not already chosen an RSVP option for this event, then do these
