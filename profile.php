@@ -71,11 +71,9 @@ if(isset($_POST["invite-submit"]))
 			<div id="content">
 				<?php
 				$username = getUsername($user);
-						
+				print "$user= $username";
 				if($user === $loggedin)
 					{
-						//Left column
-						print "<div id='left'>";
 						//Display your profile
 						print "<div id='profile-name'><h3>Your page</h3><p>(<a href='editProfile.php'>Edit</a>)</p>";
 						
