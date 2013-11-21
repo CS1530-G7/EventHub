@@ -137,7 +137,6 @@ if(isset($_POST["invite-submit"]))
 						{
 							displayInviteCard($i);
 						}
-						print "</div>";
 					}
 					else if($userIDname < 0)
 					{
