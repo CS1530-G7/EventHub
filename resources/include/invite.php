@@ -10,12 +10,15 @@ function doInvite() {
 
 	if(isset($_POST['invite_submit'])) {
 
+		echo "invite submit presed";
 
 		$username = $_POST['username'];
 		$invitee_UID = getUserID($username);
 		$inviter_UID = getActiveUser();
 
 		$EID = $_GET['u'];
+
+		echo $EID . " " . $username . " " . $invitee_UID . " " . $inviter_UID;
 
 		if ($inviter_UID == -1) {
 			$error_message .= "<p>You must be logged in to invite others.</p>";
