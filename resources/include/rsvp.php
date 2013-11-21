@@ -25,6 +25,9 @@ function doRSVP() {
 
  		if ($message == "") {
 
+ 			$test = changeRSVP($UID, $EID, 0);
+ 			echo $test;
+
 
  			if($rsvp == "Yes") {
  				$message = "<p>RSVP'd! See you there!</p>";
