@@ -75,7 +75,7 @@ if(isset($_POST["invite-submit"]))
 				if($userID === $loggedin)
 					{
 						//Display your profile
-						print "<div id='profile-name'><h3>Info</h3><p>(<a href='editProfile.php'>Edit</a>)</p></div>";
+						print "<div id='profile-name'><h3>Your page</h3><p>(<a href='editProfile.php'>Edit</a>)</p>";
 						
 						$events = getEventsByuserID($userID);
 						print "<div id='hosted'><h3>Hosted Events</h3>";
