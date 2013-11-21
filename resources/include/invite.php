@@ -14,7 +14,6 @@ function doInvite() {
 
 		$username = $_POST['username'];
 		$invitee_UID = getUserID($username);
-		
 		$inviter_UID = getActiveUser();
 
 		$EID = $_GET['e'];
@@ -31,7 +30,7 @@ function doInvite() {
 
 		// if no errors, then send the invite
 		if ($message == "") {
-			sendInvite($inviter_UID, $invitee_UI, $EID, $msg="");
+			sendInvite($inviter_UID, $invitee_UID, $EID, $msg="");
 			$message = "<p>You successfully invited {$username}!</p>";
 		}
 
