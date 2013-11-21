@@ -131,18 +131,17 @@ else
      </head>
 
 	<body>
-	<?php 
-	require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");
-	if($showerror)
-	{
-		print "<div class='error'>$emailerror\n$locerror\n$passerror</div>";
-	}
-	
-	
-	?>
 		<div id="main-center">
 			<!-- Header -->
-			<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");?>
+			<?php 
+			require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");
+			if($showerror)
+			{
+				print "<div class='error'>$emailerror\n$locerror\n$passerror</div>";
+			}
+			
+			
+			?>
 
 			<!-- Content -->
 			<div id="content">
