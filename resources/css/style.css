@@ -1,22 +1,10 @@
-a:link
+a
 {
-    text-decoration:none;
-    color: #E8E8E8;
-}
-a:visited
-{
-    text-decoration: none;
     color: #E8E8E8;
 }
 a:hover
 {
     text-decoration:underline;
-    color: #E8E8E8;
-}
-a:active
-{
-    text-decoration:underline;
-    color: #E8E8E8;
 }
 #main-center
 {
@@ -35,6 +23,8 @@ a:active
     background-color: #181818;
     color: #E8E8E8;
     font-size: 15px;
+    padding: 8px;
+    box-sizing: border-box;
 }
 #content
 {
@@ -44,11 +34,4 @@ a:active
     color: black;
     font-size: 15px;
     background-color: #669999;
-}
-#footer
-{
-    color: black;
-    font-size: 15px;
-    text-align: center;
-    background-color: #181818;
 }

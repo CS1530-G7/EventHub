@@ -1,5 +1,4 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
 function doLogin()
 {
@@ -38,42 +37,7 @@ function doLogin()
 	
 }
 
-function login_div($msg = "")
-{
-	print '<div id="login">';
-	$UID = getActiveUser();
-	if($UID >= 0) {
-		$user = getUsername($UID);
-		$link = "profile.php?u={$UID}";
-		print "<a href='$link'>Your profile</a> | ";
-		print "<a href=\"logout.php\">Logout</a>";
-		print"</div>"; //End div login
-	} else {
 
-$str = <<<END
- 
-<div id="login-form">
-
-<form name="login" id="login" action="index.php" method="POST">
-	<input type="text" name="username" value="Username">
-	<input type="password" name="password" value="">
-	<input class= "btn" name="submit" type="submit" value="Login">
-</form>
-
-<div id="login-errors">
-	$msg
-</div>
-
-</div>
-<div id="sign-up">
-Not registered? <a href="signup.php">Sign up!</a>	
-</div>
-
-END;
-
-print $str;
-	}
-}
 
 
 

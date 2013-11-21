@@ -8,6 +8,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "resources/include/createEventValidatio
  
  <html>
 	<body>
+		<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");?>
 		<h1>Create a new event</h1>
 		
 		<!-- <img src="./resources/img/Homepage.jpg" /> -->

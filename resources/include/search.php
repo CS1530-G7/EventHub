@@ -93,14 +93,12 @@ function searchBar()
 {
 
 $search = <<<SEARCH
-
-<div id="search-area">
-		<form name="login" id="login" action="search.php" method="GET">
-			<label for="username"/></label>
-			<input type="text" name="q" value="" size="50"><br><br>
-			<input class= "btn" type="submit" value="Search Events">
-		</form>
-</div>
+			<div id="search-area">
+				<form name="search" id="search" action="search.php" method="GET">
+					<input type="text" name="q" value="" size="50"><br><br>
+					<input class= "btn" type="submit" value="Search Events">
+				</form>
+			</div>
 SEARCH;
 
 print $search;
