@@ -6,7 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/search.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/event.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/invite.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/rsvp.php");
-$login_msg = doLogin();
+$msg = doLogin();
 
 $invite_message = doInvite();
 $rsvp_message = doRSVP();
@@ -32,6 +32,7 @@ $url = "event.php?e={$EID}";
 			<?php
 				require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");
 			?>
+
 
 			<!-- Content -->
 			<div id="content">
