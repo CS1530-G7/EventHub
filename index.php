@@ -19,9 +19,9 @@ $msg = doLogin();
 
 	<body>
 	 	<div id="main-center">
-			<div id="header">
-				<?php login_div($msg); ?>
-			</div>
+			
+				<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");?>
+			
 			
 			<div id="content">
 				<h1>EventHub</h1>

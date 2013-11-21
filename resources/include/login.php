@@ -1,51 +1,13 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 
-function doLogin()
-{
-	$error_message = "";
 
-	if(isset($_POST['submit'])) {
 
-			// get variables
-			$username = $_POST['username'];
-			$password = $_POST['password'];
-
-			$userID = login($username, $password);
-
-		 if(empty($username) || empty($password)) {
-
-			$error_message .= "<p>Username and/or password field blank.</p>";
-
-		 }
-		 else if ($userID == -1) {
-
-			$error_message .= "<p>Username and/or password incorrect.</p>";
-
-		 }
-		 else
-		 {
-			 header( "Location:profile.php?u=$userID");
-		 }
-
-	}
-	else if(getActiveUser() == -3)
-	{
-		$error_message .= "<p>Your session has expired, please login again.</p>";
-	}
-	
-	return $error_message;
-	
-}
 
 function login_div($msg = "")
 {
-	print '<div id="login">';
-	$UID = getActiveUser();
-	if($UID >= 0) {
-		$user = getUsername($UID);
-		$link = "profile.php?u={$UID}";
-		print "<a href='$link'>Your profile</a> | ";
+	print '';
+
+		print "<a href='$link'>$user</a> | ";
 		print "<a href=\"logout.php\">Logout</a>";
 		print"</div>"; //End div login
 	} else {
