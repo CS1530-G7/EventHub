@@ -31,19 +31,16 @@ $url = "event.php?e={$EID}";
 			<!-- Header -->
 			<?php
 				require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");
-				eventHTML();
-				showEventDelete();
 			?>
 
-		<?php
-			login_div($msg);
-			showEventDelete();
-			searchBar();
-			eventHTML();
 
-		?>
-
+			<!-- Content -->
 			<div id="content">
+				<?php
+					eventHTML();
+					showEventDelete();
+				?>
+
 				<div id="invite">
 					<h2>Send invites to this event...</h2>
 					<form name="invite" id="invite" action=<?php echo $url; ?> method="POST">
