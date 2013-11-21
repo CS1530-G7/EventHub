@@ -5,6 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/search.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/event.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/invite.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/rsvp.php");
 $msg = doLogin();
 
 $invite_message = doInvite();
@@ -41,6 +42,18 @@ $url = "event.php?e={$EID}";
 			<div id="invite_message">
 				<?php echo $invite_message; ?>
 			</div>
+		</div>
+
+		<div id="rsvp">
+			<h2>RSVP to this event!</h2>
+
+			<form name="rsvp" id="rsvp" action=<?php echo $url; ?> method="POST">
+				<label for=""/>Are you going?</label>
+				<input type="radio" name="decision" value="Yes">Yes<br>
+				<input type="radio" name="decision" value="No">No<br>
+				<input type="radio" name="decision" value="Maybe">Maybe<br>
+				<input class= "btn" type="submit" name="rsvp_submit" value="Invite user">
+			</form>
 		</div>
 		
 	</body>

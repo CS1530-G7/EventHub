@@ -38,7 +38,7 @@ foreach ($attendees as $uid) {
 			$username = getUsername($uid);
 			$attendee_list .= "<p>{$username}</p>";
 		} else {
-			$attendee_list = "<p>No one's going... Be the first and <a href=\"#\">RSVP!</a></p>";
+			$attendee_list = "<p>No one's going...</p>";
 		}
 }
 
