@@ -9,6 +9,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/rsvp.php");
 $msg = doLogin();
 
 $invite_message = doInvite();
+$rsvp_message = doRSVP();
 
 $EID = $_GET['e'];
 $url = "event.php?e={$EID}";
@@ -48,12 +49,16 @@ $url = "event.php?e={$EID}";
 			<h2>RSVP to this event!</h2>
 
 			<form name="rsvp" id="rsvp" action=<?php echo $url; ?> method="POST">
-				<label for=""/>Are you going?</label>
+				<label for=""/>Are you going?</label><br>
 				<input type="radio" name="decision" value="Yes">Yes<br>
 				<input type="radio" name="decision" value="No">No<br>
 				<input type="radio" name="decision" value="Maybe">Maybe<br>
-				<input class= "btn" type="submit" name="rsvp_submit" value="Invite user">
+				<input class= "btn" type="submit" name="rsvp_submit" value="RSVP">
 			</form>
+
+			<div id="rsvp_message">
+				<?php echo $rsvp_message; ?>
+			</div>			
 		</div>
 		
 	</body>
