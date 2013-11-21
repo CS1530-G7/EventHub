@@ -856,6 +856,7 @@ function sendInvite($UIDSender, $UIDRecieve, $EID, $msg="")
 	$query = "INSERT INTO e_inv (e_id, u_inv_id, u_gu_id, i_cmt) VALUES ('$EID', '$UIDs', '$UIDr', '$m')";
 	
 	$res = sqlQuery($sql,$query);
+	print $query;
 	if($res === -2) return -2;
 	
 }
