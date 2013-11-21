@@ -190,6 +190,10 @@ if(isset($_POST["invite-submit"]))
 					}
 
 				?>
+		
+				<div id="event-create">
+					<p><a href="createEvent.php">Click here</a> to create an event</p>
+				</div>
 			</div>
 
 			<div id="footer">
@@ -198,12 +202,6 @@ if(isset($_POST["invite-submit"]))
                 <a href='./logout.php'>Logout</a>
 			</div>
 		</div>
-
-		<div id="event-create">
-			<p><a href="createEvent.php">Click here</a> to create an event</p>
-		</div>
-
-
 	</body>
 </html>
 
