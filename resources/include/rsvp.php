@@ -32,22 +32,23 @@ function doRSVP() {
  			// check to see if user already RSVP'd
  			$userCurrentRSVP = -46;
 
- 			echo $userCurrentRSVP;
+ 			//echo $userCurrentRSVP;
 
  			$userRSVPs = getUserRSVPs($UID, FALSE, FALSE);
 
  			foreach($userRSVPs as $r){
  				
  				foreach ($r as $r2) {
- 					echo $r2 . "<br>" . $EID . "<br>";
+ 					//echo $r2 . "<br>" . $EID . "<br>";
+ 					 if($r2 == $EID) {
+ 						$userCurrentRSVP = getUserRSVP($UID, $EID);
+ 					}
  				}
- 				if($r == $EID) {
- 					$userCurrentRSVP = getUserRSVP($UID, $EID);
- 				}
+
  			}
 
 
- 			echo $userCurrentRSVP;
+ 			//echo $userCurrentRSVP;
 
 
  			// if a user is not already chosen an RSVP option for this event, then do these
