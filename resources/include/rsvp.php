@@ -95,7 +95,7 @@ function rsvpStatus() {
 	$status = -1;
 	$status = getUserRSVP($UID, $EID);
 
-	if ($status -1 || $status == -2) {
+	if ($status == -1 || $status == -2) {
 		$message = "<p>You haven't made your mind up about this event, yet.</p>";
 	}
 
