@@ -36,7 +36,7 @@ if($_SERVER["PHP_SELF"] === '/index.php')
 				$user = getUsername($UID);
 				$link = "profile.php?u=$UID";
 			?>
-			<a href='<?print $link; ?>'><? print $user; ?></a> | <a href=\"logout.php\">Logout</a>
+			<a href='<?print $link; ?>'><? print $user; ?></a> | <a href="logout.php">Logout</a>
 			<?
 			}else{
 			?>
