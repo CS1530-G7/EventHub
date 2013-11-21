@@ -32,7 +32,7 @@ function doRSVP() {
  			// check to see if user already RSVP'd
  			$userCurrentRSVP = -1;
 
- 			$userRSVPs = getUsersRSVPs($UID, FALSE, FALSE);
+ 			$userRSVPs = getUserRSVPs($UID, FALSE, FALSE);
 
  			foreach($userRSVPs as $r){
  				if($r == $EID) {
