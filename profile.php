@@ -74,10 +74,8 @@ if(isset($_POST["invite-submit"]))
 						
 				if($user === $loggedin)
 					{
-						//Left column
-						print "<div id='left'>";
 						//Display your profile
-						print "<div id='profile-name'><h3>Your page</h3><p>(<a href='editProfile.php'>Edit</a>)</p>";
+						print "<div id='profile-name'><h3>Info</h3><p>(<a href='editProfile.php'>Edit</a>)</p></div>";
 						
 						$events = getEventsByUser($user);
 						print "<div id='hosted'><h3>Hosted Events</h3>";
@@ -139,7 +137,6 @@ if(isset($_POST["invite-submit"]))
 						{
 							displayInviteCard($i);
 						}
-						print "</div>";
 					}
 					else if($username < 0)
 					{
