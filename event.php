@@ -8,7 +8,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/invite.php");
 $msg = doLogin();
 
 $invite_message = doInvite();
-$url = "\"" . $_SERVER['PATH_INFO'] . "\"";
+
+$EID = $_GET['e'];
+$url = "event.php?e={$EID}";
 ?>
  
  <html>
