@@ -145,7 +145,7 @@ else
 			<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");?>
 
 			<!-- Content -->
-			<div id="conent">
+			<div id="content">
 				<form id='edit-profile' action='editProfile.php' method='post'>
 					<div id='public'>
 						<p>Public Profile</p>
