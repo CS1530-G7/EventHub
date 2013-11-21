@@ -9,7 +9,7 @@ $login_msg = doLogin();
 
 
 $userID = $_GET["u"];
-$loggedin = getActiveuserID();
+$loggedin = getActiveuser();
 
 
 if(isset($_POST["follow-submit"]))
@@ -18,22 +18,22 @@ if(isset($_POST["follow-submit"]))
 	{
 		if($_POST["follow-submit"] === "Follow")
 		{
-			followuserID($loggedin, $userID);
+			followuser($loggedin, $userID);
 		}
 		else
 		{
-			unfollowuserID($loggedin, $userID);
+			unfollowuser($loggedin, $userID);
 		}
 	}
 	else
 	{
-		$msg = "You must be logged in to follow a userID";
+		$msg = "You must be logged in to follow a user";
 	}
 }
 
 if(isset($_POST["invite-submit"]))
 {
-	$guest = $_POST["InvuserID"];
+	$guest = $_POST["Invuser"];
 	if($loggedin == $guest)
 	{
 		$IID = $_POST["IID"];
@@ -70,14 +70,14 @@ if(isset($_POST["invite-submit"]))
 			
 			<div id="content">
 				<?php
-				$userIDname = getuserIDname($userID);
+				$userIDname = getusername($userID);
 
 				if($userID === $loggedin)
 					{
 						//Display your profile
 						print "<div id='profile-name'><h3>Your page</h3><p>(<a href='editProfile.php'>Edit</a>)</p>";
 						
-						$events = getEventsByuserID($userID);
+						$events = getEventsByuser($userID);
 						print "<div id='hosted'><h3>Hosted Events</h3>";
 						foreach ($events as $e)
 						{
@@ -87,7 +87,7 @@ if(isset($_POST["invite-submit"]))
 						print "</div>";
 						
 						print "<div id='schedule'><h3>Schedule</h3>";
-						$events = getuserIDRSVPs($userID);
+						$events = getuserRSVPs($userID);
 
 						foreach ($events as $f)
 						{
@@ -98,8 +98,8 @@ if(isset($_POST["invite-submit"]))
 						print "</div>";
 						
 						print "<div id='feed'><h3>Event Feed</h3></div>";
-						//Get userID location
-						$loc = getuserIDLocation($userID);
+						//Get user location
+						$loc = getuserLocation($userID);
 						if($loc == -1 || $loc["Lat"] == NULL)
 						{
 							print "<p class='error'>You have not set a location for yourself.  <a href='editProfile.php'>Edit your profile</a> to get events near you</p>";
@@ -118,12 +118,12 @@ if(isset($_POST["invite-submit"]))
 								displayEventCard($s["id"],$s["distance"]);
 							}
 						}
-						print "<div id='followeduserIDs'><h3>Following</h3>";
+						print "<div id='followedusers'><h3>Following</h3>";
 						$userIDs = getFollows($userID);
 						
 						foreach($userIDs as $u)
 						{
-							$name = getuserIDname($u);
+							$name = getusername($u);
 							if($name >= 0)
 							{
 								print "<a href='profile.php?u=$u'>$name</a>";
@@ -141,12 +141,12 @@ if(isset($_POST["invite-submit"]))
 					}
 					else if($userIDname < 0)
 					{
-						print "<h1>This userID does not exist.</h1>";
+						print "<h1>This user does not exist.</h1>";
 					}
 					else
 					{
 						//Public Profile
-						$loc = getuserIDLocationName($userID);
+						$loc = getuserLocationName($userID);
 						print "<div id='profile-name'><p>$userIDname's page</p></div>";
 						if(!empty($loc) && $loc >= 0)
 						{
@@ -170,12 +170,12 @@ if(isset($_POST["invite-submit"]))
 							</div>";
 						}
 						
-						print "<div id='followeduserIDs'><p>Following</p>";
+						print "<div id='followedusers'><p>Following</p>";
 						$userIDs = getFollows($userID);
 						
 						foreach($userIDs as $u)
 						{
-							$name = getuserIDname($u);
+							$name = getusername($u);
 							if($name >= 0)
 							{
 								print "<a href='profile.php?u=$u'>$name</a>";
