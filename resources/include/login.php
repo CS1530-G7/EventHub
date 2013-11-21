@@ -1,41 +1,43 @@
 <?php
 
-
-
-
-function login_div($msg = "")
+function doLogin()
 {
-	print '';
+	$error_message = "";
 
-		print "<a href='$link'>$user</a> | ";
-		print "<a href=\"logout.php\">Logout</a>";
-		print"</div>"; //End div login
-	} else {
+	if(isset($_POST['submit'])) {
 
-$str = <<<END
- 
-<div id="login-form">
+			// get variables
+			$username = $_POST['username'];
+			$password = $_POST['password'];
 
-<form name="login" id="login" action="index.php" method="POST">
-	<input type="text" name="username" value="Username">
-	<input type="password" name="password" value="">
-	<input class= "btn" name="submit" type="submit" value="Login">
-</form>
+			$userID = login($username, $password);
 
-<div id="login-errors">
-	$msg
-</div>
+		 if(empty($username) || empty($password)) {
 
-</div>
-<div id="sign-up">
-Not registered? <a href="signup.php">Sign up!</a>	
-</div>
+			$error_message .= "<p>Username and/or password field blank.</p>";
 
-END;
+		 }
+		 else if ($userID == -1) {
 
-print $str;
+			$error_message .= "<p>Username and/or password incorrect.</p>";
+
+		 }
+		 else
+		 {
+			 header( "Location:profile.php?u=$userID");
+		 }
+
 	}
+	else if(getActiveUser() == -3)
+	{
+		$error_message .= "<p>Your session has expired, please login again.</p>";
+	}
+	
+	return $error_message;
+	
 }
+
+
 
 
 
