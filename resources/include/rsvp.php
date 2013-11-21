@@ -30,7 +30,9 @@ function doRSVP() {
  		if ($message == "") {
 
  			// check to see if user already RSVP'd
- 			$userCurrentRSVP = -1;
+ 			$userCurrentRSVP = -46;
+
+ 			echo $userCurrentRSVP;
 
  			$userRSVPs = getUserRSVPs($UID, FALSE, FALSE);
 
@@ -41,8 +43,11 @@ function doRSVP() {
  			}
 
 
+ 			echo $userCurrentRSVP;
+
+
  			// if a user is not already chosen an RSVP option for this event, then do these
- 			if($userCurrentRSVP == -1) {
+ 			if($userCurrentRSVP == -46) {
 
 
  				if($rsvp == "Yes") {
