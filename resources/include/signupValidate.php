@@ -70,6 +70,10 @@ if(isset($_POST['submit'])) {
 		$error_message .= "<p>An error has occurred with the database, please try again later.<br>Error:" . sqlError() . "</p>";
 	}
 
+	if(error_message == "") {
+		createUser($username, $password, $email);
+	}
+
 }
 
 

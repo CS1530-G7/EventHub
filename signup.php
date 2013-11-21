@@ -64,10 +64,5 @@ $login_msg = doLogin();
 </html>
 
 <?php
-// submit button pressed and no errors
-// create the user
-if(isset($_POST['submit']) && $error_message == '')
-{
-	createUser($username, $password, $email);
-}
+
 ?>
