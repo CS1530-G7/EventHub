@@ -78,9 +78,8 @@ function doRSVP() {
  						changeRSVP($UID, $EID, $rsvp);
  				}
 
-
-
  			}
+ 		}
  	}
 
 	return $message;
