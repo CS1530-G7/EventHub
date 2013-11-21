@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "resources/include/data.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "resources/include/signupValidate.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
 
 $login_msg = doLogin();
 ?>
@@ -63,10 +64,5 @@ $login_msg = doLogin();
 </html>
 
 <?php
-// submit button pressed and no errors
-// create the user
-if(isset($_POST['submit']) && $error_message == '')
-{
-	createUser($username, $password, $email);
-}
+
 ?>

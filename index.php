@@ -29,12 +29,6 @@ $login_msg = doLogin();
 
 				<?php searchBar(); ?>
 			</div>
-			
-			<div id="footer">
-                <a href='./index.php'>Home</a>&nbsp&nbsp
-                <a href='./profile.php'>Profile</a>&nbsp&nbsp
-                <a href='./logout.php'>Logout</a>
-			</div>
 		</div>
 	</body>
 </html>

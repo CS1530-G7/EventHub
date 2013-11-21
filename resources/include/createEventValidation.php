@@ -62,6 +62,11 @@ if(isset($_POST['submit'])) {
 
  	}
 
+ 	if($error_message == '') {
+ 		addEvent($userID, $event_name, $event_location, $event_addr, $event_date_time, $event_description, $event_private);
+ 		$event_success = "<p>Successfully created this event. <a href=\"#\">Click here</a> to view.</p>";
+ 	}
+
 
 
 

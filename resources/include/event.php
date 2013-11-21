@@ -12,6 +12,22 @@ function formatDate($e_date) {
 
 }
 
+function showEventDelete() {
+
+	$UID = getActiveUser();
+	$EID = $_GET['e'];
+
+	$ECreator_UID = getEventHost($EID);
+
+	if($UID == $ECreator_UID) {
+		echo "<p>As the event creator, you can delete it. <a href=\"deleteEvent.php?e={$EID}\">Click here</a> to delete event.</p>";
+	}
+}
+
+
+function eventDelete($EID) {
+	deleteEvent($EID);
+}
 
 function eventHTML() {
 

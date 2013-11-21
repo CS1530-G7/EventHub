@@ -125,30 +125,42 @@ else
 ?>
 
  <html>
+ 	<head>
+  		<title>EventHub</title>
+         <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+     </head>
+
 	<body>
-	<?php 
-	require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");
-	if($showerror)
-	{
-		print "<div class='error'>$emailerror\n$locerror\n$passerror</div>";
-	}
-	
-	
-	?>
-		<form id='edit-profile' action='editProfile.php' method='post'>
-			<div id='public'>
-				<p>Public Profile</p>
-				<p>Area where you live <input type="text" name="loc_name" value='<?php print $locname?>'></p>
+		<div id="main-center">
+			<!-- Header -->
+			<?php 
+			require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");
+			if($showerror)
+			{
+				print "<div class='error'>$emailerror\n$locerror\n$passerror</div>";
+			}
+			
+			
+			?>
+
+			<!-- Content -->
+			<div id="content">
+				<form id='edit-profile' action='editProfile.php' method='post'>
+					<div id='public'>
+						<p>Public Profile</p>
+						<p>Area where you live <input type="text" name="loc_name" value='<?php print $locname?>'></p>
+					</div>
+					<div id='private'>
+						<p>Private Profile</p>
+						<p>Email address <input type="text" name="email" value='<?php print $email?>'></p>
+						<p>House address <input type="text" name="address" value='<?php print $address?>'></p>
+						<p>Note: House address is only used for location based searching and will never be displayed</p>
+						<p>New Password <input type="password" name="pass1" value=''></p>
+						<p>New Password Again <input type="password" name="pass2" value=''></p>
+					</div>
+					<input type="submit" name="edit-profile" value="Submit Changes">
+				</form>
 			</div>
-			<div id='private'>
-				<p>Private Profile</p>
-				<p>Email address <input type="text" name="email" value='<?php print $email?>'></p>
-				<p>House address <input type="text" name="address" value='<?php print $address?>'></p>
-				<p>Note: House address is only used for location based searching and will never be displayed</p>
-				<p>New Password <input type="password" name="pass1" value=''></p>
-				<p>New Password Again <input type="password" name="pass2" value=''></p>
-			</div>
-			<input type="submit" name="edit-profile" value="Submit Changes">
-		</form>
+		</div>
 	</body>
 </html>

@@ -8,10 +8,23 @@ $login_msg = doLogin();
 ?>
 
 <html>
-<body>
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");?>
-<div id="search_results">
-	<?php doEventSearch(); ?>
-</div>
-</body>
+    <head>
+        <title>EventHub</title>
+         <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+     </head>
+
+    <body>
+        <div id="main-center">
+            <!-- Header -->
+            <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");?>
+            
+            <!-- Content -->
+            <div id="content">
+                <div id="search_results">
+                    <h3>Searh Results</h3>
+                	<?php doEventSearch(); ?>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
