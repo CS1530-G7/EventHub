@@ -7,6 +7,11 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "resources/include/createEventValidatio
 ?>
  
  <html>
+ 	<head>
+  		<title>EventHub</title>
+         <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+     </head>
+
 	<body>
 		<div id="main-center">
 			<!-- Header -->
