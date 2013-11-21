@@ -8,8 +8,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/eventFunctions.php"
 $login_msg = doLogin();
 
 
-$user = $_GET["u"];
-$loggedin = getActiveUser();
+$userID = $_GET["u"];
+$loggedin = getActiveuserID();
 
 
 if(isset($_POST["follow-submit"]))
@@ -18,22 +18,22 @@ if(isset($_POST["follow-submit"]))
 	{
 		if($_POST["follow-submit"] === "Follow")
 		{
-			followUser($loggedin, $user);
+			followuserID($loggedin, $userID);
 		}
 		else
 		{
-			unfollowUser($loggedin, $user);
+			unfollowuserID($loggedin, $userID);
 		}
 	}
 	else
 	{
-		$msg = "You must be logged in to follow a user";
+		$msg = "You must be logged in to follow a userID";
 	}
 }
 
 if(isset($_POST["invite-submit"]))
 {
-	$guest = $_POST["InvUser"];
+	$guest = $_POST["InvuserID"];
 	if($loggedin == $guest)
 	{
 		$IID = $_POST["IID"];
@@ -70,14 +70,14 @@ if(isset($_POST["invite-submit"]))
 			
 			<div id="content">
 				<?php
-				$username = getUsername($user);
-						
-				if($user === $loggedin)
+				$userIDname = getuserIDname($userID);
+
+				if($userID === $loggedin)
 					{
 						//Display your profile
 						print "<div id='profile-name'><h3>Info</h3><p>(<a href='editProfile.php'>Edit</a>)</p></div>";
 						
-						$events = getEventsByUser($user);
+						$events = getEventsByuserID($userID);
 						print "<div id='hosted'><h3>Hosted Events</h3>";
 						foreach ($events as $e)
 						{
@@ -87,7 +87,7 @@ if(isset($_POST["invite-submit"]))
 						print "</div>";
 						
 						print "<div id='schedule'><h3>Schedule</h3>";
-						$events = getUserRSVPs($user);
+						$events = getuserIDRSVPs($userID);
 
 						foreach ($events as $f)
 						{
@@ -98,8 +98,8 @@ if(isset($_POST["invite-submit"]))
 						print "</div>";
 						
 						print "<div id='feed'><h3>Event Feed</h3></div>";
-						//Get user location
-						$loc = getUserLocation($user);
+						//Get userID location
+						$loc = getuserIDLocation($userID);
 						if($loc == -1 || $loc["Lat"] == NULL)
 						{
 							print "<p class='error'>You have not set a location for yourself.  <a href='editProfile.php'>Edit your profile</a> to get events near you</p>";
@@ -118,12 +118,12 @@ if(isset($_POST["invite-submit"]))
 								displayEventCard($s["id"],$s["distance"]);
 							}
 						}
-						print "<div id='followedUsers'><h3>Following</h3>";
-						$users = getFollows($user);
+						print "<div id='followeduserIDs'><h3>Following</h3>";
+						$userIDs = getFollows($userID);
 						
-						foreach($users as $u)
+						foreach($userIDs as $u)
 						{
-							$name = getUsername($u);
+							$name = getuserIDname($u);
 							if($name >= 0)
 							{
 								print "<a href='profile.php?u=$u'>$name</a>";
@@ -132,30 +132,30 @@ if(isset($_POST["invite-submit"]))
 						}
 						print "</div>";
 						print "<div id='invites'><h3>Invites</h3>";
-						$inv = getInvites($user);
+						$inv = getInvites($userID);
 						foreach($inv as $i)
 						{
 							displayInviteCard($i);
 						}
 					}
-					else if($username < 0)
+					else if($userIDname < 0)
 					{
-						print "<h1>This user does not exist.</h1>";
+						print "<h1>This userID does not exist.</h1>";
 					}
 					else
 					{
 						//Public Profile
-						$loc = getUserLocationName($user);
-						print "<div id='profile-name'><p>$username's page</p></div>";
+						$loc = getuserIDLocationName($userID);
+						print "<div id='profile-name'><p>$userIDname's page</p></div>";
 						if(!empty($loc) && $loc >= 0)
 						{
 							print "<div id='location'><p>Location $loc</p></div>";
 						}
 						
-						if(isFollowed($loggedin, $user))
+						if(isFollowed($loggedin, $userID))
 						{
 							print "<div id='follow'>
-								<form name='unfollow' id='unfollow' action='profile.php?u=$user' method='POST'>
+								<form name='unfollow' id='unfollow' action='profile.php?u=$userID' method='POST'>
 									<input class='btn-unfollow' name='follow-submit' type='submit' value='Un-Follow'>
 								</form>
 							</div>";
@@ -163,18 +163,18 @@ if(isset($_POST["invite-submit"]))
 						else
 						{
 							print "<div id='follow'>
-								<form name='follow' id='follow' action='profile.php?u=$user' method='POST'>
+								<form name='follow' id='follow' action='profile.php?u=$userID' method='POST'>
 									<input class='btn-follow' name='follow-submit' type='submit' value='Follow'>
 								</form>
 							</div>";
 						}
 						
-						print "<div id='followedUsers'><p>Following</p>";
-						$users = getFollows($user);
+						print "<div id='followeduserIDs'><p>Following</p>";
+						$userIDs = getFollows($userID);
 						
-						foreach($users as $u)
+						foreach($userIDs as $u)
 						{
-							$name = getUsername($u);
+							$name = getuserIDname($u);
 							if($name >= 0)
 							{
 								print "<a href='profile.php?u=$u'>$name</a>";
