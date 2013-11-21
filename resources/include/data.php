@@ -618,8 +618,8 @@ function newLocation($loc_name, $loc_address)
    if ($response['status'] != 'OK') 
    {
 		
-		$lat = NULL;
-		$lng = NULL;
+		$lat = 'NULL';
+		$lng = 'NULL';
 		addLog("GeocodeError",$response['status'] . ": " . $geocode_url);
    }
    else
@@ -631,7 +631,7 @@ function newLocation($loc_name, $loc_address)
    
    $sql = getSQL(TRUE);
    
-   $query = "INSERT INTO e_location (l_name, l_address, l_lat, l_lng) VALUES ('$lname','$laddr','$lat','$lng')";
+   $query = "INSERT INTO e_location (l_name, l_address, l_lat, l_lng) VALUES ('$lname','$laddr',$lat,$lng)";
    
    	$res = sqlQuery($sql,$query);
 	if($res === -2) return -2;
@@ -753,6 +753,32 @@ function addRSVP($UID, $EID, $rsvp)
 	return $id;
 }
 
+function getUserRSVP($UID, $EID){
+	$UID = sanitize($UID);
+	$EID = sanitize($EID);
+
+	$sql = getSQL(TRUE);
+
+	$query = "SELECT rsvp FROM e_rsvp WHERE (u_id='$UID' AND e_id='$EID')";
+
+	$res = sqlQuery($sql,$query);
+
+	if($res === -2) 
+		return -2;
+
+	$rsvp = $res->fetch_assoc();
+
+	if($rsvp)
+	{
+		return $rsvp['rsvp'];
+	}
+	else
+	{
+		return -2;
+	}
+
+}
+
 function changeRSVP($UID, $EID, $rsvp)
 {
 	$UID = sanitize($UID);
@@ -855,7 +881,7 @@ function getInviteCard($IID)
 	$sql = getSQL(FALSE);
 	$IID = sanitize($IID);
 	
-	$query = "SELECT i.u_gu_id AS GuestID, u.u_name AS Inviter, i.u_inv_id AS InviterID, e.e_name AS Event, i.i_cmt AS Message 
+	$query = "SELECT i.u_gu_id AS GuestID, u.u_name AS Inviter, i.u_inv_id AS InviterID, e.e_name AS Event, e.e_id AS EventID, i.i_cmt AS Message 
 			FROM e_inv AS i
 			LEFT JOIN e_users AS u ON (i.u_inv_id = u.u_id)
 			LEFT JOIN e_events AS e ON (i.e_id = e.e_id)

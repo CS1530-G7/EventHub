@@ -31,6 +31,23 @@ if(isset($_POST["follow-submit"]))
 	}
 }
 
+if(isset($_POST["invite-submit"]))
+{
+	$guest = $_POST["InvUser"];
+	if($loggedin == $guest)
+	{
+		$IID = $_POST["IID"];
+		
+		if($_POST["invite-submit"] === "Accept")
+		{
+			acceptInvite($IID);
+		}
+		else
+		{
+			rejectInvite($IID);
+		}
+	}
+}
 
 
 ?>

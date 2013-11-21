@@ -8,7 +8,8 @@ function displayEventCard($EID, $Distance=-1, $rsvp=-1)
 {
 
 	$event = getEventCard($EID);
-
+	if($event >= 0)
+	{
 	$ename = $event["Name"];
 	$edate = date("F j, Y g:i a",strtotime($event["Date"]));
 	$eloc = $event["Location"];
@@ -34,10 +35,33 @@ function displayEventCard($EID, $Distance=-1, $rsvp=-1)
 			
 			
 			print "</div>";
+	}
 }
 function displayInviteCard($IID)
 {
-
+	$inv = getInviteCard($IID);
+	if($inv >= 0)
+	{
+		$guID = $inv["GuestID"];
+		$invr = $inv["Inviter"];
+		$invrID = $inv["InviterID"];
+		$ename = $inv["Event"];
+		$eid = $inv["EventID"];
+		$msg = $inv["Message"];
+		
+		print "<div id='invite-$IID' class='invite-card'>
+				<p id='EName'><a href='event.php>e=$eid'>$ename</a></p>
+				<p id='Invite'>Invited by <a href='profile.php?u=$invrID'>$invr</a></p>
+				<p id='Msg' class='quote'>$msg</p>
+				<form name='Invite' action='profile.php?u=$guID' method='POST'>
+					<input type='hidden' name='IID' value='$IID'>
+					<input type='hidden' name='InvUser' value='$guID'>
+					<input class='btn-invite' name='invite-submit' type='submit' value='Accept'>
+					<input class='btn-invite' name='invite-submit' type='submit' value='Reject'>
+					
+				</form></div>";
+	
+	}
 }
 function rsvpText($rsvp)
 {
