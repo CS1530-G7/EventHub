@@ -162,6 +162,5 @@ else
 					<input type="submit" name="edit-profile" value="Submit Changes">
 				</form>
 			</div>
-		</div>
 	</body>
 </html>
