@@ -597,6 +597,16 @@ function getEventCard($EID)
 	
 }
 
+
+function deleteEvent($EID) {
+
+ 	$sql = getSQL(TRUE);
+  $query = "DELETE FROM e_events WHERE e_id='$EID'";
+  $res = sqlQuery($sql,$query);
+  if($res === -2) return -2;
+
+}
+
 //Location functions
 function newLocation($loc_name, $loc_address)
 {

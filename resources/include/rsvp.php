@@ -51,7 +51,7 @@ function doRSVP() {
  			//echo $userCurrentRSVP; 
 
 
- 			// if a user is not already chosen an RSVP option for this event, then do these
+ 			// if a user has not already chosen an RSVP option for this event, then do these
  			if($userCurrentRSVP == -46) {
 
 

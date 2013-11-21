@@ -31,6 +31,7 @@ $url = "event.php?e={$EID}";
 			login_div($msg);
 			searchBar();
 			eventHTML();
+			showEventDelete();
 		?>
 
 		<div id="invite">
