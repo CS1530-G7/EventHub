@@ -29,7 +29,7 @@ function doInvite() {
 		}
 
 		// if no errors, then send the invite
-		if ($error_message == "") {
+		if ($message == "") {
 			sendInvite($inviter_UID, $invitee_UI, $EID, $msg="");
 			$message = "<p>You successfully invited {$username}!</p>";
 		}

@@ -32,7 +32,7 @@ $url = "event.php?e={$EID}";
 
 		<div id="invite">
 			<h2>Send invites to this event...</h2>
-			<form name="invite" id="invite" action=<?php echo $url; ?> method="GET">
+			<form name="invite" id="invite" action=<?php echo $url; ?> method="POST">
 				<label for="username"/></label>
 				<input type="text" name="username" value="" size="50">
 				<input class= "btn" type="submit" name="invite_submit" value="Invite user">
