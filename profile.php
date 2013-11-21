@@ -74,6 +74,8 @@ if(isset($_POST["invite-submit"]))
 						
 				if($user === $loggedin)
 					{
+						//Left column
+						print "<div id='left'>";
 						//Display your profile
 						print "<div id='profile-name'><h3>Your page</h3><p>(<a href='editProfile.php'>Edit</a>)</p>";
 						
@@ -141,7 +143,7 @@ if(isset($_POST["invite-submit"]))
 					}
 					else if($username < 0)
 					{
-					
+						print "<h1>This user does not exist.</h1>";
 					}
 					else
 					{
