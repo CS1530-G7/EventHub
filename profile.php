@@ -5,7 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/search.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/eventFunctions.php");
 
-$msg = doLogin();
+$login_msg = doLogin();
 
 
 $user = $_GET["u"];
@@ -64,16 +64,12 @@ if(isset($_POST["invite-submit"]))
 
 	<body>
 		<div id="main-center">
-			<div id="header">
-				<?php
-					$login_input = doLogin();
-					login_div($login_input);
-				?>
-			</div>
+
+				<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");?>
+
 			
 			<div id="content">
 				<?php
-				searchBar();
 				$username = getUsername($user);
 						
 				if($user === $loggedin)

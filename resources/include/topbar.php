@@ -47,7 +47,7 @@ if($_SERVER["PHP_SELF"] === '/index.php')
 					<input class= "btn" name="submit" type="submit" value="Login">
 				</form>
 				<div id="login-errors">
-					<? print $msg; ?>
+					<? print $login_msg; ?>
 				</div>
 			</div>
 			<div id="sign-up">

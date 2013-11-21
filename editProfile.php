@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/data.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/login.php");
-$msg=doLogin();
+$login_msg=doLogin();
 $user = getActiveUser();
 $showerror = false;
 
@@ -126,7 +126,8 @@ else
 
  <html>
 	<body>
-	<?php login_div($msg);
+	<?php 
+	require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");
 	if($showerror)
 	{
 		print "<div class='error'>$emailerror\n$locerror\n$passerror</div>";

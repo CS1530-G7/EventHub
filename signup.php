@@ -2,6 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . "resources/include/data.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "resources/include/signupValidate.php");
 
+$login_msg = doLogin();
 ?>
 
 
@@ -17,12 +18,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "resources/include/signupValidate.php")
     	</head>
 		
 		<div id="main-center">
-			<div id="header">
-				<?php
-					$login_input = doLogin();
-					login_div($login_input);
-				?>
-			</div>
+
+				<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");?>
+
 
 			<div id="content">
 				<h1>Sign up!</h1>
