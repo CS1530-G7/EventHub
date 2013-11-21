@@ -856,6 +856,7 @@ function getUserRSVPs($UID, $ignoreNotGoing=TRUE, $futureEventsOnly = TRUE)
 //Invite
 function sendInvite($UIDSender, $UIDRecieve, $EID, $msg="")
 {
+	print $UIDRecieve;
 	$m = sanitize($msg);
 	$UIDs = sanitize($UIDSender);
 	$UIDr = sanitize($UIDRecieve);
