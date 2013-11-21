@@ -16,7 +16,7 @@ function doInvite() {
 		$invitee_UID = getUserID($username);
 		$inviter_UID = getActiveUser();
 
-		$EID = $_GET['u'];
+		$EID = $_GET['e'];
 
 		echo $EID . " " . $username . " " . $invitee_UID . " " . $inviter_UID;
 
