@@ -17,56 +17,60 @@ $url = "event.php?e={$EID}";
 ?>
  
  <html>
+ 	<head>
+  		<title>EventHub</title>
+         <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 
- 	<header>
+	 	<script>
+	 		function RemoveText(obj) {   obj.value = ''; } 
+	 	</script>
+     </head>
 
- 	<script>
- 		function RemoveText(obj) {   obj.value = ''; } 
- 	</script>
-
- 	</header>
 	<body>
-
-		<?php
-			require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");
-			eventHTML();
-			showEventDelete();
-		?>
-
-		<div id="invite">
-			<h2>Send invites to this event...</h2>
-			<form name="invite" id="invite" action=<?php echo $url; ?> method="POST">
-				<label for="username"/></label>
-				<input type="text" name="username" value="" size="50">
-				<input class= "btn" type="submit" name="invite_submit" value="Invite user">
-			</form>
-
-			<div id="invite_message">
-				<?php echo $invite_message; ?>
-			</div>
-		</div>
-
-		<div id="rsvp">
-			<h2>RSVP to this event!</h2>
-			<?php 
-
-			//print rsvp status
-			echo $rsvp_status;
-			
+		<div id="main-center">
+			<!-- Header -->
+			<?php
+				require_once($_SERVER['DOCUMENT_ROOT'] . "/resources/include/topbar.php");
+				eventHTML();
+				showEventDelete();
 			?>
 
-			<form name="rsvp" id="rsvp" action=<?php echo $url; ?> method="POST">
-				<label for=""/>Are you going?</label><br>
-				<input type="radio" name="decision" value="Yes">Yes<br>
-				<input type="radio" name="decision" value="No">No<br>
-				<input type="radio" name="decision" value="Maybe">Maybe<br>
-				<input class= "btn" type="submit" name="rsvp_submit" value="RSVP">
-			</form>
+			<div id="content">
+				<div id="invite">
+					<h2>Send invites to this event...</h2>
+					<form name="invite" id="invite" action=<?php echo $url; ?> method="POST">
+						<label for="username"/></label>
+						<input type="text" name="username" value="" size="50">
+						<input class= "btn" type="submit" name="invite_submit" value="Invite user">
+					</form>
 
-			<div id="rsvp_message">
-				<?php echo $rsvp_message; ?>
-			</div>			
+					<div id="invite_message">
+						<?php echo $invite_message; ?>
+					</div>
+				</div>
+
+				<div id="rsvp">
+					<h2>RSVP to this event!</h2>
+					<?php 
+
+					//print rsvp status
+					echo $rsvp_status;
+					
+					?>
+
+					<form name="rsvp" id="rsvp" action=<?php echo $url; ?> method="POST">
+						<label for=""/>Are you going?</label><br>
+						<input type="radio" name="decision" value="Yes">Yes<br>
+						<input type="radio" name="decision" value="No">No<br>
+						<input type="radio" name="decision" value="Maybe">Maybe<br>
+						<input class= "btn" type="submit" name="rsvp_submit" value="RSVP">
+					</form>
+
+					<div id="rsvp_message">
+						<?php echo $rsvp_message; ?>
+					</div>			
+				</div>
+			<div>
 		</div>
-		
 	</body>
 </html>
