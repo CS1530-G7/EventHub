@@ -762,11 +762,20 @@ function getUserRSVP($UID, $EID){
 	$query = "SELECT rsvp FROM e_rsvp WHERE (u_id='$UID' AND e_id='$EID')";
 
 	$res = sqlQuery($sql,$query);
-	
+
 	if($res === -2) 
 		return -2;
+
+	$rsvp = $res->fetch_assoc();
+
+	if($rsvp)
+	{
+		return $rsvp;
+	}
 	else
-		return $res;
+	{
+		return -2;
+	}
 
 }
 
