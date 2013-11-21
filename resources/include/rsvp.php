@@ -37,6 +37,7 @@ function doRSVP() {
  			$userRSVPs = getUserRSVPs($UID, FALSE, FALSE);
 
  			foreach($userRSVPs as $r){
+ 				echo $r . "<br>" . $EID . "<br>";
  				if($r == $EID) {
  					$userCurrentRSVP = getUserRSVP($UID, $EID);
  				}
