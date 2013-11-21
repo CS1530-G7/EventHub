@@ -10,6 +10,7 @@ $msg = doLogin();
 
 $invite_message = doInvite();
 $rsvp_message = doRSVP();
+$rsvp_status = rsvpStatus();
 
 $EID = $_GET['e'];
 $url = "event.php?e={$EID}";
@@ -47,6 +48,12 @@ $url = "event.php?e={$EID}";
 
 		<div id="rsvp">
 			<h2>RSVP to this event!</h2>
+			<?php 
+
+			//print rsvp status
+			echo $rsvp_status;
+			
+			?>
 
 			<form name="rsvp" id="rsvp" action=<?php echo $url; ?> method="POST">
 				<label for=""/>Are you going?</label><br>
