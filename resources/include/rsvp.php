@@ -94,21 +94,25 @@ function rsvpStatus() {
 	$status = -1;
 	$status = getUserRSVP($UID, $EID);
 
-	if ($status == -1 || $status == -2) {
-		$message = "<p>You haven't made your mind up about this event, yet.</p>";
-	}
+	if($UID != -1) {
 
-	if($status == 0) {
+		if ($status == -1 || $status == -2) {
+			$message = "<p>You haven't made your mind up about this event, yet.</p>";
+		}
 
-		$message = "<p>You are currently not going to this event.</p>";
+		if($status == 0) {
 
-	} elseif ($status == 1) {
+			$message = "<p>You are currently not going to this event.</p>";
 
-		$message = "<p>You might be going.</p>";
+		} elseif ($status == 1) {
 
-	} elseif ($status == 2) {
+			$message = "<p>You might be going.</p>";
 
-		$message = "<p>You are going to this event.</p>";
+		} elseif ($status == 2) {
+
+			$message = "<p>You are going to this event.</p>";
+
+		}
 
 	}
 
