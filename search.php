@@ -21,7 +21,7 @@ $login_msg = doLogin();
             <!-- Content -->
             <div id="content">
                 <div id="search_results">
-                    <h3>Searh Results</h3>
+                    <h3>Search Results</h3>
                 	<?php doEventSearch(); ?>
                 </div>
             </div>
