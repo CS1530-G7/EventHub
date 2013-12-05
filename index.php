@@ -25,7 +25,7 @@ $login_msg = doLogin();
 			
 
 			<div id="content">
-				<h1>EventHub: Hi CS 1530</h1>
+				<h1>EventHub</h1>
 
 				<?php searchBar(); ?>
 			</div>
