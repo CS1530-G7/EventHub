@@ -25,6 +25,7 @@ $login_msg = doLogin();
 			
 
 			<div id="content">
+				<h1>HELLO</h1>
 				<h1>EventHub</h1>
 
 				<?php searchBar(); ?>
